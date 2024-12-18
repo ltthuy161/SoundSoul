@@ -1,0 +1,171 @@
+/* Đặt chung */
+body {
+  font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+  }
+  
+  .topbar {
+    display: flex;
+    justify-content: flex-start; /* Căn nội dung sang bên trái */
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    width: 95%; /* Đảm bảo thanh topbar phủ toàn bộ chiều rộng */
+    padding: 0 20px; /* Thêm khoảng cách hai bên */
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+    font-family: 'Poppins', sans-serif;
+
+  }
+  
+  .topbar img {
+    height: 50px;
+  }
+  
+  .topbar .ss {
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: 700;
+    color: #333;
+  }
+  
+  /* Phần container */
+  .page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    
+  }
+  
+  .container {
+    position: absolute; 
+    padding: 40px;
+    width: 30%;
+    height: auto;
+    background: #F9F9F9FF; /* neutral-150 */
+    border-radius: 24px; /* border-xl */
+    border-width: 2px; 
+    border-color: #C1C1C14F; /* neutral-400 */
+    border-style: solid; 
+    box-shadow: 0px 8px 17px #1a1a1a26, 0px 0px 2px #1a1a1a1F; /* shadow-l */  
+  }
+  .container-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  } 
+
+  .text {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+
+  }
+  
+  /* Textbox */
+  .textbox {
+    font-family: 'Poppins', sans-serif;
+    width: 90%; 
+    margin: 15px 0;
+    text-align: left;
+    border: 1px solid #822212FF; 
+    padding: 1% 2% 2% 2%;
+    border-radius: 12px;
+    background-color: white;
+    opacity: 0.8;
+  }
+  
+  .textbox label {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+    color: #333;
+  }
+  
+  .textbox input {  
+    width: 95%;  
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 14px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .textbox input:focus {
+    outline: none;
+    border: none;
+  }
+
+  .password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-wrapper input {
+    width: 100%;
+    padding-right: 40px; /* Để chừa khoảng trống cho nút */
+  }
+  
+  .visibility-toggle {
+    position: absolute;
+    right: 10px; /* Căn nút biểu tượng về phía phải */
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #666;
+    padding: 5px;
+  }
+  
+  .visibility-toggle:focus {
+    outline: none;
+  }
+  
+  /* Nút đăng nhập */
+  .buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;
+  }
+  
+  .send-button {
+    background: #822212FF; /* primary-500 */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    width: 90%;
+    transition: all 0.3s ease;
+    box-shadow: 0px 8px 17px #82221226, 0px 0px 2px #8222121F; /* shadow-l */
+  }
+
+.send-button:hover {
+background: #641B0EFF; /* primary-650 */
+}
+  
+.send-button:focus {
+    outline: none;
+}
+
+.send-button:active {
+    background-color: #822212FF;
+    transform: translateY(2px);
+}
