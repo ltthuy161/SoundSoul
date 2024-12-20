@@ -1,0 +1,187 @@
+:root {
+    --bs-primary: #822212ff;
+    --bs-secondary: #fdf3f1;
+    --bs-light: #f8f9fa;
+    --bs-dark: #822212ff;
+    --bs-gray: #6c757d;
+    --bs-text-light: #fdf3f1;
+    --bs-text-muted: #ad4635;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: var(--bs-light);
+}
+
+.topbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.topbar img {
+    height: 50px;
+}
+
+.topbar .ss {
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: 700;
+    color: #333;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--bs-text-light);
+    border: 1px solid var(--bs-dark);
+    border-radius: 10px;
+    padding: 5px 15px;
+    width: 50%;
+    max-width: 500px;
+    margin: 0 auto;
+    transition: border-color 0.3s ease;
+}
+
+.search-bar:hover {
+    border-color: #b5312a;
+}
+
+.search-bar:focus-within {
+    border-color: #b5312a;
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: var(--bs-text-light);
+    color: var(--bs-dark);
+    font-family: "Poppins", sans-serif;
+    padding: 5px 0;
+    appearance: none;
+}
+
+.search-bar input:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: var(--bs-text-light);
+    color: var(--bs-dark);
+}
+
+.search-bar input::placeholder {
+    color: var(--bs-dark);
+    opacity: 0.5;
+}
+
+.search-bar i {
+    color: var(--bs-dark);
+    font-size: 18px;
+    margin-right: 2%;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f9f9f9;
+}
+
+.text-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.username {
+    font-size: 16px;
+    font-weight: 450;
+    margin: 0;
+}
+
+.role {
+    font-size: 14px;
+    color: #822212ff;
+    margin: 0;
+    opacity: 0.6;
+}
+
+/* Menu List */
+.menu {
+    list-style: none;
+    /* Loại bỏ bullet points */
+    padding: 0;
+    /* Xóa padding mặc định */
+    margin: 0;
+    /* Xóa margin mặc định */
+}
+
+/* Menu Item */
+.menu-item {
+    display: flex;
+    /* Flexbox để căn chỉnh icon và text */
+    align-items: center;
+    /* Đảm bảo icon và text căn giữa theo chiều dọc */
+    gap: 4%;
+    /* Khoảng cách giữa icon và text */
+    padding: 5% 10%;
+    /* Khoảng cách bên trong item */
+    font-size: 14px;
+    /* Kích thước chữ */
+    font-weight: 500;
+    /* Độ đậm chữ trung bình */
+    color: #333;
+    /* Màu chữ */
+    border-radius: 8px;
+    /* Bo tròn góc của item */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Hiệu ứng hover */
+    cursor: pointer;
+    /* Hiển thị con trỏ khi hover */
+}
+
+/* Icon Style */
+.menu-item i {
+    font-size: 18px;
+    /* Kích thước icon */
+    color: #666;
+    /* Màu xám icon */
+    margin-bottom: 5%;
+}
+
+/* Active Menu Item */
+.menu-item.active {
+    background-color: #822212;
+    /* Màu nền đỏ nâu */
+    color: white;
+    /* Chữ màu trắng */
+}
+
+.menu-item.active i {
+    color: white;
+    /* Icon cũng chuyển sang màu trắng */
+}
+
+/* Hover Effect */
+.menu-item:hover {
+    background-color: #f4f4f4;
+    /* Màu nền khi hover */
+}
+
+.page {
+    margin-top: 80px;
+}
