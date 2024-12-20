@@ -1,0 +1,626 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.topbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  top: 0px;
+  width: 95%;
+  padding: 0 20px;
+  background-color: #f9f9f9;
+}
+
+.topbar img {
+  height: 50px;
+}
+
+.topbar .ss {
+  font-size: 24px;
+  margin-left: 10px;
+  font-weight: 700;
+  color: #333;
+}
+
+.billingfrequency .bf {
+  position: absolute;
+  top: 141px;
+  left: 29px;
+  font-family: Poppins;
+  /* Body */
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 700;
+  color: #1A1A1AFF;
+  /* neutral-900 */
+}
+
+.billingfrequency .paymonthly {
+  position: absolute;
+  top: 181px;
+  left: 26px;
+  width: 230px;
+  height: 44px;
+}
+
+.billingfrequency .payyearly {
+  position: absolute;
+  top: 181px;
+  left: 284px;
+  width: 260px;
+  height: 44px;
+}
+
+.billingfrequency .paymonthly,
+.billingfrequency .payyearly {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Poppins;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #1A1A1AFF;
+  /* neutral-900 */
+  background: #F4F4F4FF;
+  /* neutral-200 */
+  opacity: 1;
+  border: none;
+  border-radius: 12px;
+  /* border-m */
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  /* Hiệu ứng mượt */
+}
+
+/* Hover */
+.billingfrequency .paymonthly:hover,
+.billingfrequency .payyearly:hover {
+  background: #15D23EFF;
+  /* xanh lá */
+  color: #FFFFFFFF;
+  /* trắng */
+}
+
+/* Selected (Khi được chọn) */
+.billingfrequency .paymonthly.focus,
+.billingfrequency .payyearly.focus {
+  background: #15D23EFF;
+  /* xanh lá */
+  color: #FFFFFFFF;
+  /* trắng */
+}
+
+/* Disabled */
+.billingfrequency .paymonthly:disabled,
+.billingfrequency .payyearly:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.paymentmethods .pm {
+  position: absolute;
+  top: 253px;
+  left: 29px;
+  font-family: Poppins;
+  /* Body */
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 700;
+  color: #1A1A1AFF;
+  /* neutral-900 */
+}
+
+.paymentmethods .credit {
+  position: absolute;
+  top: 293px;
+  left: 29px;
+  width: 218px;
+  height: 44px;
+}
+
+.paymentmethods .apple {
+  position: absolute;
+  top: 293px;
+  left: 270px;
+  width: 120px;
+  height: 44px;
+}
+
+.paymentmethods .google {
+  position: absolute;
+  top: 293px;
+  left: 415px;
+  width: 130px;
+  height: 44px;
+}
+
+.paymentmethods .credit,
+.paymentmethods .apple,
+.paymentmethods .google {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Poppins;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #1A1A1AFF;
+  /* neutral-900 */
+  background: #F4F4F4FF;
+  /* neutral-200 */
+  opacity: 1;
+  border: none;
+  border-radius: 12px;
+  /* border-m */
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  /* Hiệu ứng mượt */
+}
+
+/* Hover */
+.paymentmethods .credit:hover,
+.paymentmethods .apple:hover,
+.paymentmethods .google:hover {
+  background: #15D23EFF;
+  /* xanh lá */
+  color: #FFFFFFFF;
+  /* trắng */
+}
+
+/* Selected (Khi được chọn) */
+.paymentmethods .credit.focus,
+.paymentmethods .apple.focus,
+.paymentmethods .google.focus {
+  background: #15D23EFF;
+  /* xanh lá */
+  color: #FFFFFFFF;
+  /* trắng */
+}
+
+/* Disabled */
+.paymentmethods .credit:disabled,
+.paymentmethods .apple:disabled,
+.paymentmethods .google:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.card-info .ci {
+  position: absolute;
+  top: 359px;
+  left: 30px;
+  font-family: Poppins;
+  /* Body */
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 700;
+  color: #1A1A1AFF;
+  /* neutral-900 */
+}
+
+.card-info img {
+  position: absolute;
+  top: 367px;
+  left: 283px;
+  width: 188px;
+  height: 30px;
+  border-radius: 0px;
+}
+
+.card-info .cn {
+  position: absolute;
+  top: 395px;
+  left: 29px;
+  width: 97px;
+}
+
+.card-info .ed {
+  position: absolute;
+  top: 395px;
+  left: 278px;
+  width: 97px;
+}
+
+.card-info .cvc {
+  position: absolute;
+  top: 395px;
+  left: 418px;
+  width: 97px;
+}
+
+.card-info .name {
+  position: absolute;
+  top: 483px;
+  left: 29px;
+  width: 108px;
+  height: 18px;
+}
+
+.card-info .address {
+  position: absolute;
+  top: 571px;
+  left: 30px;
+  width: 108px;
+  height: 18px;
+}
+
+.card-info .city {
+  position: absolute;
+  top: 712px;
+  left: 30px;
+  width: 108px;
+  height: 18px;
+}
+
+.card-info .state {
+  position: absolute;
+  top: 712px;
+  left: 292px;
+  width: 108px;
+  height: 18px;
+}
+
+.card-info .country {
+  position: absolute;
+  top: 800px;
+  left: 30px;
+  width: 108px;
+  height: 18px;
+}
+
+.card-info .cn,
+.card-info .ed,
+.card-info .cvc,
+.card-info .name,
+.card-info .address,
+.card-info .city,
+.card-info .state,
+.card-info .country {
+  font-family: Poppins;
+  /* Body */
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #1A1A1AFF;
+  /* neutral-900 */
+}
+
+.card-info #number {
+  position: absolute;
+  top: 429px;
+  left: 30px;
+  opacity: 1;
+  width: 217px;
+  height: 36px;
+}
+
+.card-info #expire {
+  position: absolute;
+  top: 429px;
+  left: 279px;
+  opacity: 1;
+  width: 110px;
+  height: 36px;
+}
+
+.card-info #CVC {
+  position: absolute;
+  top: 429px;
+  left: 418px;
+  opacity: 1;
+  width: 110px;
+  height: 36px;
+}
+
+.card-info #name {
+  position: absolute;
+  top: 518px;
+  left: 29px;
+  opacity: 1;
+  width: 499px;
+  height: 36px;
+}
+
+.card-info #address1 {
+  position: absolute;
+  top: 606px;
+  left: 29px;
+  opacity: 1;
+  width: 499px;
+  height: 36px;
+}
+
+.card-info #address2 {
+  position: absolute;
+  top: 659px;
+  left: 29px;
+  opacity: 1;
+  width: 499px;
+  height: 36px;
+}
+
+.card-info #city {
+  position: absolute;
+  top: 747px;
+  left: 28px;
+  opacity: 1;
+  width: 236px;
+  height: 36px;
+}
+
+.card-info #state {
+  position: absolute;
+  top: 746px;
+  left: 292px;
+  opacity: 1;
+  width: 236px;
+  height: 36px;
+}
+
+.card-info #number,
+.card-info #expire,
+.card-info #CVC,
+.card-info #name,
+.card-info #address1,
+.card-info #address2,
+.card-info #city,
+.card-info #state {
+  padding-left: 12px;
+  padding-right: 12px;
+  font-family: Poppins;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  background: #FFFFFFFF;
+  /* white */
+  border-radius: 12px;
+  /* border-m */
+  border-width: 1px;
+  border-color: #C1C1C1FF;
+  /* neutral-400 */
+  border-style: solid;
+  outline: none;
+}
+
+/* hover */
+.card-info input:hover {
+  color: #C1C1C1FF;
+  /* neutral-400 */
+  background: #FFFFFFFF;
+  /* white */
+  border-color: #ACACACFF;
+  /* neutral-450 */
+}
+
+/* focused */
+.card-info input:focused {
+  color: #C1C1C1FF;
+  /* neutral-400 */
+  background: #FFFFFFFF;
+  /* white */
+  border-color: #949494FF;
+  /* neutral-500 */
+}
+
+/* disabled */
+.card-info input:disabled {
+  color: #C1C1C1FF;
+  /* neutral-400 */
+  background: #FFFFFFFF;
+  /* white */
+  border-color: #C1C1C1FF;
+  /* neutral-400 */
+}
+
+.card-info :disabled+.icon,
+.textbox :disabled+.icon+.icon {
+  fill: #1A1A1AFF;
+  /* neutral-900 */
+}
+
+#country-dropdown {
+  position: absolute;
+  top: 835px;
+  left: 28px;
+  opacity: 1;
+}
+
+#country {
+  width: 526px;
+  height: 36px;
+  padding-left: 12px;
+  padding-right: 34px;
+  font-family: Poppins, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #1A1A1AFF;
+  /* neutral-900 */
+  background: #FFFFFFFF;
+  /* white */
+  border-radius: 12px;
+  /* border-m */
+  border-width: 1px;
+  border-color: #C1C1C1FF;
+  /* neutral-400 */
+  border-style: solid;
+  outline: none;
+  box-sizing: border-box;
+  /* Đảm bảo padding và border không vượt kích thước */
+  appearance: none;
+  /* Xóa mặc định của trình duyệt */
+}
+
+#country:hover {
+  color: #1A1A1AFF;
+  /* Neutral-900 */
+  background: #FFFFFFFF;
+  /* white */
+  border-color: #ACACACFF;
+  /* neutral-450 */
+}
+
+#country:focus {
+  color: #1A1A1AFF;
+  /* Neutral-900 */
+  background: #FFFFFFFF;
+  /* white */
+  border-color: #007bff;
+  /* Màu xanh lam khi focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#country:disabled {
+  color: #C1C1C1FF;
+  /* Neutral-400 */
+  background: #F7F7F7FF;
+  /* Light grey */
+  border-color: #C1C1C1FF;
+  /* Neutral-400 */
+  cursor: not-allowed;
+}
+
+/* Thêm biểu tượng caret cho dropdown */
+#country-dropdown::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 16px;
+  height: 16px;
+  background: url('data:image/svg+xml;base64,<svg-content>') no-repeat center;
+  pointer-events: none;
+}
+
+/* Biểu tượng caret khi input bị disable */
+#country:disabled::after {
+  background: none;
+  fill: #C1C1C1FF;
+  /* Neutral-400 */
+}
+
+.container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  /* Gắn container về phía bên phải */
+  width: 50%;
+  /* Nửa chiều rộng trang */
+  height: 100%;
+  /* Chiều cao toàn màn hình */
+  background: linear-gradient(180deg, #AD4635FF 31%, #FFCC66FF 80%);
+}
+
+.container .UYP {
+  position: absolute;
+  top: 108px;
+  left: 54px;
+  width: 629px;
+  height: 212px;
+}
+
+.container .Sentence {
+  position: absolute;
+  top: 230px;
+  left: 54px;
+  width: 629px;
+  height: 212px;
+}
+
+.container .UYP,
+.container .Sentence {
+  font-family: Poppins;
+  /* Body */
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #FFFFFFFF;
+  /* white */
+}
+
+.container .Total {
+  position: absolute;
+  top: 120px;
+  left: 54px;
+  width: 629px;
+  height: 212px;
+  font-family: Open Sans;
+  /* Heading */
+  font-size: 64px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #FFFFFFFF;
+  /* white */
+}
+
+.container .back {
+  position: absolute;
+  top: 550px;
+  left: 50px;
+  width: 200px;
+  height: 44px;
+}
+
+.container .subscribe {
+  position: absolute;
+  top: 550px;
+  left: 442px;
+  width: 200px;
+  height: 44px;
+}
+
+.container .back,
+.container .subscribe {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Poppins;
+  font-size: 16px;
+  line-height: 26px;
+  font-weight: 400;
+  color: #FFFFFFFF;
+  /* white */
+  background: #822212FF;
+  /* primary-500 */
+  opacity: 1;
+  border: none;
+  border-radius: 12px;
+  /* border-m */
+}
+
+/* Hover */
+.container .back:hover,
+.container .subscribe:hover {
+  color: #FFFFFFFF;
+  /* white */
+  background: #641B0EFF;
+  /* primary-650 */
+}
+
+/* Pressed */
+.container .back:active,
+.container .subscribe:hover:active {
+  color: #FFFFFFFF;
+  /* white */
+  background: #47130AFF;
+  /* primary-800 */
+}
+
+/* Disabled */
+.container .back:disabled,
+.container .subscribe:disabled {
+  opacity: 0.4;
+}

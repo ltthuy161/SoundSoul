@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/client/css/freeuser/UpgradeToPremium.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
+
+  <title>Pay For Upgrading To Premium</title>
+
+</head>
+
+<body>
+
+  <div class="topbar">
+    <img src="/client/assets/img/logo.png" alt="logo" />
+    <p class="ss">SoundSoul</p>
+  </div>
+
+  <div class="billingfrequency">
+    <p class="bf">Billing frequency</p>
+    <button type="button" class="paymonthly">Pay monthly $10/month</button>
+    <button type="button" class="payyearly">Pay yearly $8/month(-20%) </button>
+  </div>
+
+  <div class="paymentmethods">
+    <p class="pm">Payment method</p>
+    <button type="button" class="credit">Credit or Debit card</button>
+    <button type="button" class="apple">Apple Pay</button>
+    <button type="button" class="google">Google Pay</button>
+  </div>
+
+  <div class="card-info">
+    <p class="ci">Payment information</p>
+    <img src="/client/assets/payment/credit-card-icons.png" alt="Credit Payment Methods" />
+    <p class="cn">Card number</p>
+    <input type="text" id="number" placeholder="0000 0000 0000 0000" required>
+    <p class="ed">Expiry date</p>
+    <input type="text" id="expire" placeholder="MM/YY" required>
+    <p class="cvc">CVC</p>
+    <input type="text" id="CVC" placeholder="3-digit code" required>
+    <p class="name">Name on card</p>
+    <input type="text" id="name" placeholder="e.g Jacky Berid" required>
+    <p class="address">Address</p>
+    <input type="text" id="address1" placeholder="Street address or P.O box" required>
+    <input type="text" id="address2" placeholder="Apt., suite, unit, building (Optional)">
+    <p class="city">City</p>
+    <input type="text" id="city" placeholder="City" required>
+    <p class="state">State</p>
+    <input type="text" id="state" placeholder="State, province, region" required>
+    <p class="country">Country</p>
+    <div id="country-dropdown">
+      <input type="text" id="country" list="country-list" placeholder="Select or type a country" required>
+      <datalist id="country-list">
+        <option value="Vietnam">
+        <option value="USA">
+        <option value="France">
+        <option value="Japan">
+      </datalist>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Nội dung bên trong -->
+    <p class="UYP">Upgrade your plan</p>
+    <p class="Total">$96.00</p>
+    <p class="Sentence">We will bill you $8.00 monthly + taxes, unless you cancel.</p>
+    <button type="button" class="back">Back</button>
+    <button type="button" class="subscribe">Subscribe</button>
+  </div>
+
+</body>
+
+</html>
