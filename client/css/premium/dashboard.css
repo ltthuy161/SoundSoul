@@ -185,3 +185,213 @@ body {
 .page {
     margin-top: 80px;
 }
+
+.sidebar {
+    width: 250px;
+    padding: 20px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    height: calc(100vh - 80px);
+    /* Adjusts height to fill screen minus the topbar */
+    overflow-y: auto;
+}
+
+.song-queue {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 300px;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    z-index: 1000;
+}
+
+.song-queue table {
+    border-radius: 10px;
+    background-color: var(--bs-text-light);
+    color: var(--bs-dark);
+}
+
+.song-queue tr {
+    border-bottom: 1px solid var(--bs-dark);
+}
+
+.music-player {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.music-player img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.song-info {
+    margin-left: 10px;
+}
+
+.song-info p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.song-info .song-title {
+    font-weight: 600;
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    background: var(--bs-text-light) !important;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    background: var(--bs-dark) !important;
+}
+
+.card-text.text-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#playlistsModal {
+    border: none;
+}
+
+#playlistsModal .modal-content {
+    background-color: var(--bs-light);
+}
+
+.card {
+    background-color: var(--bs-text-light);
+    color: var(--bs-dark);
+    font-size: 14px;
+    border: 1px solid var(--bs-dark);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    padding: 0.5em 1em;
+    background-color: var(--bs-dark);
+    border-color: var(--bs-dark);
+    color: var(--bs-text-light);
+    border-radius: 10px;
+}
+
+.btn-secondary {
+    padding: 0.5em 1em;
+    background-color: var(--bs-text-light);
+    border-color: var(--bs-dark);
+    color: var(--bs-dark);
+    border-radius: 10px;
+    border: none;
+}
+
+.genre-pill {
+    background-color: var(--bs-text-light);
+    color: var(--bs-text-muted);
+    border-radius: 20px;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.btn:hover {
+    background-color: var(--bs-text-light);
+    border-color: var(--bs-dark);
+    color: var(--bs-dark);
+}
+
+.bg-light {
+    background-color: var(--bs-text-light) !important;
+    color: var(--bs-dark) !important;
+}
+
+.bg-dark {
+    background-color: var(--bs-dark) !important;
+    color: var(--bs-text-light) !important;
+}
+
+.text-dark {
+    color: var(--bs-dark) !important;
+}
+
+.text-light {
+    color: var(--bs-text-light) !important;
+}
+
+.text-muted {
+    color: var(--bs-text-muted) !important;
+}
+
+.border-dark {
+    border: 2px solid var(--bs-dark) !important;
+}
+
+.table-light th {
+    background-color: var(--bs-text-light) !important;
+    font-weight: normal !important;
+}
+
+.modal-content {
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--bs-dark);
+    background-color: var(--bs-text-light);
+    color: var(--bs-dark);
+}
+
+.modal-content textarea,
+.modal-content input {
+    background-color: var(--bs-text-light);
+    color: var(--bs-dark);
+    border: 1px solid var(--bs-dark);
+}
+
+.modal-content textarea:focus,
+.modal-content input:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: var(--bs-text-light);
+    color: var(--bs-dark);
+    border: 1px solid var(--bs-dark);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--bs-dark);
+}
+
+.modal-footer {
+    border-top: 1px solid var(--bs-dark);
+}
+
+.form-control.border {
+    border-color: var(--bs-dark) !important;
+}
+
+.no-underline {
+    text-decoration: none;
+    color: inherit;
+}
+
+body.modal-open > :not(.modal) {
+    opacity: 0.2;
+}
