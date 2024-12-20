@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/client/css/freeuser/Dashboard.css" />
+    <title>Profile</title>
+</head>
+
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <a href="dashboard.html" style="text-decoration: none; display: inline-flex; align-items: center;">
+            <img src="/client/assets/img/logo.png" alt="logo" />
+            <p class="ss">SoundSoul</p>
+        </a>
+        <div class="search-bar ms-auto">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search" />
+        </div>
+        <div class="user-info d-flex align-items-center ms-4">
+            <img src="/client/assets/img/avatar/1.jpg" alt="user" />
+            <div class="ms-2">
+                <p class="username mb-0">Username</p>
+                <p class="role bs-text-muted mb-0">Free User</p>
+            </div>
+        </div>
+    </div>
+    <!-- Modals Section -->
+    <!-- Edit profile modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby=editProfileModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <h3 class="modal-title" id="editProfileModalLabel">Profile details</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 d-flex align-items-center justify-content-center position-relative"
+                            style="height: 100%;">
+                            <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
+                                class="img-fluid rounded-circle" alt="Image"
+                                style="object-fit: cover; aspect-ratio: 1 / 1;">
+                            <button type="button"
+                                class="btn btn-secondary position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Display name</label>
+                                <input type="text" class="form-control" id="name" value="Teos" required>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <p class="text-muted me-auto">By proceeding, you give SoundSoul access to the image you choose to
+                        upload.</p>
+                    <button type="submit" class="btn btn-primary rounded-pill">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Add new playlist modal -->
+    <div class="modal fade" id="addPlaylistModal" tabindex="-1" aria-labelledby="addPlaylistModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <h3 class="modal-title" id="addPlaylistModalLabel">Add New Playlist</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 d-flex align-items-center justify-content-center position-relative"
+                            style="height: 100%;">
+                            <img src="https://www.shareicon.net/download/2016/09/21/831419_multimedia_512x512.png"
+                                class="img-fluid rounded" alt="Image" style="object-fit: cover; aspect-ratio: 1 / 1;">
+                            <button type="button"
+                                class="btn btn-secondary position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Add the playlist name"
+                                    required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" rows="3"
+                                    placeholder="Add a description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <p class="text-muted me-auto">By proceeding, you give SoundSoul access to the image you choose to
+                        upload.</p>
+                    <button type="submit" class="btn btn-primary rounded-pill">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="page container">
+        <div class="row">
+            <!-- Profile Banner -->
+            <div class="bg-dark shadow-sm rounded p-4 d-flex gap-4 position-relative" id="playlist-banner">
+                <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L" alt="Playlist Cover"
+                    class="img-fluid rounded-circle"
+                    style="object-fit: cover; aspect-ratio: 1 / 1; width: 150px; height: 150px;" id="playlist-cover">
+                <div>
+                    <p class="text-light">Profile</p>
+                    <h1 class="fs-1 fw-bold text-light" id="playlist-title">Teos</h1>
+                    <div class="d-flex gap-2 mt-3">
+                        <p class="text-light">55 followings</p>
+                        <i class="bi bi-heart"></i>
+                        <p class="text-light">10 followers</p>
+                        <i class="bi bi-person-plus"></i>
+                    </div>
+                </div>
+                <div class="position-absolute fs-3" data-bs-toggle="modal" data-bs-target="#editProfileModal"
+                    style="top: 10px; right: 10px; display: flex; align-items: center; gap: 5px;">
+                    <i class="bi bi-pencil-square" style="cursor: pointer;"></i>
+                    <span class="text-light">Edit</span>
+                </div>
+            </div>
+
+            <!-- Main Section -->
+            <div class="col-md-9">
+                <div class="row">
+                    <!-- Artist Followed Section -->
+                    <div class="col-12">
+                        <h2>Artists you followed</h2>
+                        <div class="row">
+                            <!-- Song Card -->
+                            <div class="col-md-2">
+                                <div class="card">
+                                    <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
+                                        class="card-img-top img-fluid" alt="Song Cover">
+                                    <div class="card-body text-center">
+                                        <p class="card-title fw-bold mb-0">Song 7</p>
+                                        <p class="card-text text-muted">Artist 7</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
