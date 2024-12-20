@@ -12,6 +12,7 @@
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
         />
+        <script type="module" src="/client/html/auth/signup.js" defer></script>
         <title>Sign in</title>
     </head>
     <body>
@@ -29,6 +30,7 @@
                             type="text"
                             id="fullname"
                             placeholder="example123"
+                            required
                         />
                     </div>
 
@@ -38,6 +40,7 @@
                             type="email"
                             id="email"
                             placeholder="example123@gmail.com"
+                            required
                         />
                     </div>
 
@@ -48,6 +51,7 @@
                                 type="password"
                                 id="password"
                                 placeholder="At least 8 characters"
+                                required
                             />
                             <i class="bi bi-eye-slash" id="togglePassword"></i>
                         </div>
@@ -71,7 +75,9 @@
                 </div>
 
                 <div class="buttons">
-                    <button class="sign-up-button">Sign up</button>
+                    <button class="sign-up-button" id="submit" type="submit">
+                        Sign up
+                    </button>
                 </div>
             </div>
         </div>
