@@ -92,6 +92,31 @@
             </div>
         </div>
 
+        <!-- Player Controls -->
+        <div class="container d-flex justify-content-start align-items-center gap-3" id="player-controls">
+            <!-- Buttons Section with Progress Bar -->
+            <div class="d-flex gap-3 align-items-center" style="flex: 2; width: 100%; max-width: 66.6667%;">
+                <button class="btn btn-lg rounded-circle text-dark" id="play-btn">
+                    <i class="fs-2 fa-solid fa-circle-play"></i>
+                </button>
+                <button class="btn btn-lg rounded-circle text-dark" id="add-btn" data-bs-toggle="modal"
+                    data-bs-target="#addToPlaylistModal">
+                    <i class="bi bi-plus-circle"></i>
+                </button>
+                <button class="btn btn-lg rounded-circle text-dark" id="download-btn">
+                    <i class="bi bi-download"></i>
+                </button>
+                <!-- Progress Bar Section -->
+                <div class="d-flex align-items-center flex-grow-1 mx-3" style="max-width: 200px;">
+                    <div class="progress w-100" style="height: 5px; background-color: var(--bs-text-light);">
+                        <div class="progress-bar" style="background-color: var(--bs-dark); width: 25%;"
+                            id="progress-bar">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
 
     <!-- Bootstrap JS -->
