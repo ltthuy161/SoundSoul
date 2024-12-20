@@ -1,0 +1,583 @@
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.topbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    width: 95%;
+    padding: 0 20px;
+    background-color: #f9f9f9;
+}
+
+.topbar img {
+    height: 50px;
+}
+
+.topbar .ss {
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: 700;
+    color: #333;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 5px 15px;
+    width: 50%;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #822212ff;
+    background: #fdf3f1ff;
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: #fdf3f1ff;
+    color: #822212ff;
+    font-family: "Poppins", sans-serif;
+}
+
+.search-bar input::placeholder {
+    color: #822212ff;
+    opacity: 0.5;
+}
+
+.search-bar i {
+    color: #822212ff;
+    font-size: 18px;
+    margin-right: 2%;
+    margin-bottom: 2%;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f9f9f9;
+}
+
+.text-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.username {
+    font-size: 16px;
+    font-weight: 450;
+    margin: 0;
+}
+
+.role {
+    font-size: 14px;
+    color: #822212ff;
+    margin: 0;
+    opacity: 0.6;
+}
+
+/* Button 9 */
+.upgrade {
+    position: absolute;
+    top: 20px;
+    left: 990px;
+    height: 44px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #FFFFFFFF;
+    /* white */
+    background: #822212FF;
+    /* primary-500 */
+    opacity: 1;
+    border: none;
+    border-radius: 9px;
+    /* border-s */
+}
+
+/* Hover */
+.upgrade:hover {
+    color: #FFFFFFFF;
+    /* white */
+    background: #641B0EFF;
+    /* primary-650 */
+}
+
+/* Pressed */
+.upgrade:hover:active {
+    color: #FFFFFFFF;
+    /* white */
+    background: #47130AFF;
+    /* primary-800 */
+}
+
+/* Disabled */
+.upgrade:disabled {
+    opacity: 0.4;
+}
+
+.selection #rock,
+.selection #pop,
+.selection #rap {
+    position: absolute;
+    top: 182px;
+    left: 327px;
+    width: 308px;
+    height: 196px;
+    border-radius: 9px;
+    /* border-s */
+    box-shadow: 0px 8px 17px #1a1a1a26, 0px 0px 2px #1a1a1a1F;
+    /* shadow-l */
+}
+
+.selection #pop {
+    left: 695px;
+}
+
+.selection #rap {
+    left: 1063px;
+}
+
+.selection #rnb,
+.selection #indie,
+.selection #lofi {
+    position: absolute;
+    top: 417px;
+    left: 327px;
+    width: 308px;
+    height: 196px;
+    border-radius: 9px;
+    /* border-s */
+    box-shadow: 0px 8px 17px #1a1a1a26, 0px 0px 2px #1a1a1a1F;
+    /* shadow-l */
+}
+
+.selection #indie {
+    left: 695px;
+}
+
+.selection #lofi {
+    left: 1063px;
+}
+
+
+.selection #country,
+.selection #folk,
+.selection #jazz {
+    position: absolute;
+    top: 649px;
+    left: 327px;
+    width: 308px;
+    height: 196px;
+    border-radius: 12px;
+    /* border-m */
+}
+
+.selection #folk {
+    left: 695px;
+}
+
+.selection #jazz {
+    left: 1063px;
+}
+
+/* Checkbox 32 */
+.checkbox #rock,
+#pop,
+#rap {
+    position: absolute;
+    top: 187px;
+    left: 605px;
+    opacity: 1;
+}
+
+.checkbox #pop {
+    left: 974px;
+    top: 187px;
+}
+
+.checkbox #rap {
+    left: 1342px;
+    top: 187px;
+}
+
+.checkbox #rnb,
+#indie,
+#lofi {
+    position: absolute;
+    top: 423px;
+    left: 603px;
+    opacity: 1;
+}
+
+.checkbox #indie {
+    left: 974px;
+    top: 423px;
+}
+
+.checkbox #lofi {
+    left: 1342px;
+    top: 423px;
+}
+
+.checkbox #country,
+#folk,
+#jazz {
+    position: absolute;
+    top: 653px;
+    left: 603px;
+    opacity: 1;
+}
+
+.checkbox #folk {
+    left: 974px;
+    top: 653px;
+}
+
+.checkbox #jazz {
+    left: 1342px;
+    top: 653px;
+}
+
+/* Outer square */
+.checkbox .outer-square {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    /* border-xs */
+    border-width: 1px;
+}
+
+/* Inner square */
+.checkbox .inner-square {
+    width: 20px;
+    height: 20px;
+    border-radius: 0px;
+    border-width: 1px;
+    border-color: #5F5F5FFF;
+    /* neutral-600 */
+}
+
+/* Check Icon */
+.checkbox svg {
+    display: none;
+}
+
+/* Checkbox item */
+.checkbox label {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox label:not(:first-child) {
+    margin-top: 8px;
+}
+
+/* Hover */
+.checkbox label:hover .outer-square {
+    opacity: 0.4;
+}
+
+/* Focused */
+.checkbox label:focus-within .outer-square {
+    box-shadow: 0px 0px 2px #82221233;
+}
+
+/* Selected */
+.checkbox input:checked+.outer-square {
+    background: #822212FF;
+    /* primary-500 */
+}
+
+.checkbox input:checked+.outer-square svg {
+    display: block;
+    fill: #FDF3F1FF;
+    /* primary-100 */
+}
+
+/* Indeterminate */
+.checkbox input:indeterminate+.outer-square {
+    background: #FFFFFFFF;
+}
+
+/* Indeterminate */
+.checkbox input:indeterminate+.inner-square {
+    background: #FDF3F1FF;
+    /* primary-100 */
+}
+
+/* Disabled */
+.checkbox input:disabled+div,
+.checkbox input:disabled+div+span {
+    opacity: 0.4;
+}
+
+/* Checkbox item 1 */
+.checkbox .checkbox-item:nth-child(1) {
+    font-family: Poppins;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #822212FF;
+    /* primary-500 */
+}
+
+.genre #rock,
+#pop,
+#rap {
+    position: absolute;
+    top: 330px;
+    left: 375px;
+    opacity: 1;
+}
+
+.genre #pop {
+    left: 740px;
+}
+
+.genre #rap {
+    left: 1110px;
+}
+
+.genre #rnb,
+#indie,
+#lofi {
+    position: absolute;
+    top: 559px;
+    left: 375px;
+    opacity: 1;
+}
+
+.genre #indie {
+    left: 740px;
+}
+
+.genre #lofi {
+    left: 1110px;
+}
+
+.genre #country,
+#folk,
+#jazz {
+    position: absolute;
+    top: 792px;
+    left: 375px;
+    opacity: 1;
+}
+
+.genre #folk {
+    left: 740px;
+}
+
+.genre #jazz {
+    left: 1110px;
+}
+
+.genre input {
+    width: 185px;
+    height: 34px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-family: Poppins;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    background: #822212FF;
+    /* primary-500 */
+    border-radius: 12px;
+    border-width: 1px;
+    border-color: #AD4635FF;
+    /* secondary-500 */
+    border-style: solid;
+    outline: none;
+    text-align: center;
+    /* Căn giữa nội dung theo chiều ngang */
+}
+
+/* hover */
+.genre input:hover {
+    color: #FFFFFFFF;
+    /* white */
+    background: #822212FF;
+    /* primary-500 */
+    border-color: #AD4635FF;
+    /* secondary-500 */
+}
+
+/* focused */
+.genre input:focused {
+    color: #FFFFFFFF;
+    /* white */
+    background: #822212FF;
+    /* primary-500 */
+    border-color: #AD4635FF;
+    /* secondary-500 */
+}
+
+/* disabled */
+.genre input:disabled {
+    color: #FFFFFFFF;
+    /* white */
+    background: #822212FF;
+    /* primary-500 */
+    border-color: #AD4635FF;
+    /* secondary-500 */
+}
+
+.genre :disabled+.icon,
+.textbox :disabled+.icon+.icon {
+    fill: #FFFFFFFF;
+    /* white */
+}
+
+/* Button 130 */
+.apply,
+.clear {
+    position: absolute;
+    top: 125px;
+    left: 1181px;
+    width: 82px;
+    height: 36px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #FFFFFFFF;
+    /* white */
+    background: #822212FF;
+    /* primary-500 */
+    opacity: 1;
+    border: none;
+    border-radius: 12px;
+    /* border-m */
+}
+
+.clear {
+    top: 125px;
+    left: 1289px;
+}
+
+/* Hover */
+.apply:hover,
+.clear:hover {
+    color: #FFFFFFFF;
+    /* white */
+    background: #641B0EFF;
+    /* primary-650 */
+}
+
+/* Pressed */
+.apply:hover:active,
+.clear:hover:active {
+    color: #FFFFFFFF;
+    /* white */
+    background: #47130AFF;
+    /* primary-800 */
+}
+
+/* Disabled */
+.apply:hover:disabled,
+.clear:disabled {
+    opacity: 0.4;
+}
+
+.sidebar {
+    position: fixed; /* Sidebar luôn cố định khi cuộn */
+    top: 60px; /* Đặt khoảng cách từ top để không che topbar (60px là chiều cao topbar) */
+    left: 0; /* Canh lề trái */
+    height: calc(100vh - 60px); /* Chiều cao sidebar bằng chiều cao màn hình trừ chiều cao topbar */
+    width: 250px; /* Độ rộng sidebar */
+    background-color: white; /* Màu nền sidebar */
+    border-right: 1px solid #ddd; /* Đường viền bên phải */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+    padding: 1rem; /* Khoảng cách bên trong */
+    overflow-y: auto; /* Kích hoạt cuộn dọc */
+    z-index: 1000; /* Đảm bảo sidebar nằm trên các thành phần khác */
+}
+
+
+.menu {
+    list-style: none; /* Loại bỏ dấu bullet */
+    padding: 0; /* Xóa padding mặc định */
+    margin: 0; /* Xóa margin mặc định */
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa icon và text */
+    padding: 10px 15px; /* Khoảng cách bên trong của mỗi mục */
+    font-size: 14px;
+    font-weight: 500;
+    color: #333; /* Màu chữ mặc định */
+    border-radius: 8px; /* Bo tròn góc */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển */
+    cursor: pointer; /* Hiển thị con trỏ pointer */
+}
+
+/* Hover Effect */
+.menu-item:hover {
+    background-color: #f4f4f4; /* Màu nền khi hover */
+}
+
+/* Active Menu Item */
+.menu-item.active {
+    background-color: #822212; /* Màu nền đỏ nâu */
+    color: white; /* Chữ màu trắng */
+}
+
+.menu-item.active i {
+    color: white; /* Icon chuyển sang màu trắng */
+}
+
+/* Icon Style */
+.menu-item i {
+    font-size: 18px; /* Kích thước icon */
+    color: #666; /* Màu xám icon */
+}
+
+/* Section Title */
+.section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #b0b0b0; /* Màu xám nhạt */
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
