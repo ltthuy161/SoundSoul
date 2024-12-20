@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playlist</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="/client/css/premium/dashboard.css">
+</head>
+
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <a href="dashboard.html" style="text-decoration: none; display: inline-flex; align-items: center;">
+            <img src="/client/assets/img/logo.png" alt="logo" />
+            <p class="ss">SoundSoul</p>
+        </a>
+        <div class="search-bar ms-auto">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search" />
+        </div>
+        <div class="user-info d-flex align-items-center ms-4">
+            <img src="/client/assets/img/avatar/1.jpg" alt="user" />
+            <div class="ms-2">
+                <p class="username mb-0">Username</p>
+                <p class="role bs-text-muted mb-0">Premium User</p>
+            </div>
+        </div>
+    </div>
+    <!-- Share Modal -->
+    <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="shareModalLabel">Share Your Playlist</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="d-flex justify-content-around">
+                            <a href="#" class="text-decoration-none text-dark text-center">
+                                <i class="bi bi-code-slash fs-3"></i>
+                                <p class="mt-2 text-muted">Embed</p>
+                            </a>
+                            <a href="#" class="text-decoration-none text-dark text-center">
+                                <i class="bi bi-whatsapp fs-3"></i>
+                                <p class="mt-2 text-muted">WhatsApp</p>
+                            </a>
+                            <a href="#" class="text-decoration-none text-dark text-center">
+                                <i class="bi bi-facebook fs-3"></i>
+                                <p class="mt-2 text-muted">Facebook</p>
+                            </a>
+                            <a href="#" class="text-decoration-none text-dark text-center">
+                                <i class="bi bi-twitter fs-3"></i>
+                                <p class="mt-2 text-muted">Twitter</p>
+                            </a>
+                            <a href="#" class="text-decoration-none text-dark text-center">
+                                <i class="bi bi-envelope fs-3"></i>
+                                <p class="mt-2 text-muted">Email</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="d-flex flex-column w-100">
+                        <label for="description" class="form-label mb-2">Share this link</label>
+
+                        <div class="d-flex justify-content-between align-items-center gap-2">
+                            <input class="form-control border text-muted rounded-pill" id="description"
+                                value="https://www.example.com/lorem_ipsu" readonly>
+                            <button type="button" class="btn btn-primary rounded-pill"
+                                onclick="copyLink()">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Playlist Modal -->
+    <div class="modal fade" id="editDetailsModal" tabindex="-1" aria-labelledby="editDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <h3 class="modal-title" id="editDetailsModalLabel">Edit Details</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-4 d-flex align-items-center justify-content-center position-relative"
+                            style="height: 100%;">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9SRRmhH4X5N2e4QalcoxVbzYsD44C-sQv-w&s"
+                                class="img-fluid rounded" alt="Image" style="object-fit: cover; aspect-ratio: 1 / 1;">
+                            <button type="button"
+                                class="btn btn-secondary position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" value="My Playlist">
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" rows="3"
+                                    placeholder="Add a description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <p class="text-muted me-auto">By proceeding, you give SoundSoul access to the image you choose to
+                        upload.</p>
+                    <button type="submit" class="btn btn-primary rounded-pill">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <main class="page container" id="main-content">
+        <!-- Playlist Banner -->
+        <div class="bg-dark shadow-sm rounded p-4 d-flex gap-4" id="playlist-banner">
+            <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L" alt="Playlist Cover"
+                class="img-fluid rounded" style="object-fit: cover; aspect-ratio: 1 / 1; width: 200px; height: 200px;"
+                id="playlist-cover">
+            <div>
+                <p class="text-light">Playlist</p>
+                <h1 class="fs-1 fw-bold text-light" id="playlist-title">Coffeehouse Jams</h1>
+                <p class="text-light" id="playlist-description">Slow tempos and relaxed moods</p>
+                <p class="text-light" id="song-detail">12 songs, approximately 40 minutes</p>
+                <div class="d-flex align-items-center gap-2">
+                    <p class="text-light">Created by :</p>
+                    <p class="text-light fw-bold" id="playlist-owner">Jessica Wilson</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Player Controls -->
+        <div class="container d-flex justify-content-between align-items-center gap-3 col-12" id="player-controls">
+            <!-- Buttons Section -->
+            <div class="d-flex gap-3 align-items-center" style="flex: 2; max-width: 66.6667%;">
+                <button class="btn btn-lg rounded-circle text-dark" id="play-btn">
+                    <i class="fs-2 fa-solid fa-circle-play"></i>
+                </button>
+                <button class="btn btn-lg rounded-circle text-dark" id="upload-btn" data-bs-toggle="modal"
+                    data-bs-target="#shareModal">
+                    <i class="bi bi-upload"></i>
+                </button>
+                <button class="btn btn-lg rounded-circle text-dark" id="shuffle-btn">
+                    <i class="bi bi-shuffle"></i>
+                </button>
+                <button class="btn btn-lg rounded-circle text-dark" id="edit-btn" data-bs-toggle="modal"
+                    data-bs-target="#editDetailsModal">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                </button>
+            </div>
+
+            <!-- Sort Menu -->
+            <div class="ms-auto">
+                <label for="sort-menu">Sort Songs By</label>
+                <select id="sort-menu" class="form-select border-dark">
+                    <option value="creator">Creator</option>
+                    <option value="alphabetical">Title</option>
+                    <option value="newest">Newest Added</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Song List Table -->
+        <div class="my-4" id="song-list-container">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">Song Title</th>
+                        <th scope="col">Artist</th>
+                        <th scope="col">Date Added</th>
+                        <th scope="col"><i class="bi bi-clock"></i></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="song-list">
+                    <!-- Example Song Row -->
+                    <tr>
+                        <td>1</td>
+                        <td class="d-flex justify-content-center align-items-center">
+                            <img src="https://via.placeholder.com/40" alt="Song Cover" class="rounded"
+                                style="width: 40px;">
+                        </td>
+                        <td class="fw-bold">Set You Free</td>
+                        <td>Jessica Wilson</td>
+                        <td>18-Jan-2023</td>
+                        <td>19:38</td>
+                        <td>
+                            <i class="bi bi-x" style="cursor: pointer;" onclick="removeSong(this)"></i>
+                        </td>
+                        <td>
+                            <i class="bi bi-download" style="cursor: pointer;" onclick="downloadSong(this)"></i>
+                        </td>
+                    </tr>
+                    <!-- Add more songs -->
+                </tbody>
+            </table>
+        </div>
+        <p class="fs-2 fw-bold text-dark">Suggestion</p>
+        <p class="text-muted">Based on your favorite genres and artists</p>
+        <!-- Song List Table -->
+        <div class="my-4" id="song-list-container">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">Song Title</th>
+                        <th scope="col">Artist</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="song-list">
+                    <!-- Example Song Row -->
+                    <tr>
+                        <td>1</td>
+                        <td class="d-flex justify-content-center align-items-center">
+                            <img src="https://via.placeholder.com/40" alt="Song Cover" class="rounded"
+                                style="width: 40px;">
+                        </td>
+                        <td class="fw-bold">Set You Free</td>
+                        <td>Jessica Wilson</td>
+                        <td>
+                            <div class="genre-pill">Pop</div>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" onclick="addSong(this)" type="button">Add</button>
+                        </td>
+                    </tr>
+                    <!-- Add more songs -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
