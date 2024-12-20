@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/client/css/admin/users-manage.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <title>Users Management</title>
+    </head>
+    <body>
+        <div class="topbar">
+            <img src="/client/assets/img/logo.png" alt="logo" />
+            <p class="ss">SoundSoul</p>
+            <div class="search-bar">
+                <i class="bi bi-search"></i>
+                <input type="text" placeholder="Search" />
+            </div>
+            <div class="user-info">
+                <img src="/client/assets/img/avatar/1.jpg" alt="user" />
+                <div class="text-info">
+                    <p class="username">Username</p>
+                    <p class="role">Admin</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="page">
+            <div class="sidebar">
+                <div class="section">
+                    <p class="section-title">MANAGEMENT</p>
+                    <ul class="menu">
+                        <a
+                            href="/client/html/admin/dashboard.html"
+                            style="text-decoration: none"
+                        >
+                            <li class="menu-item active">
+                                <i class="bi bi-person-badge"></i>
+                                <span>Users</span>
+                            </li>
+                        </a>
+                        <a
+                            href="/client/html/admin/creator-manage.html"
+                            style="text-decoration: none"
+                        >
+                            <li class="menu-item">
+                                <i class="bi bi-music-note"></i>
+                                <span>Creators</span>
+                            </li>
+                        </a>
+                        <li class="menu-item">
+                            <i class="bi bi-file-earmark-text"></i>
+                            <span>Contents</span>
+                        </li>
+                    </ul>
+
+                    <div class="section">
+                        <p class="section-title">SYSTEMS</p>
+                        <ul class="menu">
+                            <li class="menu-item">
+                                <i class="bi bi-shield"></i>
+                                <span>Policies</span>
+                            </li>
+                            <li class="menu-item">
+                                <i class="bi bi-calendar"></i>
+                                <span>Events</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="user-table">
+                    <h3>User List</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>User name</th>
+                                <th>Email</th>
+                                <th>Gender</th>
+                                <th>Date of Birth</th>
+                                <th>Sign up date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td class="username">ashley_scott_1988</td>
+                                <td>ashley_scott_1988@gmail.com</td>
+                                <td>Female</td>
+                                <td>1997</td>
+                                <td class="signup-date">14/10/2022</td>
+                                <td>
+                                    <span class="badge free-user"
+                                        >Free User</span
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td class="username">real.laurenjackson</td>
+                                <td>real.laurenjackson@yahoo.com</td>
+                                <td>Female</td>
+                                <td>1992</td>
+                                <td class="signup-date">25/11/2021</td>
+                                <td>
+                                    <span class="badge premium-user"
+                                        >Premium User</span
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td class="username">veronica_diaz_99</td>
+                                <td>veronica_diaz_99@yahoo.com</td>
+                                <td>Female</td>
+                                <td>2019</td>
+                                <td class="signup-date">02/05/2020</td>
+                                <td>
+                                    <span class="badge free-user"
+                                        >Free User</span
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td class="username">sallen</td>
+                                <td>sallen@yahoo.com</td>
+                                <td>Female</td>
+                                <td>2005</td>
+                                <td class="signup-date">03/07/2020</td>
+                                <td>
+                                    <span class="badge premium-user"
+                                        >Premium User</span
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td class="username">lthompson96</td>
+                                <td>lthompson96@gmail.com</td>
+                                <td>Female</td>
+                                <td>2004</td>
+                                <td class="signup-date">23/08/2023</td>
+                                <td>
+                                    <span class="badge free-user"
+                                        >Free User</span
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td class="username">jclark95</td>
+                                <td>jclark@hotmail.com</td>
+                                <td>Male</td>
+                                <td>2000</td>
+                                <td class="signup-date">19/03/2020</td>
+                                <td>
+                                    <span class="badge free-user"
+                                        >Free User</span
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td class="username">omartinez</td>
+                                <td>omartinez@yahoo.com</td>
+                                <td>Female</td>
+                                <td>2011</td>
+                                <td class="signup-date">31/01/2022</td>
+                                <td>
+                                    <span class="badge free-user"
+                                        >Free User</span
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td class="username">tyler_anderson</td>
+                                <td>tyler_anderson@yahoo.com</td>
+                                <td>Male</td>
+                                <td>1997</td>
+                                <td class="signup-date">17/07/2020</td>
+                                <td>
+                                    <span class="badge premium-user"
+                                        >Premium User</span
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td class="username">MarioPerez97</td>
+                                <td>mario.perez@gmail.com</td>
+                                <td>Male</td>
+                                <td>2008</td>
+                                <td class="signup-date">16/04/2022</td>
+                                <td>
+                                    <span class="badge free-user"
+                                        >Free User</span
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td class="username">johnsmith</td>
+                                <td>johnsmith@gmail.com</td>
+                                <td>Male</td>
+                                <td>1992</td>
+                                <td class="signup-date">10/01/2022</td>
+                                <td>
+                                    <span class="badge free-user"
+                                        >Free User</span
+                                    >
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
