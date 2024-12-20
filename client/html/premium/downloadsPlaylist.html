@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads Playlist</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="/client/css/premium/dashboard.css">
+</head>
+
+<body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <a href="dashboard.html" style="text-decoration: none; display: inline-flex; align-items: center;">
+            <img src="/client/assets/img/logo.png" alt="logo" />
+            <p class="ss">SoundSoul</p>
+        </a>
+        <div class="search-bar ms-auto">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search" />
+        </div>
+        <div class="user-info d-flex align-items-center ms-4">
+            <img src="/client/assets/img/avatar/1.jpg" alt="user" />
+            <div class="ms-2">
+                <p class="username mb-0">Username</p>
+                <p class="role bs-text-muted mb-0">Premium User</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="removeConfirmationModal" tabindex="-1" aria-labelledby="removeConfirmationModalLabel"
+        aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold fs-4" id="removeConfirmationModalLabel">Remove from Downloads?</h5>
+                </div>
+                <div class="modal-body">
+                    <p class=" text-muted">You won't be able to play this offline.</p>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        aria-label="Close">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="removeSong()">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <main class="page container" id="main-content">
+        <!-- Playlist Banner -->
+        <div class="bg-light shadow-sm rounded p-4 d-flex gap-4" id="playlist-banner">
+            <img src="/client/assets/img/cover/icons8-bookmark-288.png" alt="Playlist Cover" class="img-fluid rounded"
+                style="object-fit: cover; aspect-ratio: 1 / 1; width: 200px; height: 200px;" id="playlist-cover">
+            <div>
+                <p>Playlist</p>
+                <h1 class="fs-1 fw-bold" id="playlist-title">Your Downloaded Songs</h1>
+                <div class="d-flex align-items-center gap-2">
+                    <p># of songs : </p>
+                    <p id="song-count">10</p>
+                </div>
+                <p id="playlist-owner">Jessica Wilson</p>
+            </div>
+        </div>
+
+        <!-- Player Controls -->
+        <div class="container d-flex justify-content-between align-items-center gap-3 col-12" id="player-controls">
+            <!-- Buttons Section -->
+            <div class="d-flex gap-3 align-items-center" style="flex: 2; max-width: 66.6667%;">
+                <button class="btn btn-lg rounded-circle text-dark" id="play-btn">
+                    <i class="fs-2 fa-solid fa-circle-play"></i>
+                </button>
+                <button class="btn btn-lg rounded-circle text-dark" id="shuffle-btn">
+                    <i class="bi bi-shuffle"></i>
+                </button>
+            </div>
+
+            <!-- Sort Menu -->
+            <div class="ms-auto">
+                <label for="sort-menu">Sort Songs By</label>
+                <select id="sort-menu" class="form-select border-dark">
+                    <option value="creator">Creator</option>
+                    <option value="alphabetical">Title</option>
+                    <option value="newest">Newest Added</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Song List Table -->
+        <div class="my-4" id="song-list-container">
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">Song Title</th>
+                        <th scope="col">Artist</th>
+                        <th scope="col">Date Added</th>
+                        <th scope="col"><i class="bi bi-clock"></i></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody id="song-list">
+                    <!-- Example Song Row -->
+                    <tr>
+                        <td>1</td>
+                        <td class="d-flex justify-content-center align-items-center">
+                            <img src="https://via.placeholder.com/40" alt="Song Cover" class="rounded"
+                                style="width: 40px;">
+                        </td>
+                        <td class="fw-bold">Set You Free</td>
+                        <td>Jessica Wilson</td>
+                        <td>18-Jan-2023</td>
+                        <td>19:38</td>
+                        <td>
+                            <i class="bi bi-x" style="cursor: pointer;" data-bs-toggle="modal"
+                                data-bs-target="#removeConfirmationModal"></i>
+                        </td>
+                    </tr>
+                    <!-- Add more songs -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
