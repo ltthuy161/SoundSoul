@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/client/css/admin/users-manage.css" />
+        <link rel="stylesheet" href="/client/css/admin/approved-list.css" />
         <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
@@ -13,7 +13,7 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
         />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <title>Users Management</title>
+        <title>Creator Appending Management</title>
     </head>
     <body>
         <div class="topbar">
@@ -41,7 +41,7 @@
                             href="/client/html/admin/dashboard.html"
                             style="text-decoration: none"
                         >
-                            <li class="menu-item active">
+                            <li class="menu-item">
                                 <i class="bi bi-person-badge"></i>
                                 <span>Users</span>
                             </li>
@@ -50,7 +50,7 @@
                             href="/client/html/admin/creator-manage.html"
                             style="text-decoration: none"
                         >
-                            <li class="menu-item">
+                            <li class="menu-item active">
                                 <i class="bi bi-music-note"></i>
                                 <span>Creators</span>
                             </li>
@@ -79,7 +79,7 @@
 
             <div class="main-content">
                 <div class="user-table">
-                    <h3>User List</h3>
+                    <h3>Awaiting to approved</h3>
                     <table>
                         <thead>
                             <tr>
@@ -89,7 +89,7 @@
                                 <th>Gender</th>
                                 <th>Date of Birth</th>
                                 <th>Sign up date</th>
-                                <th>Status</th>
+                                <th>Approved?</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -101,9 +101,10 @@
                                 <td>1997</td>
                                 <td class="signup-date">14/10/2022</td>
                                 <td>
-                                    <span class="badge free-user"
-                                        >Free User</span
-                                    >
+                                    <input
+                                        type="checkbox"
+                                        class="approval-checkbox"
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -114,9 +115,10 @@
                                 <td>1992</td>
                                 <td class="signup-date">25/11/2021</td>
                                 <td>
-                                    <span class="badge premium-user"
-                                        >Premium User</span
-                                    >
+                                    <input
+                                        type="checkbox"
+                                        class="approval-checkbox"
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -127,9 +129,10 @@
                                 <td>2019</td>
                                 <td class="signup-date">02/05/2020</td>
                                 <td>
-                                    <span class="badge free-user"
-                                        >Free User</span
-                                    >
+                                    <input
+                                        type="checkbox"
+                                        class="approval-checkbox"
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -140,9 +143,10 @@
                                 <td>2005</td>
                                 <td class="signup-date">03/07/2020</td>
                                 <td>
-                                    <span class="badge premium-user"
-                                        >Premium User</span
-                                    >
+                                    <input
+                                        type="checkbox"
+                                        class="approval-checkbox"
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -153,9 +157,10 @@
                                 <td>2004</td>
                                 <td class="signup-date">23/08/2023</td>
                                 <td>
-                                    <span class="badge free-user"
-                                        >Free User</span
-                                    >
+                                    <input
+                                        type="checkbox"
+                                        class="approval-checkbox"
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -166,9 +171,10 @@
                                 <td>2000</td>
                                 <td class="signup-date">19/03/2020</td>
                                 <td>
-                                    <span class="badge free-user"
-                                        >Free User</span
-                                    >
+                                    <input
+                                        type="checkbox"
+                                        class="approval-checkbox"
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -179,9 +185,10 @@
                                 <td>2011</td>
                                 <td class="signup-date">31/01/2022</td>
                                 <td>
-                                    <span class="badge free-user"
-                                        >Free User</span
-                                    >
+                                    <input
+                                        type="checkbox"
+                                        class="approval-checkbox"
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -192,9 +199,10 @@
                                 <td>1997</td>
                                 <td class="signup-date">17/07/2020</td>
                                 <td>
-                                    <span class="badge premium-user"
-                                        >Premium User</span
-                                    >
+                                    <input
+                                        type="checkbox"
+                                        class="approval-checkbox"
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -205,9 +213,10 @@
                                 <td>2008</td>
                                 <td class="signup-date">16/04/2022</td>
                                 <td>
-                                    <span class="badge free-user"
-                                        >Free User</span
-                                    >
+                                    <input
+                                        type="checkbox"
+                                        class="approval-checkbox"
+                                    />
                                 </td>
                             </tr>
                             <tr>
@@ -218,9 +227,10 @@
                                 <td>1992</td>
                                 <td class="signup-date">10/01/2022</td>
                                 <td>
-                                    <span class="badge free-user"
-                                        >Free User</span
-                                    >
+                                    <input
+                                        type="checkbox"
+                                        class="approval-checkbox"
+                                    />
                                 </td>
                             </tr>
                         </tbody>
