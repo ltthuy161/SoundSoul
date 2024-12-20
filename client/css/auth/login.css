@@ -1,6 +1,6 @@
 /* Đặt chung */
 body {
-  font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -8,9 +8,9 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #f9f9f9;
-  }
-  
-  .topbar {
+}
+
+.topbar {
     display: flex;
     justify-content: flex-start; /* Căn nội dung sang bên trái */
     align-items: center;
@@ -20,108 +20,105 @@ body {
     padding: 0 20px; /* Thêm khoảng cách hai bên */
     border-bottom: 1px solid #e0e0e0;
     background-color: #f9f9f9;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
+}
 
-  }
-  
-  .topbar img {
+.topbar img {
     height: 50px;
-  }
-  
-  .topbar .ss {
+}
+
+.topbar .ss {
     font-size: 24px;
     margin-left: 10px;
     font-weight: 700;
     color: #333;
-  }
-  
-  /* Phần container */
-  .page {
+}
+
+/* Phần container */
+.page {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100%;
-    
-  }
-  
-  .container {
-    position: absolute; 
+}
+
+.container {
+    position: absolute;
     padding: 40px;
     width: 30%;
     height: auto;
-    background: #F9F9F9FF; /* neutral-150 */
+    background: #f9f9f9ff; /* neutral-150 */
     border-radius: 24px; /* border-xl */
-    border-width: 2px; 
-    border-color: #C1C1C14F; /* neutral-400 */
-    border-style: solid; 
-    box-shadow: 0px 8px 17px #1a1a1a26, 0px 0px 2px #1a1a1a1F; /* shadow-l */  
-  }
-  .container-center {
+    border-width: 2px;
+    border-color: #c1c1c14f; /* neutral-400 */
+    border-style: solid;
+    box-shadow: 0px 8px 17px #1a1a1a26, 0px 0px 2px #1a1a1a1f; /* shadow-l */
+}
+.container-center {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-  } 
+}
 
-  .text {
+.text {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
     color: #333333;
     display: flex;
     justify-content: center;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
+}
 
-  }
-  
-  /* Textbox */
-  .textbox {
-    font-family: 'Poppins', sans-serif;
-    width: 90%; 
+/* Textbox */
+.textbox {
+    font-family: "Poppins", sans-serif;
+    width: 90%;
     margin: 15px 0;
     text-align: left;
-    border: 1px solid #822212FF; 
+    border: 1px solid #822212ff;
     padding: 1% 2% 2% 2%;
     border-radius: 12px;
     background-color: white;
     opacity: 0.8;
-  }
-  
-  .textbox label {
+}
+
+.textbox label {
     font-size: 14px;
     font-weight: bold;
     padding: 5px;
     color: #333;
-  }
-  
-  .textbox input {  
-    width: 95%;  
+}
+
+.textbox input {
+    width: 95%;
     padding: 5px;
     margin-top: 5px;
     font-size: 14px;
     border: none;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  .textbox input:focus {
+    font-family: "Poppins", sans-serif;
+}
+
+.textbox input:focus {
     outline: none;
     border: none;
-  }
+}
 
-  .password-wrapper {
+.password-wrapper {
     position: relative;
     display: flex;
     align-items: center;
-  }
-  
-  .password-wrapper input {
+}
+
+.password-wrapper input {
     width: 100%;
     padding-right: 40px; /* Để chừa khoảng trống cho nút */
-  }
-  
-  .visibility-toggle {
+}
+
+.visibility-toggle {
     position: absolute;
     right: 10px; /* Căn nút biểu tượng về phía phải */
     background: none;
@@ -130,56 +127,56 @@ body {
     cursor: pointer;
     color: #666;
     padding: 5px;
-  }
-  
-  .visibility-toggle:focus {
+}
+
+.visibility-toggle:focus {
     outline: none;
-  }
-  
-  /* Liên kết mật khẩu quên */
-  .forgot-password-link {
+}
+
+/* Liên kết mật khẩu quên */
+.forgot-password-link {
     display: block;
     font-size: 12px;
     text-align: center;
     text-decoration: none;
     margin-top: 5px;
-    color: #822212FF;  
-  }
-  
-  .forgot-password-link:hover {
-    text-decoration: underline;
-  }
+    color: #822212ff;
+}
 
-  .sign-up {
+.forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+.sign-up {
     margin: 1%;
     text-align: center;
-  }
+}
 
-  .sign-up p {
+.sign-up p {
     display: inline; /* Hiển thị text và link trên cùng một dòng */
     font-size: 12px; /* Kích thước chữ nhỏ gọn */
-  }
-  
-  .sign-up a {
+}
+
+.sign-up a {
     text-decoration: none; /* Bỏ gạch chân */
     margin-left: 5px; /* Khoảng cách giữa text và link */
-    color: #822212FF;  
-  }
-  
-  .sign-up a:hover {
+    color: #822212ff;
+}
+
+.sign-up a:hover {
     text-decoration: underline; /* Gạch chân khi hover */
-  }
-  
-  /* Nút đăng nhập */
-  .buttons {
+}
+
+/* Nút đăng nhập */
+.buttons {
     margin-top: 20px;
     display: flex;
     justify-content: center; /* Căn giữa theo chiều ngang */
     align-items: center;
-  }
-  
-  .log-in-button {
-    background: #822212FF; /* primary-500 */
+}
+
+.log-in-button {
+    background: #822212ff; /* primary-500 */
     color: white;
     padding: 10px;
     border: none;
@@ -188,18 +185,18 @@ body {
     cursor: pointer;
     width: 40%;
     transition: all 0.3s ease;
-    box-shadow: 0px 8px 17px #82221226, 0px 0px 2px #8222121F; /* shadow-l */
-  }
+    box-shadow: 0px 8px 17px #82221226, 0px 0px 2px #8222121f; /* shadow-l */
+}
 
 .log-in-button:hover {
-background: #641B0EFF; /* primary-650 */
+    background: #641b0eff; /* primary-650 */
 }
-  
+
 .log-in-button:focus {
     outline: none;
 }
 
 .log-in-button:active {
-    background-color: #822212FF;
+    background-color: #822212ff;
     transform: translateY(2px);
 }

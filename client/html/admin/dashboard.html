@@ -1,68 +1,181 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/client/css/admin/dashboard.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
-
-    <title>Admin Dashboard</title>
-    
-  </head>
-  <body>
-
-    <div class="topbar">
-        <img src="/client/assets/img/logo.png" alt="logo" />
-        <p class="ss">SoundSoul</p>
-        <!-- search bar  -->
-        <div class="search-bar">
-            <i class="bi bi-search"></i>
-            <input type="text" placeholder="Search" />
-        </div>
-        <!-- user info -->
-        <div class="user-info">
-            <img src="/client/assets/img/avatar/1.jpg" alt="user" />
-            <div class="text-info">
-                <p class="username"> Username </p>
-                <p class="role"> Admin </p>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/client/css/admin/dashboard.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+        />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <title>Admin Dashboard</title>
+    </head>
+    <body>
+        <div class="topbar">
+            <img src="/client/assets/img/logo.png" alt="logo" />
+            <p class="ss">SoundSoul</p>
+            <div class="search-bar">
+                <i class="bi bi-search"></i>
+                <input type="text" placeholder="Search" />
+            </div>
+            <div class="user-info">
+                <img src="/client/assets/img/avatar/1.jpg" alt="user" />
+                <div class="text-info">
+                    <p class="username">Username</p>
+                    <p class="role">Admin</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="page">
-        <div class="sidebar">
-            <div class="section">
-                <p class="section-title">MANAGEMENT</p>
-                <ul class="menu">
-                    <li class="menu-item active">
-                        <i class="bi bi-person-badge"></i>
-                        <span>Users</span>
-                    </li>
-                    <li class="menu-item">
-                        <i class="bi bi-music-note"></i>
-                        <span>Creators</span>
-                    </li>
-                    <li class="menu-item">
-                        <i class="bi bi-file-earmark-text"></i>
-                        <span>Contents</span>
-                    </li>
-                </ul>
+        <div class="page">
+            <div class="sidebar">
+                <div class="section">
+                    <p class="section-title">MANAGEMENT</p>
+                    <ul class="menu">
+                        <a
+                            href="/client/html/admin/dashboard.html"
+                            style="text-decoration: none"
+                        >
+                            <li class="menu-item active">
+                                <i class="bi bi-person-badge"></i>
+                                <span>Users</span>
+                            </li>
+                        </a>
+                        <a
+                            href="/client/html/admin/creator-manage.html"
+                            style="text-decoration: none"
+                        >
+                            <li class="menu-item">
+                                <i class="bi bi-music-note"></i>
+                                <span>Creators</span>
+                            </li>
+                        </a>
+                        <li class="menu-item">
+                            <i class="bi bi-file-earmark-text"></i>
+                            <span>Contents</span>
+                        </li>
+                    </ul>
+
+                    <div class="section">
+                        <p class="section-title">SYSTEMS</p>
+                        <ul class="menu">
+                            <li class="menu-item">
+                                <i class="bi bi-shield"></i>
+                                <span>Policies</span>
+                            </li>
+                            <li class="menu-item">
+                                <i class="bi bi-calendar"></i>
+                                <span>Events</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="section">
-                <p class="section-title">SYSTEMS</p>
-                <ul class="menu">
-                    <li class="menu-item">
-                        <i class="bi bi-shield"></i>
-                        <span>Policies</span>
-                    </li>
-                    <li class="menu-item">
-                        <i class="bi bi-calendar"></i>
-                        <span>Events</span>
-                    </li>
-                </ul>
+
+            <div class="main-content">
+                <div class="user-table-seemore">
+                    <div class="user-table">
+                        <h3>User List</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>User name</th>
+                                    <th>Sign up date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td class="username">sergio_fernandez</td>
+                                    <td class="signup-date">17/06/2023</td>
+                                    <td>
+                                        <span class="badge free-user"
+                                            >Free User</span
+                                        >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td class="username">maria_white</td>
+                                    <td class="signup-date">30/08/2021</td>
+                                    <td>
+                                        <span class="badge premium-user"
+                                            >Premium User</span
+                                        >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td class="username">mark_taylor</td>
+                                    <td class="signup-date">11/11/2024</td>
+                                    <td>
+                                        <span class="badge free-user"
+                                            >Free User</span
+                                        >
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="see-more">
+                        <a href="./users-manage.html">See more</a>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <p class="chart-title">User Distribution</p>
+                    <canvas id="userPieChart"></canvas>
+                    <div class="stats-card">
+                        <div class="text">
+                            <p class="title">Last week</p>
+                            <p class="number">12 new free accounts</p>
+                        </div>
+                        <div class="percentage">📈 16.7%</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="text">
+                            <p class="title">This week</p>
+                            <p class="number">5 new premium accounts</p>
+                        </div>
+                        <div class="percentage">📈 19.2%</div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-  </body>
+
+        <script>
+            // Chart.js Pie Chart
+            const ctx = document
+                .getElementById("userPieChart")
+                .getContext("2d");
+            const userPieChart = new Chart(ctx, {
+                type: "pie",
+                data: {
+                    labels: ["Free Users", "Premium Users"],
+                    datasets: [
+                        {
+                            label: "User Distribution",
+                            data: [75, 25], // Dữ liệu tỉ lệ phần trăm
+                            backgroundColor: ["#C4523EFF", "#822212FF"],
+                            borderWidth: 0,
+                        },
+                    ],
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            position: "top",
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
 </html>

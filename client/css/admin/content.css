@@ -1,3 +1,4 @@
+
 body {
     font-family: "Poppins", sans-serif;
     margin: 0;
@@ -219,92 +220,20 @@ th {
     color: #878787;
 }
 
-.badge {
-    padding: 5px 10px;
-    border-radius: 12px;
-    font-size: 12px;
-}
-
-.premium-user {
-    color: #822212ff; /* primary-500 */
-    background: #f3b1a5ff; /* primary-200 */
-}
-
-.free-user {
-    color: #822212ff; /* primary-500 */
-    background: #fdf3f1ff; /* primary-100 */
-}
-
-/* See More Link */
-.see-more {
-    text-align: right; /* Căn nút sang phải */
-    margin-top: 10px; /* Khoảng cách phía trên */
-}
-
-.see-more a {
-    font-size: 14px;
-    font-weight: 600;
-    color: #822212; /* Màu đỏ nâu đồng nhất */
-    text-decoration: none;
-    display: inline-block;
+.play-button {
+    background-color: #612b1f;
+    color: #fff;
+    border: none;
     padding: 5px 10px;
     border-radius: 5px;
-    transition: all 0.3s ease;
-}
+    cursor: pointer;
+  }
+  
+  .play-button:hover {
+    background-color: #b32c20;
+  }
 
-.see-more a:hover {
-    background-color: #fde7e6; /* Nền khi hover */
-    color: #822212;
-    text-decoration: underline;
-}
-
-/* Chart Container */
-.chart-container {
-    background-color: #ffffff;
-    padding: 20px 40px;
-    border-radius: 12px;
-    background: #fdf3f1ff;
-}
-
-.chart-title {
-    font-family: "Poppins", sans-serif;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-/* Stats Cards */
-.stats-card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 15px;
-    margin: 15px 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.stats-card .text {
-    text-align: left;
-}
-
-.stats-card .title {
-    font-weight: bold;
-    color: #333;
-    margin: 0;
-    font-size: 14px;
-}
-
-.stats-card .number {
-    font-weight: bold;
-    color: #d85b4f;
-    font-size: 16px;
-}
-
-.stats-card .percentage {
-    font-size: 14px;
-    font-weight: bold;
-    color: #333;
-}
+  input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
