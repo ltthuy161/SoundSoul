@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/client/css/creator/homepage.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Creator Dashboard</title>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="topbar">
+        <img src="/client/assets/img/logo.png" alt="logo" />
+        <p class="ss">SoundSoul</p>
+        <div class="search-bar">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search" />
+        </div>
+        <div class="user-info">
+            <img src="/client/assets/img/avatar/1.jpg" alt="user" />
+            <div class="text-info">
+                <p class="username">Username</p>
+                <p class="role">Creator</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="page">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="section">
+                <p class="section-title">MENU</p>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <i class="bi bi-plus"></i>
+                        <span>Upload</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="bi bi-pencil"></i>
+                        <span>Edit</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="bi bi-music-note"></i>
+                        <span>For Artist</span>
+                    </li>
+                </ul>
+
+                <p class="section-title">CUSTOMIZE</p>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <i class="bi bi-list"></i>
+                        <span>Playlist</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="bi bi-heart"></i>
+                        <span>Favourites</span>
+                    </li>
+                </ul>
+
+                <p class="section-title">PERSONAL</p>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <i class="bi bi-person"></i>
+                        <span>Profile</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="bi bi-gear"></i>
+                        <span>Settings</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="latest-upload">
+                <h2 class="main-title">Your latest upload</h2>
+                <div class="upload-card">
+                    <img src="/client/assets/img/artist/1.jpg" alt="Latest Song Cover" class="song-cover">
+                    <div class="song-info">
+                        <p class="artist-name">Teos</p>
+                        <h3 class="song-title">I Don't Want To Be An Engineer (co...)</h3>
+            
+                        <div class="song-stats">
+                            <span><i class="fa-solid fa-play"></i> 0</span>
+                            <span><i class="fa-solid fa-heart"></i> 0</span>
+                            <span><i class="fa-solid fa-repeat"></i> 0</span>
+                            <span><i class="fa-solid fa-comment"></i> 0</span>
+                        </div>
+
+                       
+                        <div class="action-buttons">
+                            <button class="btn"><i class="bi bi-share"></i> Share</button>
+                            <button class="btn"><i class="bi bi-pin"></i> Pin to Profile</button>
+                            <button class="btn"><i class="bi bi-upload"></i> Replace File</button>
+                            <div class="dropdown">
+                                <button class="dropdown-btn">
+                                    <i class="bi bi-three-dots"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Copy link</a></li>
+                                    <li><a href="#">Add to playlist</a></li>
+                                    <li><a href="#">Add to Next up</a></li>
+                                    <li><a href="#">Report</a></li>
+                                </ul>
+                            </div>
+
+                            <script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    const dropdownBtn = document.querySelector('.dropdown-btn');
+                                    const dropdown = document.querySelector('.dropdown');
+
+                                    dropdownBtn.addEventListener('click', () => {
+                                        dropdown.classList.toggle('active');
+                                    });
+
+                                    // Close the dropdown if clicking outside
+                                    document.addEventListener('click', (e) => {
+                                        if (!dropdown.contains(e.target)) {
+                                            dropdown.classList.remove('active');
+                                        }
+                                    });
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="artists-section">
+                <h2 class="main-title">Artists you should know</h2>
+                <div class="artist-list">
+                    <!-- Artist cards here -->
+                    <div class="artist-card">
+                        <img src="/client/assets/img/artist/hieuthuhai.jpg" alt="Film OST">
+                        <p><strong>Hieu Thu Hai</strong><br>Top Track</p>
+                    </div>
+                    <div class="artist-card">
+                        <img src="/client/assets/img/artist/orange.jpg" alt="Rap">
+                        <p><strong>Orange</strong><br>Top Track</p>
+                    </div>
+                    <div class="artist-card">
+                        <img src="/client/assets/img/artist/mono.jpg" alt="Lofi Study">
+                        <p><strong>Mono</strong><br>Top Track</p>
+                    </div>
+                    <div class="artist-card">
+                        <img src="/client/assets/img/artist/jun.jpg" alt="Indie">
+                        <p><strong>Jun Pham</strong><br>Top Track</p>
+                    </div>
+                    <div class="artist-card">
+                        <img src="/client/assets/img/artist/sontung.jpg" alt="Disco">
+                        <p><strong>Son Tung MTP</strong><br>Top Track</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trending-section">
+                <h2 class="main-title">Trending Music on SoundSoul</h2>
+                <div class="trending-list">
+                    <!-- Trending cards here -->
+                    <div class="trending-card">
+                        <img src="/client/assets/img/music/film-ost.jpg" alt="Film OST">
+                        <p><strong>Film OST</strong><br>Trending music</p>
+                    </div>
+                    <div class="trending-card">
+                        <img src="/client/assets/img/music/rap.jpg" alt="Rap">
+                        <p><strong>Rap</strong><br>Trending music</p>
+                    </div>
+                    <div class="trending-card">
+                        <img src="/client/assets/img/music/lofi.jpg" alt="Lofi Study">
+                        <p><strong>Lofi Study</strong><br>Trending music</p>
+                    </div>
+                    <div class="trending-card">
+                        <img src="/client/assets/img/music/indie.jpg" alt="Indie">
+                        <p><strong>Indie</strong><br>Trending music</p>
+                    </div>
+                    <div class="trending-card">
+                        <img src="/client/assets/img/music/disco.jpg" alt="Disco">
+                        <p><strong>Disco</strong><br>Trending music</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
+
