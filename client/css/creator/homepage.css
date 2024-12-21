@@ -223,6 +223,11 @@ body {
     flex: 1;
     margin: 0; /* Đảm bảo không có margin thừa */
     padding: 0; /* Đảm bảo không có padding thừa */
+    cursor: pointer;
+}
+
+.song-info:hover .song-title {
+    color: #cb2820; /* Red text color */
 }
 
 .artist-name {
