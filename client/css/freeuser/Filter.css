@@ -519,16 +519,18 @@ body {
 
 .sidebar {
     position: fixed; /* Sidebar luôn cố định khi cuộn */
-    top: 60px; /* Đặt khoảng cách từ top để không che topbar (60px là chiều cao topbar) */
+    top: 100px; /* Đặt khoảng cách từ top để không che topbar (60px là chiều cao topbar) */
     left: 0; /* Canh lề trái */
-    height: calc(100vh - 60px); /* Chiều cao sidebar bằng chiều cao màn hình trừ chiều cao topbar */
-    width: 250px; /* Độ rộng sidebar */
+    width: 200px; /* Độ rộng sidebar */
+    margin-left: 20px;
     background-color: white; /* Màu nền sidebar */
     border-right: 1px solid #ddd; /* Đường viền bên phải */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
     padding: 1rem; /* Khoảng cách bên trong */
     overflow-y: auto; /* Kích hoạt cuộn dọc */
     z-index: 1000; /* Đảm bảo sidebar nằm trên các thành phần khác */
+    height: fit-content;
+    border-radius: 20px;
 }
 
 
