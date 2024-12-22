@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./lib/db.js";
 import authRoutes from "./routes/auth.route.js";
+import userRoutes from "./routes/user.route.js";
 import cors from "cors";    
 
 dotenv.config();
@@ -15,7 +16,7 @@ app.use(express.json());
 app.use(
     cors({
         origin: "http://127.0.0.1:5500", // Frontend origin
-        methods: ["GET", "POST", "PUT", "DELETE"], // Allowable HTTP methods
+        methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], // Allowable HTTP methods
         credentials: true, // Allow cookies if needed
     })
 );
@@ -23,6 +24,8 @@ app.use(
 const PORT = process.env.PORT;
 
 app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
+
 
 app.listen(PORT, () => {
     console.log("Server is running on port " + PORT);
