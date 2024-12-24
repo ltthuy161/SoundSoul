@@ -4,9 +4,11 @@ import { connectDB } from "./lib/db.js";
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
 import cors from "cors";    
+import fileUpload from "express-fileupload";
+import path from "path";
 
 dotenv.config();
-
+const __dirname = path.resolve();
 const app = express();
 
 //middleware
@@ -20,7 +22,16 @@ app.use(
         credentials: true, // Allow cookies if needed
     })
 );
-
+app.use(
+	fileUpload({
+		useTempFiles: true,
+		tempFileDir: path.join(__dirname, "tmp"),
+		createParentPath: true,
+		limits: {
+			fileSize: 10 * 1024 * 1024, // 10MB  max file size
+		},
+	})
+);
 const PORT = process.env.PORT;
 
 app.use("/api/auth", authRoutes);
