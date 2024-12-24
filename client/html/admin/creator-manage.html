@@ -91,28 +91,7 @@
                                         <th>Approved date</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td class="username">
-                                            sergio_fernandez
-                                        </td>
-                                        <td class="signup-date">17/06/2023</td>
-                                        <td class="signup-date">14/10/2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td class="username">maria_white</td>
-                                        <td class="signup-date">30/08/2021</td>
-                                        <td class="signup-date">14/10/2022</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td class="username">mark_taylor</td>
-                                        <td class="signup-date">11/11/2024</td>
-                                        <td class="signup-date">14/10/2022</td>
-                                    </tr>
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                         </div>
                         <div class="see-more">
@@ -136,38 +115,7 @@
                                         <th>Approved?</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="username">
-                                                sergio_fernandez
-                                            </div>
-                                        </td>
-                                        <td class="signup-date">17/06/2023</td>
-                                        <td><input type="checkbox" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>
-                                            <div class="username">
-                                                maria_white
-                                            </div>
-                                        </td>
-                                        <td class="signup-date">30/08/2021</td>
-                                        <td><input type="checkbox" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>
-                                            <div class="username">
-                                                marktaylor
-                                            </div>
-                                        </td>
-                                        <td class="signup-date">11/11/2024</td>
-                                        <td><input type="checkbox" /></td>
-                                    </tr>
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                         </div>
 
@@ -250,6 +198,149 @@
                     },
                 },
             });
+
+            // Fetch approved creators
+            async function fetchCreatorsApproved() {
+                try {
+                    const response = await fetch(
+                        "http://localhost:3000/api/user/creators"
+                    );
+                    if (!response.ok) {
+                        throw new Error(
+                            `HTTP error! Status: ${response.status}`
+                        );
+                    }
+
+                    const creators = await response.json();
+                    const approvedTableBody =
+                        document.querySelector(".user-table tbody");
+                    approvedTableBody.innerHTML = "";
+
+                    // Filter only approved creators and display top 3
+                    const approvedCreators = creators.filter(
+                        (creator) => creator.creatorDetails.approved
+                    );
+
+                    approvedCreators.sort(
+                        (a, b) =>
+                            new Date(b.creatorDetails.approvedAt) -
+                            new Date(a.creatorDetails.approvedAt)
+                    );
+
+                    approvedCreators.slice(0, 3).forEach((creator, index) => {
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${creator.fullname}</td>
+                    <td class="signup-date">${new Date(
+                        creator.createdAt
+                    ).toLocaleDateString()}</td>
+                    <td class="signup-date">${new Date(
+                        creator.creatorDetails.approvedAt
+                    ).toLocaleDateString()}</td>
+                `;
+                        approvedTableBody.appendChild(tr);
+                    });
+                } catch (error) {
+                    console.error("Error fetching approved creators:", error);
+                }
+            }
+
+            // Fetch awaiting creators
+            async function fetchCreatorsAwaiting() {
+                try {
+                    const response = await fetch(
+                        "http://localhost:3000/api/user/creators"
+                    );
+                    if (!response.ok) {
+                        throw new Error(
+                            `HTTP error! Status: ${response.status}`
+                        );
+                    }
+
+                    const creators = await response.json();
+                    const awaitingTableBody = document.querySelector(
+                        ".appending-table tbody"
+                    );
+                    awaitingTableBody.innerHTML = "";
+
+                    // Filter only creators awaiting approval
+                    const awaitingCreators = creators.filter(
+                        (creator) => !creator.creatorDetails.approved
+                    );
+
+                    awaitingCreators.slice(0, 3).forEach((creator, index) => {
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${creator.fullname}</td>
+                    <td class="signup-date">${new Date(
+                        creator.createdAt
+                    ).toLocaleDateString()}</td>
+                    <td>
+                        <input type="checkbox" class="approve-checkbox" data-id="${creator._id}" />
+                    </td>
+                `;
+                        awaitingTableBody.appendChild(tr);
+                    });
+                    attachCheckboxEvents();
+                } catch (error) {
+                    console.error("Error fetching awaiting creators:", error);
+                }
+            }
+
+            function attachCheckboxEvents() {
+                const checkboxes = document.querySelectorAll(".approve-checkbox");
+                checkboxes.forEach((checkbox) => {
+                    checkbox.addEventListener("change", async (event) => {
+                        const creatorId = event.target.getAttribute("data-id");
+                        if (event.target.checked) {
+                            try {
+                                const response = await fetch(
+                                    `http://localhost:3000/api/user/creators/${creatorId}/approve`,
+                                    {
+                                        method: "PATCH",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        body: JSON.stringify({
+                                            approved: true,
+                                        }),
+                                    }
+                                );
+
+                                if (!response.ok) {
+                                    throw new Error(
+                                        `Failed to approve creator with ID ${creatorId}`
+                                    );
+                                }
+
+                                const result = await response.json();
+                                console.log("Creator approved:", result);
+
+                                // Làm mới danh sách sau khi phê duyệt
+                                await fetchCreatorsApproved();
+                                await fetchCreatorsAwaiting();
+                            } catch (error) {
+                                console.error(
+                                    "Error approving creator:",
+                                    error
+                                );
+                                alert(
+                                    "Failed to approve the creator. Please try again."
+                                );
+                                event.target.checked = false; // Reset checkbox nếu lỗi
+                            }
+                        }
+                    });
+                });
+            }
+
+            // Fetch creators when the page is loaded
+            window.onload = async () => {
+                await fetchCreatorsApproved();
+                await fetchCreatorsAwaiting();
+            };
         </script>
     </body>
 </html>

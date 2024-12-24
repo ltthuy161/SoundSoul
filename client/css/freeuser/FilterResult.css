@@ -1,0 +1,344 @@
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.topbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    width: 95%;
+    padding: 0 20px;
+    background-color: #f9f9f9;
+}
+
+.topbar img {
+    height: 50px;
+}
+
+.topbar .ss {
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: 700;
+    color: #333;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 5px 15px;
+    width: 50%;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #822212ff;
+    background: #fdf3f1ff;
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: #fdf3f1ff;
+    color: #822212ff;
+    font-family: "Poppins", sans-serif;
+}
+
+.search-bar input::placeholder {
+    color: #822212ff;
+    opacity: 0.5;
+}
+
+.search-bar i {
+    color: #822212ff;
+    font-size: 18px;
+    margin-right: 2%;
+    margin-bottom: 2%;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #f9f9f9;
+}
+
+.text-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.username {
+    font-size: 16px;
+    font-weight: 450;
+    margin: 0;
+}
+
+.role {
+    font-size: 14px;
+    color: #822212ff;
+    margin: 0;
+    opacity: 0.6;
+}
+
+/* Button 9 */
+.upgrade {
+    position: absolute;
+    top: 20px;
+    left: 990px;
+    height: 44px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #FFFFFFFF;
+    /* white */
+    background: #822212FF;
+    /* primary-500 */
+    opacity: 1;
+    border: none;
+    border-radius: 9px;
+    /* border-s */
+}
+
+/* Hover */
+.upgrade:hover {
+    color: #FFFFFFFF;
+    /* white */
+    background: #641B0EFF;
+    /* primary-650 */
+}
+
+/* Pressed */
+.upgrade:hover:active {
+    color: #FFFFFFFF;
+    /* white */
+    background: #47130AFF;
+    /* primary-800 */
+}
+
+/* Disabled */
+.upgrade:disabled {
+    opacity: 0.4;
+}
+
+.back {
+    position: absolute;
+    top: 100px;
+    left: 1250px;
+    width: 100px;
+    height: 36px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #FFFFFFFF;
+    /* white */
+    background: #822212FF;
+    /* primary-500 */
+    opacity: 1;
+    border: none;
+    border-radius: 18px;
+    /* border-l */
+}
+
+/* Hover */
+.back:hover {
+    color: #FFFFFFFF;
+    /* white */
+    background: #641B0EFF;
+    /* primary-650 */
+}
+
+/* Pressed */
+.back:hover:active {
+    color: #FFFFFFFF;
+    /* white */
+    background: #47130AFF;
+    /* primary-800 */
+}
+
+/* Disabled */
+.back:disabled {
+    opacity: 0.4;
+}
+
+.sidebar {
+    position: fixed; /* Sidebar luôn cố định khi cuộn */
+    top: 100px; /* Đặt khoảng cách từ top để không che topbar (60px là chiều cao topbar) */
+    left: 0; /* Canh lề trái */
+    width: 200px; /* Độ rộng sidebar */
+    margin-left: 20px;
+    background-color: white; /* Màu nền sidebar */
+    border-right: 1px solid #ddd; /* Đường viền bên phải */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng đổ bóng */
+    padding: 1rem; /* Khoảng cách bên trong */
+    overflow-y: auto; /* Kích hoạt cuộn dọc */
+    z-index: 1000; /* Đảm bảo sidebar nằm trên các thành phần khác */
+    height: fit-content;
+    border-radius: 20px;
+}
+
+
+.menu {
+    list-style: none;
+    /* Loại bỏ dấu bullet */
+    padding: 0;
+    /* Xóa padding mặc định */
+    margin: 0;
+    /* Xóa margin mặc định */
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Khoảng cách giữa icon và text */
+    padding: 10px 15px;
+    /* Khoảng cách bên trong của mỗi mục */
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    /* Màu chữ mặc định */
+    border-radius: 8px;
+    /* Bo tròn góc */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /* Hiệu ứng chuyển */
+    cursor: pointer;
+    /* Hiển thị con trỏ pointer */
+}
+
+/* Hover Effect */
+.menu-item:hover {
+    background-color: #f4f4f4;
+    /* Màu nền khi hover */
+}
+
+/* Active Menu Item */
+.menu-item.active {
+    background-color: #822212;
+    /* Màu nền đỏ nâu */
+    color: white;
+    /* Chữ màu trắng */
+}
+
+.menu-item.active i {
+    color: white;
+    /* Icon chuyển sang màu trắng */
+}
+
+/* Icon Style */
+.menu-item i {
+    font-size: 18px;
+    /* Kích thước icon */
+    color: #666;
+    /* Màu xám icon */
+}
+
+/* Section Title */
+.section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #b0b0b0;
+    /* Màu xám nhạt */
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+
+.container {
+    position: absolute;
+    top: 170px;
+    left: 400px;
+    width: 962px;
+    height: 139px;
+    background: #FFFFFFFF;
+    /* white */
+    border-radius: 12px;
+    /* border-m */
+    box-shadow: 0px 0px 1px #1a1a1a12, 0px 0px 2px #1a1a1a1F;
+    /* shadow-xs */
+}
+
+.name {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    width: 962px;
+    height: 30px;
+    font-family: Open Sans;
+    /* Heading */
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 700;
+    color: #1A1A1AFF;
+    /* neutral-900 */
+}
+
+.artist {
+    position: absolute;
+    top: 54px;
+    left: 16px;
+    width: 962px;
+    height: 22px;
+    font-family: Poppins;
+    /* Body */
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #949494FF;
+    /* neutral-500 */
+}
+
+.year {
+    position: absolute;
+    top: 84px;
+    left: 16px;
+    width: 962px;
+    height: 22px;
+    font-family: Poppins;
+    /* Body */
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #949494FF;
+    /* neutral-500 */
+}
+
+/* Image 135 */
+.container img {
+    position: absolute;
+    top: 16px;
+    left: 786px;
+    width: 140px;
+    height: 107px;
+    border-radius: 9px;
+    /* border-s */
+}

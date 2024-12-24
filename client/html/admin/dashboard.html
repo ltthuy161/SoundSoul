@@ -90,38 +90,7 @@
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td class="username">sergio_fernandez</td>
-                                    <td class="signup-date">17/06/2023</td>
-                                    <td>
-                                        <span class="badge free-user"
-                                            >Free User</span
-                                        >
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td class="username">maria_white</td>
-                                    <td class="signup-date">30/08/2021</td>
-                                    <td>
-                                        <span class="badge premium-user"
-                                            >Premium User</span
-                                        >
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td class="username">mark_taylor</td>
-                                    <td class="signup-date">11/11/2024</td>
-                                    <td>
-                                        <span class="badge free-user"
-                                            >Free User</span
-                                        >
-                                    </td>
-                                </tr>
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                     <div class="see-more">
@@ -149,6 +118,64 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            // Hàm gọi API để lấy danh sách người dùng
+            async function fetchUsers() {
+                try {
+                    // Gửi yêu cầu đến API
+                    const response = await fetch(
+                        "http://localhost:3000/api/user"
+                    ); // Thay URL nếu cần
+                    const users = await response.json(); // Chuyển kết quả API về JSON
+
+                    // Lấy phần tử tbody của bảng
+                    const tableBody = document.querySelector(".user-table tbody");
+                    tableBody.innerHTML = ""; // Xóa dữ liệu mẫu cũ
+
+                    // Lấy 3 người dùng đầu tiên
+                    // Sắp xếp danh sách người dùng theo ngày tạo giảm dần
+                    users.sort(
+                        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+                    );
+
+                    // Lấy 3 người dùng mới nhất
+                    const topUsers = users.slice(0, 3);
+
+                    // Duyệt qua danh sách 3 người dùng và chèn vào bảng
+                    topUsers.forEach((user, index) => {
+                        const row = `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td class="username">${user.fullname}</td>
+                                <td class="signup-date">${new Date(
+                                    user.createdAt
+                                ).toLocaleDateString()}</td>
+                                <td>
+                                    <span class="badge ${
+                                        user.role === "premium-user"
+                                            ? "premium-user"
+                                            : "free-user"
+                                    }">
+                                        ${
+                                            user.role === "premium-user"
+                                                ? "Premium User"
+                                                : "Free User"
+                                        }
+                                    </span>
+                                </td>
+                            </tr>
+                        `;
+                        tableBody.innerHTML += row; // Thêm dòng mới vào bảng
+                    });
+                } catch (error) {
+                    console.error("Lỗi khi lấy danh sách người dùng:", error);
+                }
+            }
+
+            // Gọi hàm fetchUsers khi trang được tải
+            window.onload = fetchUsers;
+        </script>
 
         <script>
             // Chart.js Pie Chart

@@ -19,8 +19,14 @@ const userSchema = new mongoose.Schema({
         required: true,
         enum: [ "admin", "free-user", "premium-user", "creator"],
         default: "free-user"
-    }
+    },
+    creatorDetails: {
+        approved: { type: Boolean, default: false },
+        approvedAt: { type: Date, default: null },
+    },
 }, {timestamps: true} );
 // timestamps: true adds createdAt and updatedAt fields to the schema
 
-export const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+
+export { User }; // Named Export
