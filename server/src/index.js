@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./lib/db.js";
 import authRoutes from "./routes/auth.route.js";
 import userRoutes from "./routes/user.route.js";
+import adminRoutes from "./routes/admin.route.js";
 import cors from "cors";    
 import fileUpload from "express-fileupload";
 import path from "path";
@@ -13,6 +14,7 @@ const app = express();
 
 //middleware
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
 // Configure CORS
 app.use(
@@ -36,6 +38,7 @@ const PORT = process.env.PORT;
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/admin", adminRoutes);
 
 
 app.listen(PORT, () => {
