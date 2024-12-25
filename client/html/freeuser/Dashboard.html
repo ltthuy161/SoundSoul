@@ -153,7 +153,9 @@
     <script>
         let songQueue = [];
         let currentSongIndex = 0;
+        let isPlayBlocked = false;
 
+        // Function to fetch songs and populate the UI
         async function fetchSongs() {
             try {
                 const response = await fetch("http://localhost:3000/api/admin/songs");
@@ -163,16 +165,16 @@
                 const recentlyPlayedContainer = document.querySelector('.recently-played .row');
                 songs.forEach((song, index) => {
                     const songCard = `
-                        <div class="col-md-2">
-                            <div class="card" onclick="playSong(${index})">
-                                <img src="${song.imageUrl}" class="card-img-top" alt="${song.title}">
-                                <div class="card-body text-center">
-                                    <p class="card-title fw-bold mb-0">${song.title}</p>
-                                    <p class="card-text text-muted">${song.artist}</p>
-                                </div>
-                            </div>
+                <div class="col-md-2">
+                    <div class="card" onclick="playSong(${index})">
+                        <img src="${song.imageUrl}" class="card-img-top" alt="${song.title}">
+                        <div class="card-body text-center">
+                            <p class="card-title fw-bold mb-0">${song.title}</p>
+                            <p class="card-text text-muted">${song.artist}</p>
                         </div>
-                    `;
+                    </div>
+                </div>
+            `;
                     recentlyPlayedContainer.innerHTML += songCard;
                 });
             } catch (error) {
@@ -180,6 +182,7 @@
             }
         }
 
+        // Function to play a song
         function playSong(index) {
             if (index < 0 || index >= songQueue.length) return;
             currentSongIndex = index;
@@ -193,18 +196,31 @@
 
             audioElement.play();
             togglePlayPauseIcon(true);
+
+            // Start the auto-pause logic
+            startAutoPause();
         }
 
+        // Play next song
         function playNext() {
             if (currentSongIndex + 1 < songQueue.length) playSong(currentSongIndex + 1);
         }
 
+        // Play previous song
         function playPrevious() {
             if (currentSongIndex - 1 >= 0) playSong(currentSongIndex - 1);
         }
 
+        // Toggle play/pause functionality
         function togglePlayPause() {
             const audioElement = document.querySelector('.music-player audio');
+            const playButton = document.querySelector('.btn.btn-primary');
+
+            if (isPlayBlocked) {
+                playButton.disabled = true;
+                return;
+            }
+
             if (audioElement.paused) {
                 audioElement.play();
                 togglePlayPauseIcon(true);
@@ -214,16 +230,42 @@
             }
         }
 
+        // Change play/pause icons
         function togglePlayPauseIcon(isPlaying) {
             document.querySelector('.bi-play-fill').style.display = isPlaying ? 'none' : 'inline';
             document.querySelector('.bi-pause-fill').style.display = isPlaying ? 'inline' : 'none';
         }
 
+        // Adjust volume
         function setVolume(value) {
             document.querySelector('.music-player audio').volume = value / 100;
         }
 
+        // Auto-pause logic
+        function startAutoPause() {
+            const audioElement = document.querySelector('.music-player audio');
+            const playButton = document.querySelector('.btn.btn-primary');
+
+            setInterval(() => {
+                if (!audioElement.paused) {
+                    audioElement.pause();
+                    togglePlayPauseIcon(false);
+
+                    // Block the play button for 5 seconds
+                    isPlayBlocked = true;
+                    playButton.disabled = true;
+
+                    setTimeout(() => {
+                        isPlayBlocked = false;
+                        playButton.disabled = false;
+                    }, 5000);
+                }
+            }, 15000); // Pause every 15 seconds
+        }
+
+        // Fetch songs and initialize the app
         fetchSongs();
+
     </script>
 </body>
 
