@@ -86,157 +86,106 @@
                                 <th>No.</th>
                                 <th>User name</th>
                                 <th>Email</th>
-                                <th>Gender</th>
-                                <th>Date of Birth</th>
                                 <th>Sign up date</th>
                                 <th>Approved?</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td class="username">ashley_scott_1988</td>
-                                <td>ashley_scott_1988@gmail.com</td>
-                                <td>Female</td>
-                                <td>1997</td>
-                                <td class="signup-date">14/10/2022</td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        class="approval-checkbox"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td class="username">real.laurenjackson</td>
-                                <td>real.laurenjackson@yahoo.com</td>
-                                <td>Female</td>
-                                <td>1992</td>
-                                <td class="signup-date">25/11/2021</td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        class="approval-checkbox"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td class="username">veronica_diaz_99</td>
-                                <td>veronica_diaz_99@yahoo.com</td>
-                                <td>Female</td>
-                                <td>2019</td>
-                                <td class="signup-date">02/05/2020</td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        class="approval-checkbox"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td class="username">sallen</td>
-                                <td>sallen@yahoo.com</td>
-                                <td>Female</td>
-                                <td>2005</td>
-                                <td class="signup-date">03/07/2020</td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        class="approval-checkbox"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td class="username">lthompson96</td>
-                                <td>lthompson96@gmail.com</td>
-                                <td>Female</td>
-                                <td>2004</td>
-                                <td class="signup-date">23/08/2023</td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        class="approval-checkbox"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td class="username">jclark95</td>
-                                <td>jclark@hotmail.com</td>
-                                <td>Male</td>
-                                <td>2000</td>
-                                <td class="signup-date">19/03/2020</td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        class="approval-checkbox"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td class="username">omartinez</td>
-                                <td>omartinez@yahoo.com</td>
-                                <td>Female</td>
-                                <td>2011</td>
-                                <td class="signup-date">31/01/2022</td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        class="approval-checkbox"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td class="username">tyler_anderson</td>
-                                <td>tyler_anderson@yahoo.com</td>
-                                <td>Male</td>
-                                <td>1997</td>
-                                <td class="signup-date">17/07/2020</td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        class="approval-checkbox"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td class="username">MarioPerez97</td>
-                                <td>mario.perez@gmail.com</td>
-                                <td>Male</td>
-                                <td>2008</td>
-                                <td class="signup-date">16/04/2022</td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        class="approval-checkbox"
-                                    />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>10</td>
-                                <td class="username">johnsmith</td>
-                                <td>johnsmith@gmail.com</td>
-                                <td>Male</td>
-                                <td>1992</td>
-                                <td class="signup-date">10/01/2022</td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        class="approval-checkbox"
-                                    />
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
         </div>
     </body>
+    <script>
+        // Fetch creator data and display the top 3 creators in the table
+        async function fetchCreators() {
+            try {
+                const response = await fetch(
+                    "http://localhost:3000/api/user/creators"
+                );
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const creators = await response.json();
+
+                const tableBody = document.querySelector(".user-table tbody");
+                tableBody.innerHTML = "";
+
+                // Sort creators by signup date (descending)
+                creators.sort(
+                    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+                );
+
+                creators.forEach((creator, index) => {
+                    if (!creator.creatorDetails?.approved) {
+                        const row = `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td class="username">${creator.fullname}</td>
+                        <td>${creator.email}</td>
+                        <td class="signup-date">${new Date(
+                            creator.createdAt
+                        ).toLocaleDateString()}</td>
+                        <td>
+                            <input type="checkbox" class="approve-checkbox" data-id="${creator._id}" />
+                        </td>
+                    </tr>
+                `;
+                        tableBody.innerHTML += row;
+                    }
+                });
+                attachCheckboxEvents();
+            } catch (error) {
+                console.error("Error fetching creator data:", error);
+            }
+        }
+
+        function attachCheckboxEvents() {
+                const checkboxes = document.querySelectorAll(".approve-checkbox");
+                checkboxes.forEach((checkbox) => {
+                    checkbox.addEventListener("change", async (event) => {
+                        const creatorId = event.target.getAttribute("data-id");
+                        if (event.target.checked) {
+                            try {
+                                const response = await fetch(
+                                    `http://localhost:3000/api/user/creators/${creatorId}/approve`,
+                                    {
+                                        method: "PATCH",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        body: JSON.stringify({
+                                            approved: true,
+                                        }),
+                                    }
+                                );
+
+                                if (!response.ok) {
+                                    throw new Error(
+                                        `Failed to approve creator with ID ${creatorId}`
+                                    );
+                                }
+
+                                const result = await response.json();
+                                console.log("Creator approved:", result);
+
+                                // Làm mới danh sách sau khi phê duyệt
+                                await fetchCreators();
+                            } catch (error) {
+                                console.error(
+                                    "Error approving creator:",
+                                    error
+                                );
+                                alert(
+                                    "Failed to approve the creator. Please try again."
+                                );
+                                event.target.checked = false; // Reset checkbox nếu lỗi
+                            }
+                        }
+                    });
+                });
+            }
+        // Call fetchCreators when the page is loaded
+        window.onload = fetchCreators;
+    </script>
 </html>

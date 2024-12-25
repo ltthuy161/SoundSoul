@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/client/css/freeuser/Filter.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
+    <title>Filter</title>
+
+</head>
+
+<body>
+    <div class="topbar">
+        <img src="/client/assets/img/logo.png" alt="logo" />
+        <p class="ss">SoundSoul</p>
+        <div class="search-bar">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search" />
+        </div>
+        <div class="user-info">
+            <img src="/client/assets/img/avatar/1.jpg" alt="user" />
+            <div class="text-info">
+                <p class="username">Username</p>
+                <p class="role">Free user</p>
+            </div>
+        </div>
+        <button type="button" class="upgrade">Upgrade Premium</button>
+    </div>
+
+    <div class="selection">
+        <img id="rock" src="/client/assets/filter/rock.jpeg" alt="rock" />
+        <img id="pop" src="/client/assets/filter/pop.jpeg" alt="pop" />
+        <img id="rap" src="/client/assets/filter/rap.jpeg" alt="rap" />
+        <img id="rnb" src="/client/assets/filter/rbsoul.jpeg" alt="rnb" />
+        <img id="indie" src="/client/assets/filter/indie.jpeg" alt="indie" />
+        <img id="lofi" src="/client/assets/filter/lofi.jpeg" alt="lofi" />
+        <img id="country" src="/client/assets/filter/country.jpeg" alt="country" />
+        <img id="folk" src="/client/assets/filter/folk.jpeg" alt="folk" />
+        <img id="jazz" src="/client/assets/filter/jazz.jpeg" alt="jazz" />
+    </div>
+
+    <div class="checkbox">
+        <input id="rock" type="checkbox" name="rock" value="on" />
+        <input id="pop" type="checkbox" name="pop" value="on" />
+        <input id="rap" type="checkbox" name="rap" value="on" />
+        <input id="rnb" type="checkbox" name="rnb" value="on" />
+        <input id="indie" type="checkbox" name="indie" value="on" />
+        <input id="lofi" type="checkbox" name="lofi" value="on" />
+        <input id="country" type="checkbox" name="country" value="on" />
+        <input id="folk" type="checkbox" name="folk" value="on" />
+        <input id="jazz" type="checkbox" name="jazz" value="on" />
+    </div>
+
+    <div class="genre">
+        <input id="rock" type="text" value="Rock" disabled />
+        <input id="pop" type="text" value="Pop" disabled />
+        <input id="rap" type="text" value="Rap" disabled />
+        <input id="rnb" type="text" value="R&B/Soul" disabled />
+        <input id="indie" type="text" value="Indie" disabled />
+        <input id="lofi" type="text" value="Lofi" disabled />
+        <input id="country" type="text" value="Country" disabled />
+        <input id="folk" type="text" value="Folk" disabled />
+        <input id="jazz" type="text" value="Jazz" disabled />
+
+    </div>
+
+    <div class="action">
+        <button type="button" class="apply">Apply</button>
+        <button type="button" class="clear">Clear all</button>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="col-md-3 sidebar">
+        <div class="section">
+            <p class="section-title">MENU</p>
+            <ul class="menu">
+                <li class="menu-item active">
+                    <i class="bi bi-compass"></i>
+                    <span>Discover</span>
+                </li>
+                <li class="menu-item">
+                    <i class="bi bi-graph-up-arrow"></i>
+                    <span>Trending</span>
+                </li>
+                <li class="menu-item">
+                    <i class="bi bi-music-note-list"></i>
+                    <span>Genre</span>
+                </li>
+                <li class="menu-item" data-bs-toggle="modal" data-bs-target="#playlistsModal">
+                    <i class="bi bi-music-player"></i>
+                    <span>Playlists</span>
+                </li>
+                <a href="downloadsPlaylist.html" class="no-underline">
+                    <li class="menu-item">
+
+                        <i class="bi bi-cloud-arrow-down"></i>
+                        <span>Downloads</span>
+                    </li>
+                </a>
+            </ul>
+        </div>
+        <div class="section">
+            <p class="section-title">PERSONAL</p>
+            <ul class="menu">
+                <a href="profile.html" class="no-underline">
+                    <li class="menu-item">
+                        <i class="bi bi-person-circle"></i>
+                        <span>Profile</span>
+                    </li>
+                </a>
+                <li class="menu-item">
+                    <i class="bi bi-gear"></i>
+                    <span>Settings</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

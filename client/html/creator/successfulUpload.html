@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/client/css/creator/successfulUpload.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Successful Upload Creator</title>
+</head>
+<body>
+    <div class="topbar">
+        <img src="/client/assets/img/logo.png" alt="SoundSoul Logo">
+        <p class="ss">SoundSoul</p>
+        <div class="user-info">
+            <img src="/client/assets/img/avatar/1.jpg" alt="User Avatar">
+            <div class="text-info">
+                <p class="username">Username</p>
+                <p class="role">Creator</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="main-content">
+            <div class="upload-success">
+                <p>✅ <strong>I Don't Want To Be An Engineer (Cover).mp3</strong></p>
+                <p>Provide FLAC, WAV for highest audio quality</p>
+            </div>
+
+            <div class="track-form">
+                <div class="artwork-placeholder">
+                    <p>Add new artwork</p>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="track-title">Track title *</label>
+                        <input type="text" id="track-title" value="I Don't Want To Be An Engineer (cover)">
+                    </div>
+                    <div class="form-group">
+                        <label for="track-link">Track link</label>
+                        <input type="text" id="track-link" placeholder="https://soundsoul.com/track/123">
+                    </div>
+                    <div class="form-group">
+                        <label for="main-artists">Main Artist(s) *</label>
+                        <input type="text" id="main-artists" value="Thanh Thúy">
+                        <small>Tip: Use commas to add multiple artist names</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="genre">Genre</label>
+                        <select id="genre">
+                            <option value="pop">Pop</option>
+                            <option value="classical">Classical</option>
+                            <option value="jazz">Jazz</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tags">Tags</label>
+                        <input type="text" id="tags" placeholder="Add styles, moods, tempo">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" rows="5" placeholder="Tracks with descriptions tend to get more plays and engagements"></textarea>
+                    </div>
+                </form>
+            </div>
+
+        <div class="options">
+            <h3>Options</h3>
+            <div class="collapsible-section">
+                <button class="collapsible">Advanced Details</button>
+                <div class="content">
+                    <p>Include metadata, ISRC codes, or additional song details here.</p>
+                </div>
+            </div>
+            <div class="collapsible-section">
+                <button class="collapsible">Permissions</button>
+                <div class="content">
+                    <p>Specify if the track is public or private, and set sharing options.</p>
+                </div>
+            </div>
+            <div class="collapsible-section">
+                <button class="collapsible">Audio Clip</button>
+                <div class="content">
+                    <p>Trim the song or upload an alternative audio snippet.</p>
+                </div>
+            </div>
+            <div class="collapsible-section">
+                <button class="collapsible">Licensing</button>
+                <div class="content">
+                    <p>Provide licensing details and copyright disclaimers.</p>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <p>By uploading, you confirm that your sounds comply with our <a href="#">Terms of Use</a>.</p>
+                <button type="submit" class="btn">Upload</button>
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+</body>
+</html>

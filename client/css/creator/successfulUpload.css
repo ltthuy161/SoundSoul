@@ -1,0 +1,267 @@
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    flex-direction: column;
+    height: 100vh; /* Chiều cao toàn màn hình */
+    box-sizing: border-box;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background: #ffffff;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.topbar img {
+    height: 50px;
+}
+
+.topbar .ss {
+    font-size: 24px;
+    font-weight: bold;
+    color: #822212;
+    margin-left: 10px;
+}
+
+.user-info {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-info img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.text-info .username {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.text-info .role {
+    font-size: 14px;
+    color: #822212;
+    opacity: 0.8;
+}
+
+.page {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    
+    padding: 20px;
+    background: #fff;
+    border-right: 2px solid #e0e0e0;
+}
+
+.sidebar .section-title {
+    font-size: 12px;
+    color: #b0b0b0;
+    margin-bottom: 10px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 16px;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s, background 0.3s;
+}
+
+.menu-item i {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #822212;
+}
+
+.menu-item:hover {
+    background: #822212;
+    color: #fff;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background: #f9f9f9;
+}
+
+.upload-success {
+    padding: 10px;
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.track-form {
+    display: flex;
+    gap: 20px;
+}
+
+.artwork-placeholder {
+    width: 200px;
+    height: 200px;
+    background: #e0e0e0;
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+}
+
+form .form-group {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #822212;
+}
+
+form input, form select, form textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    border-color: #822212;
+}
+
+
+.action-buttons .btn {
+    padding: 10px 20px;
+    background: #822212;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.action-buttons .btn:hover {
+    background: #a02030;
+}
+
+.options {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.options h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #822212;
+    
+}
+
+.collapsible-section {
+    margin-bottom: 10px;
+}
+
+.collapsible {
+    background: #f9f9f9;
+    color: #822212;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    text-align: left;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.collapsible:hover {
+    background: #fde7e6;
+}
+
+.collapsible:after {
+    content: "\25BC"; /* Down arrow */
+    font-size: 14px;
+    color: #822212;
+}
+
+.collapsible.active:after {
+    content: "\25B2"; /* Up arrow */
+}
+
+.content {
+    padding: 10px 20px;
+    background: #fdf3f1;
+    border-left: 3px solid #822212;
+    margin-top: 5px;
+    display: none; /* Hidden by default */
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.content p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.action-buttons {
+    display: flex; /* Sắp xếp phần tử trong cùng một dòng */
+    justify-content: space-between; /* Đẩy hai phần tử ra hai đầu container */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.action-buttons p {
+    flex: 1; /* Chiếm khoảng trống còn lại để nút Upload nằm bên phải */
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.action-buttons a {
+    color: #822212;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.action-buttons .btn {
+    background-color: #822212;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-buttons .btn:hover {
+    background-color: #a02030;
+}

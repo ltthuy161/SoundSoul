@@ -1,0 +1,414 @@
+body {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+}
+
+.topbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;    /* Cố định topbar ở trên cùng */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10 20px;
+    background-color: #f9f9f9;
+    z-index: 1000;      /* Đảm bảo topbar nằm trên các phần tử khác */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng để phân biệt topbar */
+}
+
+.topbar img {
+    height: 50px;
+}
+
+.topbar .ss {
+    font-size: 24px;
+    margin-left: 10px;
+    font-weight: 700;
+    color: #333;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 5px 15px;
+    width: 50%;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #822212ff;
+    background: #fdf3f1ff;
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: #fdf3f1ff;
+    color: #822212ff;
+    font-family: "Poppins", sans-serif;
+}
+
+.search-bar input::placeholder {
+    color: #822212ff;
+    opacity: 0.5;
+}
+
+.search-bar i {
+    color: #822212ff;
+    font-size: 18px;
+    margin-right: 2%;
+    margin-bottom: 2%;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 300px;       /* Increase width of the container */
+}
+
+.user-info img {
+    width: 50px;            /* Reduce image size */
+    height: 50px;
+    border-radius: 50%;
+}
+
+.text-info {
+    flex: 1;
+    white-space: nowrap;    /* Prevent text wrapping */
+    overflow: visible;      /* Allow text to be fully visible */
+    max-width: 100%;
+}
+
+.username {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.role {
+    font-size: 14px;
+    color: #822212;
+    margin: 0;
+    opacity: 0.6;
+}
+
+
+
+.page {
+    display: flex;
+    flex-direction: row;
+    width: 97%;
+    margin-top: -15%;
+    overflow: visible;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 0.7% 1.3%;
+    width: 12%;          /* Giữ nguyên hoặc điều chỉnh theo nhu cầu */
+    top: 100px;           /* Đặt khoảng cách từ topbar xuống */
+    left: 20px;          /* Đảm bảo sidebar không dính sát mép trái */
+    margin-top: 0;       /* Xóa margin-top cũ */
+}
+
+.section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #b0b0b0;
+    text-transform: uppercase;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 4%;
+    padding: 5% 10%;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.menu-item i {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 5%;
+}
+
+.menu-item.active {
+    background-color: #822212;
+    color: white;
+}
+
+.menu-item.active i {
+    color: white;
+}
+
+.menu-item:hover {
+    background-color: #822212; /* Red background */
+    color: white; /* Change text color to white for contrast */
+}
+
+.menu-item:hover i {
+    color: white; /* Change icon color to white */
+}
+
+
+/* Main Content Styling */
+.main-content {
+    position: fixed;
+    top: 90px; /* Space below the topbar */
+    padding: 20px;
+    margin-left: 15%; /* Adjust for sidebar */
+    height: calc(100% - 180px); /* Prevent overflowing past the viewport */
+    overflow-y: auto; /* Enable scrolling */
+}
+
+
+/* Latest Upload Section */
+.latest-upload {
+    background-color: #fff;
+    padding: 20px;
+    min-height: 200px; /* Thêm chiều cao tối thiểu */
+    overflow: visible; /* Đảm bảo không ẩn nội dung vượt quá */
+}
+.main-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #822212;
+    margin-top: 0%;
+}
+
+.upload-card {
+    display: flex;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    gap: 20px;
+    overflow: visible; /* Không ẩn nội dung vượt quá */
+    padding: 10px; /* Đẩy ảnh về phía trái */
+}
+
+.song-cover {
+    width: 150px;  /* Giảm kích thước ảnh nếu cần */
+    height: 150px;
+    border-radius: 10px;
+
+}
+
+.song-info {
+    flex: 1;
+    margin: 0; /* Đảm bảo không có margin thừa */
+    padding: 0; /* Đảm bảo không có padding thừa */
+    cursor: pointer;
+}
+
+.song-info:hover .song-title {
+    color: #cb2820; /* Red text color */
+}
+
+.artist-name {
+    font-size: 20px;
+    color: #cf3333;
+    margin-bottom: 5px;
+}
+
+.song-title {
+    font-size: 24px;
+    font-weight: bold;
+    color:#822212;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.song-stats span {
+    margin-right: 15px;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.action-buttons .btn {
+    background: none;
+    border: 1px solid #822212;
+    color: #0c0c0b;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+    
+}
+
+.action-buttons .btn:hover {
+    background-color: #822212;
+    color: #fff;
+}
+
+/* Artists Section */
+.artists-section {
+    background-color: #fff;
+    padding: 20px;
+    
+}
+
+.artist-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.artist-card {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    cursor: pointer;
+}
+
+.artist-card:hover {
+    background-color: #822212; /* Red background */
+    color: white; /* White text color */
+}
+
+.artist-card:hover i {
+    color: white; /* White icon color */
+}
+
+.artist-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+/* Trending Music Section */
+.trending-section {
+    background-color: #fff;
+    padding: 20px;
+
+}
+
+.trending-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.trending-card {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    cursor: pointer;
+}
+
+.trending-card:hover {
+    background-color: #822212; /* Red background */
+    color: white; /* White text color */
+}
+
+.trending-card:hover i {
+    color: white; /* White icon color */
+}
+
+.trending-card img {
+    width: 150px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* Dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown button */
+.dropdown-btn {
+    background: none;
+    border: 1px solid #822212;
+    cursor: pointer;
+    color: #0c0c0b;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+
+
+/* Dropdown menu */
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: white;
+    border: 1px solid #822212;
+    border-radius: 8px;
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 200px;
+}
+
+/* Dropdown menu items */
+.dropdown-menu li {
+    margin: 5px 0;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #822212;
+    padding: 5px 10px;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #fde7e6;
+    color: #822212;
+}
+
+/* Show dropdown menu */
+.dropdown.active .dropdown-menu {
+    display: block;
+}
+
+/* Responsive Design */
+
+@media (max-width: 1024px) {
+    .section {
+        padding: 10px; /* Giảm padding trên màn hình nhỏ */
+        margin: 10px 0;
+    }
+}

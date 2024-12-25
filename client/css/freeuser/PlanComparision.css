@@ -1,0 +1,294 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1380px;
+    height: 304px;
+    background: #FDF3F1FF;
+    /* primary-100 */
+    border-radius: 12px;
+    /* border-m */
+    box-shadow: 0px 0px 1px #1a1a1a12, 0px 0px 2px #1a1a1a1F;
+    /* shadow-xs */
+}
+
+.container .intro {
+    position: absolute;
+    top: 5px;
+    left: 120px;
+    font-family: Open Sans;
+    /* Heading */
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 700;
+    color: #1A1A1AFF;
+    /* neutral-900 */
+}
+
+.container .invite {
+    position: absolute;
+    top: 140px;
+    left: 120px;
+    width: 470px;
+    height: 72px;
+    font-family: Poppins;
+    /* Body */
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    color: #1A1A1AFF;
+    /* neutral-900 */
+}
+
+.container .term {
+    position: absolute;
+    top: 235px;
+    left: 120px;
+    font-family: Poppins;
+    /* Body */
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #379AE6FF;
+    /* info-500 */
+}
+
+.container img {
+    position: absolute;
+    top: 0px;
+    left: 692px;
+    width: 689px;
+    height: 282px;
+    border-radius: 0px;
+}
+
+.container2 {
+    position: absolute;
+    top: 282px;
+    left: 0px;
+    width: 1381px;
+    height: 533px;
+    background: #822212D9;
+    /* primary-500 */
+    border-radius: 0px;
+}
+
+.container2 .intro {
+    position: absolute;
+    top: -20px;
+    left: 500px;
+    font-family: Open Sans;
+    /* Heading */
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 400;
+    color: #FBF4F3FF;
+    /* secondary-100 */
+}
+
+.container2 .invite {
+    position: absolute;
+    top: 40px;
+    left: 260px;
+    font-family: Open Sans;
+    /* Heading */
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 400;
+    color: #FBF4F3FF;
+    /* secondary-100 */
+}
+
+.container3 {
+    position: absolute;
+    top: 150px;
+    left: 311px;
+}
+
+.container4 {
+    position: absolute;
+    top: 150px;
+    left: 597px;
+}
+
+.container5 {
+    position: absolute;
+    top: 150px;
+    left: 879px;
+}
+
+.container3,
+.container4,
+.container5 {
+    width: 247px;
+    height: 380px;
+    background: #FFFFFFFF;
+    /* white */
+    border-radius: 12px;
+    /* border-m */
+    box-shadow: 0px 0px 1px #1a1a1a12, 0px 0px 2px #1a1a1a1F;
+    /* shadow-xs */
+}
+
+.container3 .intro {
+    position: absolute;
+    top: 60px;
+    left: 28px;
+    font-family: Poppins;
+    /* Body */
+    font-size: 24px;
+    line-height: 36px;
+    font-weight: 700;
+    color: #1A1A1AFF;
+    /* neutral-900 */
+}
+
+.container3 .invite {
+    position: absolute;
+    top: 170px;
+    left: 11px;
+    font-family: Poppins;
+    /* Body */
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 500;
+    color: #1A1A1AFF;
+    /* neutral-900 */
+}
+
+.container4 .intro {
+    position: absolute;
+    top: 21px;
+    left: 71px;
+    font-family: Open Sans;
+    /* Heading */
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 700;
+    color: #1A1A1AFF;
+    /* neutral-900 */
+}
+
+.container4 .invite,
+.container5 .invite {
+    position: absolute;
+    top: 80px;
+    left: 60px;
+    font-family: Poppins;
+    /* Body */
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #1A1A1AFF;
+    /* neutral-900 */
+}
+
+#x1,
+#x2,
+#x3 {
+    position: absolute;
+    top: 190px;
+    left: 110px;
+    width: 60px;
+    height: 60px;
+    fill: #4A4A4AFF;
+    /* neutral-650 */
+}
+
+#x2 {
+    top: 250px;
+}
+
+#x3 {
+    top: 300px;
+}
+
+.container5 .intro {
+    position: absolute;
+    top: 21px;
+    left: 48px;
+    font-family: Open Sans;
+    /* Heading */
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 700;
+    color: #1A1A1AFF;
+    /* neutral-900 */
+}
+
+
+#v1,
+#v2,
+#v3 {
+    position: absolute;
+    top: 190px;
+    left: 115px;
+    width: 40px;
+    height: 40px;
+    fill: #822212FF;
+    /* primary-500 */
+}
+
+#v2 {
+    top: 250px;
+}
+
+#v3 {
+    top: 300px;
+}
+
+.container5 .upgrade {
+    position: absolute;
+    top: 125px;
+    left: 25px;
+    width: 200px;
+    height: 44px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins;
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 400;
+    color: #FFFFFFFF;
+    /* white */
+    background: #822212FF;
+    /* primary-500 */
+    opacity: 1;
+    border: none;
+    border-radius: 12px;
+    /* border-m */
+}
+
+/* Hover */
+.container5 .upgrade:hover {
+    color: #FFFFFFFF;
+    /* white */
+    background: #641B0EFF;
+    /* primary-650 */
+}
+
+/* Pressed */
+.container5 .upgrade:hover:active {
+    color: #FFFFFFFF;
+    /* white */
+    background: #47130AFF;
+    /* primary-800 */
+}
+
+/* Disabled */
+.container5 .upgrade:disabled {
+    opacity: 0.4;
+}

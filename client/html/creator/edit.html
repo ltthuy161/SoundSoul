@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/client/css/creator/edit.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Creator Edit Page</title>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="topbar">
+        <img src="/client/assets/img/logo.png" alt="logo" />
+        <p class="ss">SoundSoul</p>
+        <div class="search-bar">
+            <i class="bi bi-search"></i>
+            <input type="text" placeholder="Search" />
+        </div>
+        <div class="user-info">
+            <img src="/client/assets/img/avatar/1.jpg" alt="user" />
+            <div class="text-info">
+                <p class="username">Username</p>
+                <p class="role">Creator</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div class="page">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="section">
+                <p class="section-title">MENU</p>
+                <ul class="menu">
+                    <li class="menu-item">
+                            <i class="bi bi-plus"></i>
+                            <span>Upload</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <i class="bi bi-pencil"></i>
+                        <span>Edit</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="bi bi-music-note"></i>
+                        <span>For Artist</span>
+                    </li>
+                </ul>
+
+                <p class="section-title">CUSTOMIZE</p>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <i class="bi bi-list"></i>
+                        <span>Playlist</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="bi bi-heart"></i>
+                        <span>Favourites</span>
+                    </li>
+                </ul>
+
+                <p class="section-title">PERSONAL</p>
+                <ul class="menu">
+                    <li class="menu-item">
+                        <i class="bi bi-person"></i>
+                        <span>Profile</span>
+                    </li>
+                    <li class="menu-item">
+                        <i class="bi bi-gear"></i>
+                        <span>Settings</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h2 class="main-title">My tracks</h2>
+            <div class="track-list">
+                <!-- Track 1 -->
+                <div class="track-card">
+                    <img src="/client/assets/img/artist/1.jpg" alt="Track Cover" class="track-cover">
+                    <div class="track-info">
+                        <p class="artist-name">Teos</p>
+                        <h3 class="track-title">I Don't Want To Be An Engineer (cover)</h3>
+                        <div class="track-stats">
+                            <span><i class="fa-solid fa-play"></i> 5</span>
+                            <span><i class="fa-solid fa-heart"></i> 0</span>
+                            <span><i class="fa-solid fa-repeat"></i> 0</span>
+                            <span><i class="fa-solid fa-comment"></i> 0</span>
+                        </div>
+                        <div class="track-meta">
+                            <span>4:26</span>
+                            <span>5 hours ago</span>
+                            <span>Play 5 times</span>
+                        </div>
+                        <div class="track-actions">
+                            <button class="btn"><i class="bi bi-share"></i> Share</button>
+                            <button class="btn"><i class="bi bi-pin"></i> Pin to Profile</button>
+                            <button class="btn"><i class="bi bi-upload"></i> Replace File</button>
+                            <div class="dropdown">
+                                <button class="dropdown-btn"><i class="bi bi-three-dots"></i></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Copy link</a></li>
+                                    <li><a href="#">Add to playlist</a></li>
+                                    <li><a href="#">Add to Next up</a></li>
+                                    <li><a href="#">Report</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="edit-btn"><i class="bi bi-pencil"></i></button>
+                </div>
+                <!-- Repeat similar blocks for other tracks -->
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const dropdownBtn = document.querySelector('.dropdown-btn');
+                const dropdown = document.querySelector('.dropdown');
+
+                dropdownBtn.addEventListener('click', () => {
+                    dropdown.classList.toggle('active');
+                });
+
+                // Close the dropdown if clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!dropdown.contains(e.target)) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            });
+        </script>
+
+    </div>
+</div>
+    
+</body>
+</html>
+
