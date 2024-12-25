@@ -251,26 +251,36 @@
         fetchPlaylists();
         let songQueue = [];
         let currentSongIndex = 0;
-
-        function renderSongs(songs) {
-            const recentlyPlayedContainer = document.querySelector('.recently-played .row');
-            recentlyPlayedContainer.innerHTML = '';
-            songs.forEach((song, index) => {
-                const songCard = `
+// Function to format duration from seconds to mm:ss
+function formatDuration(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+}
+function renderSongs(songs) {
+    const recentlyPlayedContainer = document.querySelector('.recently-played .row');
+    recentlyPlayedContainer.innerHTML = '';
+    songs.forEach((song, index) => {
+        const songCard = `
             <div class="col-md-2">
                 <div class="card">
                     <img src="${song.imageUrl}" class="card-img-top" alt="${song.title}">
                     <div class="card-body text-center">
                         <p class="card-title fw-bold mb-0">${song.title}</p>
                         <p class="card-text text-muted">${song.artist}</p>
-                        <button class="btn btn-primary" onclick="openAddToPlaylistModal('${song._id}')">Add to Playlist</button>
+                        <p class="card-text text-muted">${formatDuration(song.duration)}</p>
+<div class="d-flex justify-content-center gap-2">
+    <button class="btn btn-primary w-100" onclick="openAddToPlaylistModal('${song._id}')">Add to Playlist</button>
+    <button class="btn btn-primary w-100" onclick="playSong(${index})">Play</button>
+</div>
+
                     </div>
                 </div>
             </div>
         `;
-                recentlyPlayedContainer.innerHTML += songCard;
-            });
-        }
+        recentlyPlayedContainer.innerHTML += songCard;
+    });
+}
         function openAddToPlaylistModal(songId) {
             fetchPlaylistsForModal(songId); // Populate playlists in modal
             $('#addToPlaylistModal').modal('show');
