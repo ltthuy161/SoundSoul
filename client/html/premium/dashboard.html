@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/client/css/premium/dashboard.css" />
     <title>Premium User Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -20,7 +23,7 @@
         </a>
         <div class="search-bar ms-auto">
             <i class="bi bi-search"></i>
-            <input type="text" placeholder="Search" />
+            <input type="text" id="songSearch" placeholder="Search" onkeyup="searchSongs()" />
         </div>
         <div class="user-info d-flex align-items-center ms-4">
             <img src="/client/assets/img/avatar/1.jpg" alt="user" />
@@ -30,6 +33,8 @@
             </div>
         </div>
     </div>
+
+    <!-- Playlist Modals -->
     <div class="modal fade" id="addPlaylistModal" tabindex="-1" aria-labelledby="addPlaylistModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -42,38 +47,50 @@
                 </div>
                 <div class="modal-body">
                     <div class="row align-items-center">
-                        <div class="col-md-4 d-flex align-items-center justify-content-center position-relative"
-                            style="height: 100%;">
+                        <div class="col-md-4 d-flex align-items-center justify-content-center position-relative">
                             <img src="https://www.shareicon.net/download/2016/09/21/831419_multimedia_512x512.png"
                                 class="img-fluid rounded" alt="Image" style="object-fit: cover; aspect-ratio: 1 / 1;">
-                            <button type="button"
-                                class="btn btn-secondary position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-pencil-square"></i>
-                            </button>
                         </div>
                         <div class="col-md-8">
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Add the playlist name"
-                                    required>
+                                <label for="playlistName" class="form-label">Name</label>
+                                <input type="text" class="form-control" id="playlistName"
+                                    placeholder="Add the playlist name">
                             </div>
                             <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" id="description" rows="3"
+                                <label for="playlistDescription" class="form-label">Description</label>
+                                <textarea class="form-control" id="playlistDescription" rows="3"
                                     placeholder="Add a description"></textarea>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <p class="text-muted me-auto">By proceeding, you give SoundSoul access to the image you choose to
                         upload.</p>
-                    <button type="submit" class="btn btn-primary rounded-pill">Save</button>
+                    <button type="button" class="btn btn-primary rounded-pill" onclick="createPlaylist()">Save</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Add to Playlist Modal -->
+    <div class="modal fade" id="addToPlaylistModal" tabindex="-1" aria-labelledby="addToPlaylistModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addToPlaylistModalLabel">Select Playlist</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group" id="modalPlaylistContainer">
+                        <!-- Playlists will be dynamically added here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="playlistsModal" tabindex="-1" aria-labelledby="playlistsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -83,40 +100,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-3">
-                    <div class="row row-cols-1 row-cols-md-5 g-3">
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
-                                    class="card-img-top img-fluid">
-                                <div class="card-body">
-                                    <p class="card-title fw-bold">Workout Mix</p>
-                                    <p class="card-text">100 Songs</p>
-                                    <a href="playlist.html" class="btn btn-primary">Open</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
-                                    class="card-img-top img-fluid">
-                                <div class="card-body">
-                                    <p class="card-title fw-bold">Chill Vibes</p>
-                                    <p class="card-text">50 Songs</p>
-                                    <a href="playlist.html" class="btn btn-primary">Open</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
-                                    class="card-img-top img-fluid">
-                                <div class="card-body">
-                                    <p class="card-title fw-bold">Focus Mode</p>
-                                    <p class="card-text">30 Songs</p>
-                                    <a href="playlist.html" class="btn btn-primary">Open</a>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="row row-cols-1 row-cols-md-5 g-3" id="playlistContainer">
+                        <!-- Playlists will be dynamically added here -->
                     </div>
                 </div>
             </div>
@@ -148,26 +133,10 @@
                         </li>
                         <a href="downloadsPlaylist.html" class="no-underline">
                             <li class="menu-item">
-
                                 <i class="bi bi-cloud-arrow-down"></i>
                                 <span>Downloads</span>
                             </li>
                         </a>
-                    </ul>
-                </div>
-                <div class="section">
-                    <p class="section-title">PERSONAL</p>
-                    <ul class="menu">
-                        <a href="profile.html" class="no-underline">
-                            <li class="menu-item">
-                                <i class="bi bi-person-circle"></i>
-                                <span>Profile</span>
-                            </li>
-                        </a>
-                        <li class="menu-item">
-                            <i class="bi bi-gear"></i>
-                            <span>Settings</span>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -175,39 +144,10 @@
             <!-- Main Section -->
             <div class="col-md-9">
                 <div class="row">
-                    <!-- Recently Played Section -->
-                    <div class="col-12">
+                    <div class="col-12 recently-played">
                         <h2>Recently Played</h2>
                         <div class="row">
-                            <!-- Song Card -->
-                            <div class="col-md-2">
-                                <div class="card">
-                                    <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
-                                        class="card-img-top img-fluid" alt="Song Cover">
-                                    <div class="card-body text-center">
-                                        <p class="card-title fw-bold mb-0">Song 7</p>
-                                        <p class="card-text text-muted">Artist 7</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Suggested Songs Section -->
-                    <div class="col-12 mt-4">
-                        <h2>Suggested Songs</h2>
-                        <div class="row">
-                            <!-- Song Card -->
-                            <div class="col-md-2">
-                                <div class="card">
-                                    <img src="https://th.bing.com/th/id/OIG4.7h3EEAkofdcgjDEjeOyg" class="card-img-top"
-                                        alt="Song Cover">
-                                    <div class="card-body text-center">
-                                        <p class="card-title fw-bold mb-0">Song 7</p>
-                                        <p class="card-text text-muted">Artist 7</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Songs will be dynamically added here -->
                         </div>
                     </div>
                 </div>
@@ -215,85 +155,234 @@
         </div>
     </div>
 
-    <div class="song-queue">
-        <h2>Queue</h2>
-        <table class="table table-borderless">
-            <tbody>
-                <tr>
-                    <td class="align-middle"><img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
-                            alt="Song Cover" class="rounded" style="width: 60px; height: 60px;"></td>
-                    <td>
-                        <p class="fw-bold mt-3 mb-0">Song 10</p>
-                        <p class="text-muted">Artist 9</p>
-                    </td>
-                    <td class="align-middle text-end">
-                        <button type="button" class="btn btn-sm remove-song">
-                            <i class="bi bi-x-lg"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="align-middle"><img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
-                            alt="Song Cover" class="rounded" style="width: 60px; height: 60px;"></td>
-                    <td>
-                        <p class="fw-bold mt-3 mb-0">Song 10</p>
-                        <p class="text-muted">Artist 10</p>
-                    </td>
-                    <td class="align-middle text-end">
-                        <button type="button" class="btn btn-sm remove-song">
-                            <i class="bi bi-x-lg"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
     <!-- Music Player -->
     <div class="music-player">
-        <!-- Song Info -->
         <div class="d-flex align-items-center">
-            <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L" alt="Song Cover">
+            <img id="currentSongImage" src="https://via.placeholder.com/60" alt="Song Cover">
             <div class="song-info">
-                <p class="song-title">Song 1</p>
-                <p class="text-muted">Artist 1</p>
+                <p id="currentSongTitle" class="song-title">Select a Song</p>
+                <p id="currentSongArtist" class="text-muted">Artist</p>
             </div>
-            <button class="btn btn-primary mx-3">
-                <i class="bi bi-arrows-angle-expand"></i>
-            </button>
         </div>
-
-        <!-- Player Controls -->
         <div class="player-controls d-flex align-items-center gap-3">
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary" onclick="playPrevious()">
                 <i class="bi bi-skip-backward-fill"></i>
             </button>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" onclick="togglePlayPause()">
                 <i class="bi bi-play-fill"></i>
+                <i class="bi bi-pause-fill" style="display: none;"></i>
             </button>
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary" onclick="playNext()">
                 <i class="bi bi-skip-forward-fill"></i>
             </button>
-            <div class="progress-bar">
-                <div class="current-progress"></div>
-            </div>
-            <span class="text-muted">1:25 / 3:40</span>
         </div>
-
-        <!-- Volume Control -->
+        <audio id="audioPlayer"></audio>
         <div class="volume-control">
             <i class="bi bi-volume-up"></i>
-            <input type="range" class="form-range" min="0" max="100" value="50" style="width: 100px;">
+            <input type="range" class="form-range" min="0" max="100" value="50" onchange="setVolume(this.value)">
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
     <script>
+        let playlists = [];
+
+        async function createPlaylist() {
+            const name = document.getElementById("playlistName").value.trim();
+            const description = document.getElementById("playlistDescription").value.trim();
+
+            if (!name) {
+                alert("Please provide a name for the playlist.");
+                return;
+            }
+
+            try {
+                const response = await fetch("http://localhost:3000/api/admin/playlists", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ name, description }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to create playlist.");
+                }
+
+                const playlist = await response.json();
+                alert("Playlist created successfully!");
+                fetchPlaylists(); // Refresh playlists
+                $('#addPlaylistModal').modal('hide');
+            } catch (error) {
+                console.error("Error creating playlist:", error);
+                alert("Error creating playlist. Please try again later.");
+            }
+        }
+
+        async function fetchPlaylists() {
+            try {
+                const response = await fetch("http://localhost:3000/api/admin/playlists");
+                playlists = await response.json();
+                const playlistContainer = document.getElementById("playlistContainer");
+                playlistContainer.innerHTML = "";
+
+                playlists.forEach(playlist => {
+                    const playlistCard = `
+                    <div class="col">
+                        <div class="card h-100" onclick="navigateToPlaylist('${playlist._id}')">
+                            <div class="card-body">
+                                <p class="card-title fw-bold">${playlist.name}</p>
+                                <p class="card-text">${playlist.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                    playlistContainer.innerHTML += playlistCard;
+                });
+            } catch (error) {
+                console.error("Error fetching playlists:", error);
+            }
+        }
+        function navigateToPlaylist(playlistId) {
+            // Redirect to the playlist page with the playlist ID as a query parameter
+            const baseUrl = "http://127.0.0.1:5500/client/html/premium/playlist.html";
+            window.location.href = `${baseUrl}?id=${playlistId}`;
+        }
+        // Fetch playlists on page load
+        fetchPlaylists();
+        let songQueue = [];
+        let currentSongIndex = 0;
+
+        function renderSongs(songs) {
+            const recentlyPlayedContainer = document.querySelector('.recently-played .row');
+            recentlyPlayedContainer.innerHTML = '';
+            songs.forEach((song, index) => {
+                const songCard = `
+            <div class="col-md-2">
+                <div class="card">
+                    <img src="${song.imageUrl}" class="card-img-top" alt="${song.title}">
+                    <div class="card-body text-center">
+                        <p class="card-title fw-bold mb-0">${song.title}</p>
+                        <p class="card-text text-muted">${song.artist}</p>
+                        <button class="btn btn-primary" onclick="openAddToPlaylistModal('${song._id}')">Add to Playlist</button>
+                    </div>
+                </div>
+            </div>
+        `;
+                recentlyPlayedContainer.innerHTML += songCard;
+            });
+        }
+        function openAddToPlaylistModal(songId) {
+            fetchPlaylistsForModal(songId); // Populate playlists in modal
+            $('#addToPlaylistModal').modal('show');
+        }
+        async function fetchPlaylistsForModal(songId) {
+            try {
+                const response = await fetch("http://localhost:3000/api/admin/playlists");
+                const playlists = await response.json();
+                const modalPlaylistContainer = document.getElementById("modalPlaylistContainer");
+                modalPlaylistContainer.innerHTML = "";
+
+                playlists.forEach((playlist) => {
+                    const listItem = `
+                <li class="list-group-item d-flex justify-content-between align-items-center"
+                    onclick="addSongToPlaylist('${playlist._id}', '${songId}')">
+                    ${playlist.name}
+                    <span class="badge bg-primary rounded-pill">${playlist.songs.length || 0}</span>
+                </li>
+            `;
+                    modalPlaylistContainer.innerHTML += listItem;
+                });
+            } catch (error) {
+                console.error("Error fetching playlists:", error);
+            }
+        }
+        async function addSongToPlaylist(playlistId, songId) {
+            try {
+                const response = await fetch(`http://localhost:3000/api/admin/playlists/${playlistId}/songs/${songId}`, {
+                    method: "POST",
+                });
+
+                if (response.ok) {
+                    alert("Song added to playlist successfully!");
+                    $('#addToPlaylistModal').modal('hide'); // Close the modal
+                } else {
+                    throw new Error("Failed to add song to playlist.");
+                }
+            } catch (error) {
+                console.error("Error adding song to playlist:", error);
+                alert("Error adding song to playlist. Please try again.");
+            }
+        }
+
+
+        function searchSongs() {
+            const query = document.getElementById('songSearch').value.toLowerCase();
+            const filteredSongs = songQueue.filter(song =>
+                song.title.toLowerCase().includes(query) || song.artist.toLowerCase().includes(query)
+            );
+            renderSongs(filteredSongs);
+        }
+
+        async function fetchSongs() {
+            try {
+                const response = await fetch("http://localhost:3000/api/admin/songs");
+                const songs = await response.json();
+                songQueue = songs;
+                renderSongs(songQueue);
+            } catch (error) {
+                console.error("Error fetching songs:", error);
+            }
+        }
+
+        function playSong(index) {
+            const songIndex = parseInt(index, 10);
+            currentSongIndex = songIndex;
+            const song = songQueue[songIndex];
+            const audioElement = document.getElementById('audioPlayer');
+
+            audioElement.src = song.audioUrl;
+            document.getElementById('currentSongTitle').textContent = song.title;
+            document.getElementById('currentSongArtist').textContent = song.artist;
+            document.getElementById('currentSongImage').src = song.imageUrl;
+
+            audioElement.play();
+            togglePlayPauseIcon(true);
+        }
+
+        function togglePlayPause() {
+            const audioElement = document.getElementById('audioPlayer');
+            if (audioElement.paused) {
+                audioElement.play();
+                togglePlayPauseIcon(true);
+            } else {
+                audioElement.pause();
+                togglePlayPauseIcon(false);
+            }
+        }
+
+        function togglePlayPauseIcon(isPlaying) {
+            document.querySelector('.bi-play-fill').style.display = isPlaying ? 'none' : 'inline';
+            document.querySelector('.bi-pause-fill').style.display = isPlaying ? 'inline' : 'none';
+        }
+
+        function playNext() {
+            if (currentSongIndex + 1 < songQueue.length) playSong(currentSongIndex + 1);
+        }
+
+        function playPrevious() {
+            if (currentSongIndex - 1 >= 0) playSong(currentSongIndex - 1);
+        }
+
+        function setVolume(value) {
+            const audioElement = document.getElementById('audioPlayer');
+            audioElement.volume = value / 100;
+        }
+
+        fetchSongs();
+
+        // Playlist Modal Trigger
         document.getElementById('triggerModal').addEventListener('click', function () {
-            // Close the first modal
-            $('#playlistsModal').hide();
-            // Show the second modal
+            $('#playlistsModal').modal('hide');
             $('#addPlaylistModal').modal('show');
         });
     </script>
