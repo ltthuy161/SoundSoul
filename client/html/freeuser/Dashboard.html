@@ -52,17 +52,14 @@
                             <i class="bi bi-music-note-list"></i>
                             <span>Genre</span>
                         </li>
-
                         <a href="PlanComparision.html" class="no-underline">
-                            <li class="menu-item" data-bs-toggle="modal" data-bs-target="#playlistsModal">
+                            <li class="menu-item">
                                 <i class="bi bi-music-player"></i>
                                 <span>Playlists</span>
                             </li>
                         </a>
-
                         <a href="PlanComparision.html" class="no-underline">
                             <li class="menu-item">
-
                                 <i class="bi bi-cloud-arrow-down"></i>
                                 <span>Downloads</span>
                             </li>
@@ -90,124 +87,143 @@
             <div class="col-md-9">
                 <div class="row">
                     <!-- Recently Played Section -->
-                    <div class="col-12">
+                    <div class="col-12 recently-played">
                         <h2>Recently Played</h2>
                         <div class="row">
-                            <!-- Song Card -->
-                            <div class="col-md-2">
-                                <div class="card">
-                                    <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
-                                        class="card-img-top img-fluid" alt="Song Cover">
-                                    <div class="card-body text-center">
-                                        <p class="card-title fw-bold mb-0">Song 7</p>
-                                        <p class="card-text text-muted">Artist 7</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Songs will be dynamically added here -->
                         </div>
                     </div>
 
-                    <!-- Top artists Section -->
+                    <!-- Top Artists Section -->
                     <div class="col-12 mt-4">
-                        <h2>Top artists</h2>
+                        <h2>Top Artists</h2>
                         <div class="row">
                             <!-- Song Card -->
                             <div class="col-md-2">
                                 <div class="card">
-                                    <img src="https://s.net.vn/4YQv" class="card-img-top" alt="artist">
+                                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="artist">
                                     <div class="card-body text-center">
-                                        <p class="card-text text-muted">Artist 7</p>
+                                        <p class="card-text text-muted">Artist Name</p>
                                     </div>
                                 </div>
                             </div>
+                            <!-- Add more cards as needed -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Song Queue -->
-    <div class="song-queue">
-        <h2>Queue</h2>
-        <table class="table table-borderless">
-            <tbody>
-                <tr>
-                    <td class="align-middle"><img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
-                            alt="Song Cover" class="rounded" style="width: 60px; height: 60px;"></td>
-                    <td>
-                        <p class="fw-bold mt-3 mb-0">Song 10</p>
-                        <p class="text-muted">Artist 9</p>
-                    </td>
-                    <td class="align-middle text-end">
-                        <button type="button" class="btn btn-sm remove-song">
-                            <i class="bi bi-x-lg"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="align-middle"><img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
-                            alt="Song Cover" class="rounded" style="width: 60px; height: 60px;"></td>
-                    <td>
-                        <p class="fw-bold mt-3 mb-0">Song 10</p>
-                        <p class="text-muted">Artist 10</p>
-                    </td>
-                    <td class="align-middle text-end">
-                        <button type="button" class="btn btn-sm remove-song">
-                            <i class="bi bi-x-lg"></i>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 
     <!-- Music Player -->
     <div class="music-player">
         <!-- Song Info -->
         <div class="d-flex align-items-center">
-            <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L" alt="Song Cover">
+            <img src="https://via.placeholder.com/60" alt="Song Cover">
             <div class="song-info">
-                <p class="song-title">Song 1</p>
-                <p class="text-muted">Artist 1</p>
+                <p class="song-title">Select a Song</p>
+                <p class="text-muted">Artist</p>
             </div>
-            <button class="btn btn-primary mx-3">
-                <i class="bi bi-arrows-angle-expand"></i>
-            </button>
         </div>
 
         <!-- Player Controls -->
         <div class="player-controls d-flex align-items-center gap-3">
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary" onclick="playPrevious()">
                 <i class="bi bi-skip-backward-fill"></i>
             </button>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" onclick="togglePlayPause()">
                 <i class="bi bi-play-fill"></i>
+                <i class="bi bi-pause-fill" style="display: none;"></i>
             </button>
-            <button class="btn btn-secondary">
+            <button class="btn btn-secondary" onclick="playNext()">
                 <i class="bi bi-skip-forward-fill"></i>
             </button>
-            <div class="progress-bar">
-                <div class="current-progress"></div>
-            </div>
-            <span class="text-muted">1:25 / 3:40</span>
         </div>
+
+        <!-- Audio Element -->
+        <audio ontimeupdate="updateProgress()" onloadedmetadata="setTotalDuration()"></audio>
 
         <!-- Volume Control -->
         <div class="volume-control">
             <i class="bi bi-volume-up"></i>
-            <input type="range" class="form-range" min="0" max="100" value="50" style="width: 100px;">
+            <input type="range" class="form-range" min="0" max="100" value="50" onchange="setVolume(this.value)">
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
     <script>
-        document.getElementById('triggerModal').addEventListener('click', function () {
-            // Close the first modal
-            $('#playlistsModal').hide();
-            // Show the second modal
-            $('#addPlaylistModal').modal('show');
-        });
+        let songQueue = [];
+        let currentSongIndex = 0;
+
+        async function fetchSongs() {
+            try {
+                const response = await fetch("http://localhost:3000/api/admin/songs");
+                const songs = await response.json();
+                songQueue = songs;
+
+                const recentlyPlayedContainer = document.querySelector('.recently-played .row');
+                songs.forEach((song, index) => {
+                    const songCard = `
+                        <div class="col-md-2">
+                            <div class="card" onclick="playSong(${index})">
+                                <img src="${song.imageUrl}" class="card-img-top" alt="${song.title}">
+                                <div class="card-body text-center">
+                                    <p class="card-title fw-bold mb-0">${song.title}</p>
+                                    <p class="card-text text-muted">${song.artist}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    recentlyPlayedContainer.innerHTML += songCard;
+                });
+            } catch (error) {
+                console.error("Error fetching songs:", error);
+            }
+        }
+
+        function playSong(index) {
+            if (index < 0 || index >= songQueue.length) return;
+            currentSongIndex = index;
+            const song = songQueue[index];
+            const audioElement = document.querySelector('.music-player audio');
+            audioElement.src = song.audioUrl;
+
+            document.querySelector('.music-player .song-title').textContent = song.title;
+            document.querySelector('.music-player .text-muted').textContent = song.artist;
+            document.querySelector('.music-player img').src = song.imageUrl;
+
+            audioElement.play();
+            togglePlayPauseIcon(true);
+        }
+
+        function playNext() {
+            if (currentSongIndex + 1 < songQueue.length) playSong(currentSongIndex + 1);
+        }
+
+        function playPrevious() {
+            if (currentSongIndex - 1 >= 0) playSong(currentSongIndex - 1);
+        }
+
+        function togglePlayPause() {
+            const audioElement = document.querySelector('.music-player audio');
+            if (audioElement.paused) {
+                audioElement.play();
+                togglePlayPauseIcon(true);
+            } else {
+                audioElement.pause();
+                togglePlayPauseIcon(false);
+            }
+        }
+
+        function togglePlayPauseIcon(isPlaying) {
+            document.querySelector('.bi-play-fill').style.display = isPlaying ? 'none' : 'inline';
+            document.querySelector('.bi-pause-fill').style.display = isPlaying ? 'inline' : 'none';
+        }
+
+        function setVolume(value) {
+            document.querySelector('.music-player audio').volume = value / 100;
+        }
+
+        fetchSongs();
     </script>
 </body>
 

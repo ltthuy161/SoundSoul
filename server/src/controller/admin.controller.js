@@ -1,6 +1,33 @@
 import { Song } from "../models/song.model.js";
 import cloudinary from "../lib/cloudinary.js";
 import { parseFile } from "music-metadata";
+export const playSong = async (req, res) => {
+	try {
+        const song = await Song.findById(req.params.id);
+        if (!song) {
+            return res.status(404).json({ message: "Song not found" });
+        }
+
+        res.status(200).json({ 
+            title: song.title,
+            artist: song.artist,
+            audioUrl: song.audioUrl,
+            imageUrl: song.imageUrl
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching song", error });
+    }
+};
+export const getAllSongs = async (req, res, next) => {
+	try {
+		// -1 = Descending => newest -> oldest
+		// 1 = Ascending => oldest -> newest
+		const songs = await Song.find().sort({ createdAt: -1 });
+		res.json(songs);
+	} catch (error) {
+		next(error);
+	}
+};
 
 // helper function for cloudinary uploads
 const uploadToCloudinary = async (file) => {

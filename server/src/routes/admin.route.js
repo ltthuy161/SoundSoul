@@ -1,6 +1,7 @@
 import express from "express";
 import { User } from "../models/user.model.js";
-import { createSong, deleteSong } from "../controller/admin.controller.js";
+import { createSong, deleteSong, playSong, getAllSongs } from "../controller/admin.controller.js";
+import { get } from "mongoose";
 const router = express.Router();
 
 // Get all users (admin only)
@@ -13,6 +14,8 @@ const router = express.Router();
 //         res.status(500).json({ message: "Internal server error" });
 //     }
 // });
+router.get("/songs", getAllSongs);
+router.get("/songs/:id", playSong);
 router.post("/songs", createSong);
 router.delete("/songs/:id", deleteSong);
 export default router;
