@@ -231,7 +231,7 @@ body {
 
 .track-form {
     display: block; /* Đặt block để chiếm phần bên phải */
-    margin-left: auto; /* Đẩy sang phải */
+    margin-left: 70px; /* Điều chỉnh khoảng cách từ sidebar */
     margin-right: 60px; /* Điều chỉnh khoảng cách từ cạnh phải */
     flex: 2; /* Cho phép track-form chiếm không gian lớn hơn */
     max-width: 600px; /* Đặt chiều rộng tối đa */
@@ -258,20 +258,6 @@ form input, form select, form textarea {
     border-color: #822212;
 }
 
-
-.action-buttons .btn {
-    padding: 10px 20px;
-    background: #822212;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.action-buttons .btn:hover {
-    background: #a02030;
-}
 
 .options {
     margin-top: 20px;
@@ -341,18 +327,27 @@ form input, form select, form textarea {
 }
 
 .action-buttons {
-    display: flex; /* Sắp xếp phần tử trong cùng một dòng */
-    justify-content: space-between; /* Đẩy hai phần tử ra hai đầu container */
-    align-items: center; /* Canh giữa theo chiều dọc */
-    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ccc;
+    position: fixed;
+    bottom: 0;
+    left: 200px;
+    width: calc(100% - 200px);
+    z-index: 10;
 }
 
+
+
+
 .action-buttons p {
-    flex: 1; /* Chiếm khoảng trống còn lại để nút Upload nằm bên phải */
-    margin: 0;
+    margin: 0; /* Xóa khoảng cách mặc định */
     font-size: 14px;
     color: #555;
+    flex: 1;
 }
 
 .action-buttons a {
@@ -362,10 +357,12 @@ form input, form select, form textarea {
 }
 
 .action-buttons .btn {
+    margin-left: auto; /* Đẩy nút sang phải */
+    margin-right: 20px; /* Thêm khoảng cách 20px tới viền phải */
     background-color: #822212;
     color: #fff;
     padding: 10px 20px;
-    font-size: 20px;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -375,3 +372,18 @@ form input, form select, form textarea {
 .action-buttons .btn:hover {
     background-color: #a02030;
 }
+
+#preview-image {
+    width: 300px;
+    height: 300px;
+    background: #e0e0e0;
+    border: 2px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+

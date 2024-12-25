@@ -84,63 +84,67 @@
 
         <!-- Main Content -->
         <div class="main-content">
-            <div class="upload-group">
-                <!-- Audio Upload -->
-                <div class="upload-item" onclick="document.getElementById('audio-upload').click()">
-                    <p>Add Audio</p>
-                    <input type="file" id="audio-upload" name="audio" accept="audio/*" style="display: none;" />
-                </div>
-
-                <!-- Image Upload -->
-                <div class="upload-item" onclick="document.getElementById('image-upload').click()">
-                    <p>Add Image</p>
-                    <input type="file" id="image-upload" name="image" accept="image/*" style="display: none;" />
-                </div>
-            </div>
             <div class="track-form">
-                <form id="trackInfoForm" method="POST" action="/api/songs/updateTrackInfo">
-                    <!-- Hidden field for songId -->
-                    <input type="hidden" name="songId" id="songId">
-                    
+                <form id="uploadForm" action="http://localhost:3000/api/admin/songs" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="track-title">Track title *</label>
-                        <input type="text" id="track-title" name="title" required>
+                        <label for="title">Song Title</label>
+                        <input type="text" id="title" name="title" required>
                     </div>
                     <div class="form-group">
-                        <label for="track-link">Track link</label>
-                        <input type="text" id="track-link" name="link" placeholder="https://soundsoul.com/track/123">
-                    </div>
-                    <div class="form-group">
-                        <label for="main-artists">Main Artist(s) *</label>
-                        <input type="text" id="main-artists" name="artists" required>
+                        <label for="artist">Artist</label>
+                        <input type="text" id="artist" name="artist" required>
                         <small>Tip: Use commas to add multiple artist names</small>
                     </div>
-                    <div class="form-group">
-                        <label for="genre">Genre</label>
-                        <select id="genre" name="genre">
-                            <option value="pop">Pop</option>
-                            <option value="classical">Classical</option>
-                            <option value="jazz">Jazz</option>
-                        </select>
+                    <!-- Audio File Upload -->
+                    <div>
+                        <label for="audioFile">Audio File</label>
+                        <input type="file" id="audioFile" name="audioFile" accept="audio/*" required>
                     </div>
-                    <div class="form-group">
-                        <label for="tags">Tags</label>
-                        <input type="text" id="tags" name="tags" placeholder="Add styles, moods, tempo">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <textarea id="description" name="description" rows="5" placeholder="Tracks with descriptions tend to get more plays and engagements"></textarea>
-                    </div>
-
-                    <div class="action-buttons">
-                        <p>By uploading, you confirm that your sounds comply with our <a href="#">Terms of Use</a>.</p>
-                        <button type="submit" class="btn">Upload</button>
+                
+                    <!-- Image File Upload -->
+                    <div>
+                        <label for="imageFile">Image File</label>
+                        <input type="file" id="imageFile" name="imageFile" accept="image/*" required>
                     </div>
                 </form>
             </div>
         </div>
+        <!-- Footer -->
+        <div class="action-buttons">
+            <p>By uploading, you confirm that your sounds comply with our <a href="#">Terms of Use</a>.</p>
+            <button type="submit" class="btn">Upload</button>
+        </div>
     </div>
-    
+    <script>
+        document.getElementById('imageFile').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const previewImage = document.getElementById('preview-image');
+                    const addImageText = document.getElementById('add-image-text');
+                    
+                    previewImage.src = e.target.result; // Set ảnh được chọn làm nguồn
+                    previewImage.style.display = 'block'; // Hiển thị ảnh
+                    addImageText.style.display = 'none'; // Ẩn văn bản "Add Image"
+                };
+                reader.readAsDataURL(file); // Đọc file và chuyển thành base64
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('audioFile').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const audioPreviewImage = document.getElementById('audio-preview-image');
+                const addAudioText = document.getElementById('add-audio-text');
+                
+                audioPreviewImage.style.display = 'block'; // Hiển thị hình cố định
+                addAudioText.style.display = 'none'; // Ẩn văn bản "Add Audio"
+            }
+        });
+    </script>
+
 </body>
 </html>
 
