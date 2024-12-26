@@ -4,6 +4,7 @@ import {
     createSong,
     deleteSong,
     playSong,
+    editSong,
     getAllSongs,
     createPlaylist,
     addSongToPlaylist,
@@ -20,7 +21,7 @@ router.get("/songs", getAllSongs);
 router.get("/songs/:id", playSong);
 router.post("/songs", createSong);
 router.delete("/songs/:id", deleteSong);
-
+router.put('/songs/:id', editSong);
 // Playlist Routes
 router.post("/playlists", createPlaylist); // Create a new playlist
 router.get("/playlists", getPlaylists); // Get all playlists

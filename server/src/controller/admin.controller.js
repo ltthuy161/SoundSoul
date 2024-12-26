@@ -191,3 +191,48 @@ export const removeSongFromPlaylist = async (req, res, next) => {
 		next(error);
 	}
 };
+export const editSong = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const { title, artist } = req.body;
+
+        // Find the song by ID
+        const song = await Song.findById(id);
+        if (!song) {
+            return res.status(404).json({ message: "Song not found" });
+        }
+
+        // Update the title and artist if provided
+        if (title) {
+            song.title = title;
+        }
+        if (artist) {
+            song.artist = artist;
+        }
+
+        // Check if audio or image files are provided and update them
+        if (req.files) {
+            if (req.files.audioFile) {
+                const audioUrl = await uploadToCloudinary(req.files.audioFile);
+                song.audioUrl = audioUrl;
+
+                // Update the song duration if a new audio file is uploaded
+                const metadata = await parseFile(req.files.audioFile.tempFilePath);
+                song.duration = Math.ceil(metadata.format.duration);
+            }
+
+            if (req.files.imageFile) {
+                const imageUrl = await uploadToCloudinary(req.files.imageFile);
+                song.imageUrl = imageUrl;
+            }
+        }
+
+        // Save the updated song to the database
+        await song.save();
+
+        res.status(200).json({ message: "Song updated successfully", song });
+    } catch (error) {
+        console.log("Error in editSong", error);
+        next(error);
+    }
+};
