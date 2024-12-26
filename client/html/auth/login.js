@@ -36,10 +36,12 @@ document.querySelector("#submit").addEventListener("click", async () => {
             // Redirect based on role
             if (decodedToken.role === "admin") {
                 window.location.href = "../admin/dashboard.html";
-            } else if (decodedToken.role === "creator") {
-                window.location.href = "creator-dashboard.html";
-            } else if (decodedToken.role === "free-user") {
-                window.location.href = "user-dashboard.html";
+            } else if (decodedToken.role === "../creator/homepage.html") {
+                window.location.href = "../creator/homepage.html";
+            } else if (decodedToken.role === ".free-user") {
+                window.location.href = "../freeuser/Dashboard.html";
+            } else if (decodedToken.role === "premium-user") {
+                window.location.href = "../premium/dashboard.html";
             } else {
                 alert("Unauthorized role!");
             }

@@ -25,21 +25,24 @@
                 <p class="instruction">
                     Enter your email to receive a password reset link.
                 </p>
-
-                <div class="textbox">
-                    <label for="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="example123@gmail.com"
-                        required
-                    />
-                </div>
-
-                <div class="buttons">
-                    <button class="reset-button">Send Reset Link</button>
-                </div>
-
+            
+                <form id="forgotPwForm" action="http://localhost:3000/api/auth/forgot-password" method="POST">
+                    <div class="textbox">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email" 
+                            placeholder="example123@gmail.com"
+                            required
+                        />
+                    </div>
+            
+                    <div class="buttons">
+                        <button type="button" class="reset-button" id="sendResetLink">Send Reset Link</button>
+                    </div>
+                </form>
+            
                 <div class="back-to-login">
                     <p>
                         Remember your password? <a href="login.html">Log In</a>
@@ -48,4 +51,42 @@
             </div>
         </div>
     </body>
+
+    <script>
+        document.getElementById("sendResetLink").addEventListener("click", async (event) => {
+
+    // Lấy giá trị email từ input
+    const email = document.getElementById("email").value;
+    console.log("Email "+email);
+
+    // Kiểm tra email không được để trống
+    if (!email) {
+        alert("Please enter your email.");
+        return;
+    }
+
+    // Gửi yêu cầu đến API quên mật khẩu
+    try {
+        const response = await fetch("http://localhost:3000/api/auth/forgot-password", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }), // Gửi email dưới dạng JSON
+        });
+
+        // Xử lý phản hồi từ server
+        if (response.ok) {
+            const result = await response.json();
+            alert(result.message || "Password reset link sent successfully!");
+        } else {
+            const error = await response.json();
+            alert(error.error || "Failed to send reset link.");
+        }
+    } catch (err) {
+        console.error("Error sending reset link:", err);
+        alert("An error occurred. Please try again.");
+    }
+});
+        </script>
 </html>

@@ -1,73 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="/client/css/auth/reset.css" />
-        <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
-        />
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-        />
-        <title>Sign in</title>
-    </head>
-    <body>
-        <div class="topbar">
-            <img src="/client/assets/img/logo.png" alt="logo" />
-            <p class="ss">SoundSoul</p>
-        </div>
-        <div class="page">
-            <div class="container">
-                <h2 class="text">Reset password</h2>
-                <div class="container-center">
-                    <div class="textbox">
-                        <label class="label" for="password">New Password</label>
-                        <div class="password-wrapper">
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="Enter at least 8 characters"
-                            />
-                            <i class="bi bi-eye-slash" id="togglePassword"></i>
-                        </div>
-                    </div>
-                    <div class="textbox">
-                        <label class="label" for="password"
-                            >Confirm Password</label
-                        >
-                        <div class="password-wrapper">
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="Enter your new password again"
-                            />
-                            <i class="bi bi-eye-slash" id="togglePassword"></i>
-                        </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/client/css/auth/reset.css" />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <title>Reset Password</title>
+</head>
+<body>
+    <div class="topbar">
+        <img src="/client/assets/img/logo.png" alt="logo" />
+        <p class="ss">SoundSoul</p>
+    </div>
+    <div class="page">
+        <div class="container">
+            <h2 class="text">Reset Password</h2>
+            <div class="container-center">
+                <!-- New Password -->
+                <div class="textbox">
+                    <label class="label" for="newPassword">New Password</label>
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="newPassword"
+                            placeholder="Enter at least 8 characters"
+                            required
+                        />
+                        <i class="bi bi-eye-slash" data-target="newPassword"></i>
                     </div>
                 </div>
 
-                <div class="buttons">
-                    <button class="send-button">Done</button>
+                <!-- Confirm Password -->
+                <div class="textbox">
+                    <label class="label" for="confirmPassword">Confirm Password</label>
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Enter your new password again"
+                            required
+                        />
+                        <i class="bi bi-eye-slash" data-target="confirmPassword"></i>
+                    </div>
                 </div>
             </div>
+
+            <!-- Submit Button -->
+            <div class="buttons">
+                <button id="submitBtn" class="send-button">Reset Password</button>
+            </div>
         </div>
-    </body>
+    </div>
+
+    <!-- JavaScript -->
     <script>
-        const togglePassword = document.querySelector("#togglePassword");
-        const password = document.querySelector("#password");
-        togglePassword.addEventListener("click", () => {
-            // Toggle the type attribute using
-            // getAttribure() method
-            const type =
-                password.getAttribute("type") === "password"
-                    ? "text"
-                    : "password";
-            password.setAttribute("type", type);
-            // Toggle the eye and bi-eye icon
-            togglePassword.classList.toggle("bi-eye");
+        // Toggle Password Visibility
+        document.querySelectorAll(".bi-eye-slash").forEach((toggleIcon) => {
+            toggleIcon.addEventListener("click", () => {
+                const targetId = toggleIcon.getAttribute("data-target");
+                const input = document.getElementById(targetId);
+
+                const type =
+                    input.getAttribute("type") === "password"
+                        ? "text"
+                        : "password";
+                input.setAttribute("type", type);
+
+                toggleIcon.classList.toggle("bi-eye");
+            });
         });
+
+        document.getElementById("submitBtn").addEventListener("click", async () => {
+    const newPassword = document.getElementById("newPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (newPassword !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get("token");
+    const id = urlParams.get("id");
+
+    console.log("Token:", token);
+    console.log("User ID:", id);
+    console.log("New Password:", newPassword);
+
+    try {
+        const response = await fetch(
+            `http://localhost:3000/api/auth/reset-password?token=${token}&id=${id}`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ newPassword }),
+            }
+        );
+
+        const result = await response.json();
+        console.log("Response from backend:", result);
+
+        if (response.ok) {
+            alert("Password reset successfully!");
+            window.location.href = "/client/html/auth/login.html";
+        } else {
+            alert(result.error || "Failed to reset password.");
+        }
+    } catch (err) {
+        console.error("Error resetting password:", err);
+        alert("An error occurred. Please try again.");
+    }
+});
     </script>
+</body>
 </html>
