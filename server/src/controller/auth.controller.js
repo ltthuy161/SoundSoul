@@ -1,9 +1,39 @@
-import {User} from "../models/user.model.js";
+import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
 import crypto from "crypto";
+export const verifyEmail = async (req, res) => {
+    try {
+        const { token, id } = req.query;
+        
+        const user = await User.findOne({ _id: id });
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
 
+        if (
+            !user.emailVerificationToken ||
+            user.emailVerificationExpires < Date.now()
+        ) {
+            return res.status(400).json({ error: "Invalid or expired token" });
+        }
+
+        if (user.emailVerificationToken !== token) {
+            return res.status(400).json({ error: "Invalid token" });
+        }
+
+        user.isEmailVerified = true; // Mark email as verified
+        user.emailVerificationToken = undefined; // Remove the token
+        user.emailVerificationExpires = undefined; // Clear expiration
+        await user.save();
+
+        res.status(200).json({ message: "Email verified successfully!" });
+    } catch (error) {
+        console.error("Error during email verification:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
 export const register = async (req, res) => {
     try {
         console.log("Request Body:", req.body);
@@ -34,13 +64,18 @@ export const register = async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ error: "Email already in use" });
         }
-
+        // Generate email verification token
+        const emailVerificationToken = crypto.randomBytes(32).toString("hex");
+        const emailVerificationExpires = Date.now() + 24 * 60 * 60 * 1000; // Expires in 24 hours
         // Create user data
         const userData = {
             fullname,
             email,
             password: hashPassword,
             role,
+            emailVerificationToken,
+            emailVerificationExpires,
+            isEmailVerified: false, // Mark as not verified
         };
 
         // Add creatorDetails only if role is "creator"
@@ -60,6 +95,35 @@ export const register = async (req, res) => {
         }
 
         await newUser.save();
+        // Send verification email
+        const verificationURL = `http://127.0.0.1:5500/client/html/auth/verify.html?token=${emailVerificationToken}&id=${newUser._id}`;
+
+        const transporter = nodemailer.createTransport({
+            service: "Gmail",
+            auth: {
+                user: process.env.EMAIL,
+                pass: process.env.EMAIL_PASSWORD,
+            },
+        });
+
+        const mailOptions = {
+            from: '"SoundSoul" <no-reply@soundsoul.com>',
+            to: email,
+            subject: "Confirm Your Email Address",
+            html: `
+        <div style="font-family: Arial, sans-serif; text-align: center;">
+            <h2>Confirm Your Email Address</h2>
+            <p>Thank you for registering, ${fullname}.</p>
+            <p>Click the button below to confirm your email address:</p>
+            <a href="${verificationURL}" style="display: inline-block; padding: 10px 20px; color: white; background-color: blue; text-decoration: none; border-radius: 5px;">
+                Confirm Email
+            </a>
+            <p>This link will expire in 24 hours.</p>
+        </div>
+    `,
+        };
+
+        await transporter.sendMail(mailOptions);
 
         console.log("User saved successfully:", newUser);
 
@@ -83,7 +147,11 @@ export const login = async (req, res) => {
                 .status(404)
                 .json({ error: `User with email ${email} not found` });
         }
-
+        // Check if email is verified
+        if (!user.isEmailVerified) {
+            console.log(`Login failed: Email ${email} is not verified.`);
+            return res.status(403).json({ error: "Email not verified. Please verify your email to log in." });
+        }
         const isMatch = bcrypt.compareSync(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ error: "Invalid credentials" });
@@ -138,7 +206,7 @@ export const forgotPassword = async (req, res) => {
             from: '"SoundSoul" <no-reply@soundsoul.com>',
             to: email,
             subject: "Reset Your Password",
-            html: 
+            html:
                 `<div style="font-family: Arial, sans-serif; text-align: center;">
                     <h2>Reset Your Password</h2>
                     <p>Hello ${user.fullname},</p>

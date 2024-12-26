@@ -1,5 +1,5 @@
 import express from "express";
-import { register, login, forgotPassword, resetPassword } from "../controller/auth.controller.js";
+import { register, login, forgotPassword, resetPassword, verifyEmail } from "../controller/auth.controller.js";
 
 const router = express.Router();
 
@@ -8,6 +8,7 @@ router.post("/login", login);
 router.post("/forgot-password", forgotPassword);
 router.post("/reset-password", resetPassword); // Thêm endpoint reset-password
 
+router.get("/verify-email", verifyEmail)
 router.get("/reset-password", (req, res) => {
     const { token, id } = req.query;
     console.log("Token:", token, "ID:", id);

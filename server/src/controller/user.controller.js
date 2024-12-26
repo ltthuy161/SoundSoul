@@ -52,6 +52,6 @@ export const approveCreator = async (req, res) => {
 };
 
 
-const userController = { getUsers, getCreators, approveCreator }; // Tạo object chứa các hàm
+const userController = { getUsers, getCreators, approveCreator,  }; // Tạo object chứa các hàm
 
 export default userController;

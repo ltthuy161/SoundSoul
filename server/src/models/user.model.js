@@ -34,6 +34,9 @@ const userSchema = new mongoose.Schema(
             type: Date,
             default: null, // Initialize as null
         },
+        emailVerificationToken: { type: String },
+        emailVerificationExpires: { type: Date },
+        isEmailVerified: { type: Boolean, default: false },
     },
     {
         timestamps: true, // Adds createdAt and updatedAt fields
