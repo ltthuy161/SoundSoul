@@ -196,5 +196,59 @@
     </div>
     
 </body>
+<script>   
+async function fetchSongs() {
+    try {
+        const response = await fetch("http://localhost:3000/api/admin/songs");
+        const songs = await response.json();
+        renderSongs(songs);
+    } catch (error) {
+        console.error("Error fetching songs:", error);
+    }
+}
+
+function renderSongs(songs) {
+    const mainContent = document.querySelector('.main-content');
+
+    // Clear previous song section if any
+    let existingSongsSection = document.querySelector('.songs-section');
+    if (existingSongsSection) {
+        existingSongsSection.remove();
+    }
+
+    // Create a new songs section
+    const songsSection = document.createElement('div');
+    songsSection.classList.add('songs-section');
+    songsSection.innerHTML = `<h2 class="main-title">Songs You Might Like</h2>`;
+
+    // Create a container for the song list
+    const songsList = document.createElement('div');
+    songsList.classList.add('trending-list'); // Use the same class for consistent styling
+
+    // Loop through the songs and create cards
+    songs.forEach(song => {
+        const songCard = document.createElement('div');
+        songCard.classList.add('trending-card'); // Use the same class for card styling
+
+        songCard.innerHTML = `
+            <img src="${song.imageUrl || '/client/assets/img/default-song-cover.jpg'}" alt="${song.title}">
+            <p><strong>${song.title}</strong><br>${song.artist}</p>
+        `;
+
+        // Append each song card to the list
+        songsList.appendChild(songCard);
+    });
+
+    // Add the song list to the songs section
+    songsSection.appendChild(songsList);
+
+    // Append the songs section to the main content
+    mainContent.appendChild(songsSection);
+}
+
+// Fetch and render songs on page load
+fetchSongs();
+
+</script>
 </html>
 

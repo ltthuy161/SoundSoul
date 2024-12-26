@@ -13,7 +13,8 @@ export const playSong = async (req, res) => {
 			title: song.title,
 			artist: song.artist,
 			audioUrl: song.audioUrl,
-			imageUrl: song.imageUrl
+			imageUrl: song.imageUrl,
+			duration: song.duration,
 		});
 	} catch (error) {
 		res.status(500).json({ message: "Error fetching song", error });
