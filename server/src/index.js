@@ -26,7 +26,9 @@ app.use(cors({
 		} else {
 			callback(new Error('Not allowed by CORS'));
 		}
-	}
+	}, // Frontend origin
+	methods: ["GET", "POST", "PUT", "DELETE", "PATCH"], // Allowable HTTP methods
+	credentials: true, // Allow cookies if needed
 }));
 app.use(
 	fileUpload({

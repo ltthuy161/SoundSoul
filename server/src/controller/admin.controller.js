@@ -15,6 +15,7 @@ export const playSong = async (req, res) => {
 			audioUrl: song.audioUrl,
 			imageUrl: song.imageUrl,
 			duration: song.duration,
+			genre: song.genre,
 		});
 	} catch (error) {
 		res.status(500).json({ message: "Error fetching song", error });
@@ -49,7 +50,7 @@ export const createSong = async (req, res, next) => {
 			return res.status(400).json({ message: "Please upload all files" });
 		}
 
-		const { title, artist } = req.body;
+		const { title, artist, genre } = req.body;
 		const audioFile = req.files.audioFile;
 		const imageFile = req.files.imageFile;
 
@@ -64,6 +65,7 @@ export const createSong = async (req, res, next) => {
 			audioUrl,
 			imageUrl,
 			duration: durationInSeconds,
+			genre
 		});
 
 		await song.save();

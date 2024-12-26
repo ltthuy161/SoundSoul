@@ -22,6 +22,10 @@ const songSchema = new mongoose.Schema(
 			type: Number,
 			required: true,
 		},
+		genre: {
+			type: String,
+			required: true,
+		},
 	},
 	{ timestamps: true }
 );

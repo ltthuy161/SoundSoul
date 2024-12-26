@@ -78,7 +78,17 @@
                         <label for="editArtist" class="form-label">Artist</label>
                         <input type="text" class="form-control" name="artist" id="editArtist" placeholder="Enter artist name" required>
                     </div>
-
+                    <div class="mb-3">
+                        <label for="editGenre" class="form-label">Genre</label>
+                        <select id="editGenre" class="form-select">
+                            <option value="pop">Pop</option>
+                            <option value="rock">Rock</option>
+                            <option value="hip-hop">Hip-Hop</option>
+                            <option value="jazz">Jazz</option>
+                            <option value="classical">Classical</option>
+                            <option value="electronic">Electronic</option>
+                        </select>                        
+                    </div>
                     <!-- Audio File Field -->
                     <div class="mb-3">
                         <label for="editAudioFile" class="form-label">Audio File</label>
@@ -309,6 +319,7 @@ async function openEditModal(songId) {
         document.getElementById('songId').value = songId;
         document.getElementById('editTitle').value = song.title;
         document.getElementById('editArtist').value = song.artist;
+        document.getElementById('editGenre').value = song.genre;
         modal.style.display = 'block';
     } catch (error) {
         console.error("Error fetching song details:", error);
