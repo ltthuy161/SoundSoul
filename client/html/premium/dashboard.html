@@ -143,6 +143,35 @@
 
             <!-- Main Section -->
             <div class="col-md-9">
+                <div class="container mt-4 p-3 bg-light rounded shadow-sm">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                                            <!-- Filter by Duration -->
+                            <label for="durationFilter" class="form-label fw-bold text-dark">Filter by Duration</label>
+                            <select id="durationFilter" class="form-select form-select-lg card"
+                                onchange="filterSongsByDuration()">
+                                <option value="all">All</option>
+                                <option value="short">Less than 2 mins</option>
+                                <option value="medium">2 to 5 mins</option>
+                                <option value="long">More than 5 mins</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-12">
+                                              <!-- Filter by Genre -->
+                            <label for="genreFilter" class="form-label fw-bold text-dark">Filter by Genre</label>
+                            <select id="genreFilter" class="form-select form-select-lg card" onchange="filterSongsByGenre()">
+                                <option value="all">All</option>
+                                <option value="pop">Pop</option>
+                                <option value="rock">Rock</option>
+                                <option value="hip-hop">Hip-Hop</option>
+                                <option value="jazz">Jazz</option>
+                                <option value="classical">Classical</option>
+                                <option value="electronic">Electronic</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-12 recently-played">
                         <h2>Recently Played</h2>
@@ -251,17 +280,17 @@
         fetchPlaylists();
         let songQueue = [];
         let currentSongIndex = 0;
-// Function to format duration from seconds to mm:ss
-function formatDuration(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
-}
-function renderSongs(songs) {
-    const recentlyPlayedContainer = document.querySelector('.recently-played .row');
-    recentlyPlayedContainer.innerHTML = '';
-    songs.forEach((song, index) => {
-        const songCard = `
+        // Function to format duration from seconds to mm:ss
+        function formatDuration(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+        }
+        function renderSongs(songs) {
+            const recentlyPlayedContainer = document.querySelector('.recently-played .row');
+            recentlyPlayedContainer.innerHTML = '';
+            songs.forEach((song, index) => {
+                const songCard = `
             <div class="col-md-2">
                 <div class="card">
                     <img src="${song.imageUrl}" class="card-img-top" alt="${song.title}">
@@ -269,18 +298,25 @@ function renderSongs(songs) {
                         <p class="card-title fw-bold mb-0">${song.title}</p>
                         <p class="card-text text-muted">${song.artist}</p>
                         <p class="card-text text-muted">${formatDuration(song.duration)}</p>
-<div class="d-flex justify-content-center gap-2">
-    <button class="btn btn-primary w-100" onclick="openAddToPlaylistModal('${song._id}')">Add to Playlist</button>
-    <button class="btn btn-primary w-100" onclick="playSong(${index})">Play</button>
-</div>
-
+                        <div class="d-flex justify-content-center gap-2 mb-2">
+                            <button class="btn btn-primary w-100" onclick="openAddToPlaylistModal('${song._id}')">Add to Playlist</button>
+                            <button class="btn btn-primary w-100" onclick="playSong(${index})">Play</button>
+                        </div>
+                        <div>
+                            <button class="btn btn-secondary w-100" onclick="goToSongDetail('${song._id}')">Details</button>
+                        </div>
                     </div>
                 </div>
             </div>
         `;
-        recentlyPlayedContainer.innerHTML += songCard;
-    });
-}
+                recentlyPlayedContainer.innerHTML += songCard;
+            });
+        }
+        function goToSongDetail(songId) {
+            const baseUrl = "http://localhost:5500/client/html/premium/songDetail.html";
+            window.location.href = `${baseUrl}?songId=${songId}`;
+        }
+
         function openAddToPlaylistModal(songId) {
             fetchPlaylistsForModal(songId); // Populate playlists in modal
             $('#addToPlaylistModal').modal('show');
@@ -332,7 +368,29 @@ function renderSongs(songs) {
             );
             renderSongs(filteredSongs);
         }
+        function filterSongsByDuration() {
+            const durationFilter = document.getElementById('durationFilter').value;
 
+            let filteredSongs = songQueue;
+
+            if (durationFilter === 'short') {
+                filteredSongs = songQueue.filter(song => song.duration < 120); // Less than 2 minutes
+            } else if (durationFilter === 'medium') {
+                filteredSongs = songQueue.filter(song => song.duration >= 120 && song.duration <= 300); // Between 2 to 5 minutes
+            } else if (durationFilter === 'long') {
+                filteredSongs = songQueue.filter(song => song.duration > 300); // More than 5 minutes
+            }
+
+            renderSongs(filteredSongs); // Render the filtered songs
+        }
+        function filterSongsByGenre() {
+    const genreFilter = document.getElementById('genreFilter').value;
+    const filteredSongs = songQueue.filter(song => {
+        if (genreFilter === 'all') return true; // Show all genres
+        return song.genre && song.genre.toLowerCase() === genreFilter; // Match genre
+    });
+    renderSongs(filteredSongs);
+}
         async function fetchSongs() {
             try {
                 const response = await fetch("http://localhost:3000/api/admin/songs");

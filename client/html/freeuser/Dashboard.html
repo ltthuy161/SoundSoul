@@ -181,17 +181,19 @@
     <script>
         let songQueue = [];
         let currentSongIndex = 0;
-// Function to format duration from seconds to mm:ss
-function formatDuration(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
-}
-function renderSongs(songs) {
-    const recentlyPlayedContainer = document.querySelector('.recently-played .row');
-    recentlyPlayedContainer.innerHTML = '';
-    songs.forEach((song, index) => {
-        const songCard = `
+        let isPlayBlocked = false; // Tracks whether play is currently blocked
+        let pauseInterval; // Stores the interval timer for forced pause
+        // Function to format duration from seconds to mm:ss
+        function formatDuration(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+        }
+        function renderSongs(songs) {
+            const recentlyPlayedContainer = document.querySelector('.recently-played .row');
+            recentlyPlayedContainer.innerHTML = '';
+            songs.forEach((song, index) => {
+                const songCard = `
             <div class="col-md-2">
                 <div class="card">
                     <img src="${song.imageUrl}" class="card-img-top" alt="${song.title}">
@@ -207,9 +209,43 @@ function renderSongs(songs) {
                 </div>
             </div>
         `;
-        recentlyPlayedContainer.innerHTML += songCard;
-    });
-}
+                recentlyPlayedContainer.innerHTML += songCard;
+            });
+            enablePlayButtons(); // Enable play buttons initially
+        }
+        // Enable all play buttons
+        function enablePlayButtons() {
+            document.querySelectorAll('.play-button').forEach(button => {
+                button.disabled = false;
+            });
+        }
+
+        // Disable play buttons
+        function disablePlayButtons() {
+            document.querySelectorAll('.play-button').forEach(button => {
+                button.disabled = true;
+            });
+        }
+        // Start forced pause timer
+        function startForcedPause(audioElement) {
+            clearInterval(pauseInterval); // Clear existing interval
+            pauseInterval = setInterval(() => {
+                // Pause playback
+                audioElement.pause();
+                togglePlayPauseIcon(false);
+
+                // Show an alert and block playback for 5 seconds
+                isPlayBlocked = true;
+                alert("Playback is paused for free users. Resuming in 5 seconds...");
+
+                // Block play buttons for 5 seconds
+                disablePlayButtons();
+                setTimeout(() => {
+                    isPlayBlocked = false;
+                    enablePlayButtons();
+                }, 5000);
+            }, 15000); // Trigger every 15 seconds
+        }
 
         function searchSongs() {
             const query = document.getElementById('songSearch').value.toLowerCase();
@@ -230,7 +266,10 @@ function renderSongs(songs) {
             }
         }
 
+        // Play the selected song
         function playSong(index) {
+            if (isPlayBlocked) return; // Prevent playing while play is blocked
+
             const songIndex = parseInt(index, 10);
             currentSongIndex = songIndex;
             const song = songQueue[songIndex];
@@ -243,11 +282,15 @@ function renderSongs(songs) {
 
             audioElement.play();
             togglePlayPauseIcon(true);
-        }
 
+            // Start forced pause timer
+            startForcedPause(audioElement);
+        }
+        // Toggle play/pause
         function togglePlayPause() {
             const audioElement = document.getElementById('audioPlayer');
             if (audioElement.paused) {
+                if (isPlayBlocked) return; // Prevent playing while play is blocked
                 audioElement.play();
                 togglePlayPauseIcon(true);
             } else {
@@ -255,6 +298,7 @@ function renderSongs(songs) {
                 togglePlayPauseIcon(false);
             }
         }
+
 
         function togglePlayPauseIcon(isPlaying) {
             document.querySelector('.bi-play-fill').style.display = isPlaying ? 'none' : 'inline';
