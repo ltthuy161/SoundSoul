@@ -38,7 +38,7 @@ document.querySelector("#submit").addEventListener("click", async () => {
         if (response.ok) {
             alert("Registration successful!");
             console.log(data);
-            window.location.href = "login.html";
+            window.location.href = "doneSignup.html";
         } else {
             alert(`Error: ${data.error}`);
             console.error(data.error);
