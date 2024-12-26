@@ -84,38 +84,66 @@
 
         <!-- Main Content -->
         <div class="main-content">
-            <form id="uploadForm" action="http://localhost:3000/api/admin/songs" method="POST" enctype="multipart/form-data">
-                <!-- Title Input -->
-                <div>
-                  <label for="title">Song Title:</label>
-                  <input type="text" id="title" name="title" required>
-                </div>
+            <div class="track-form">
+                <form id="uploadForm" action="http://localhost:3000/api/admin/songs" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="title">Song Title</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="artist">Artist</label>
+                        <input type="text" id="artist" name="artist" required>
+                        <small>Tip: Use commas to add multiple artist names</small>
+                    </div>
+                    <!-- Audio File Upload -->
+                    <div>
+                        <label for="audioFile">Audio File</label>
+                        <input type="file" id="audioFile" name="audioFile" accept="audio/*" required>
+                    </div>
                 
-                <!-- Artist Input -->
-                <div>
-                  <label for="artist">Artist:</label>
-                  <input type="text" id="artist" name="artist" required>
-                </div>
-            
-                <!-- Audio File Upload -->
-                <div>
-                  <label for="audioFile">Audio File:</label>
-                  <input type="file" id="audioFile" name="audioFile" accept="audio/*" required>
-                </div>
-            
-                <!-- Image File Upload -->
-                <div>
-                  <label for="imageFile">Image File:</label>
-                  <input type="file" id="imageFile" name="imageFile" accept="image/*" required>
-                </div>
-            
-                <!-- Submit Button -->
-                <button type="submit">Upload Song</button>
-              </form>
+                    <!-- Image File Upload -->
+                    <div>
+                        <label for="imageFile">Image File</label>
+                        <input type="file" id="imageFile" name="imageFile" accept="image/*" required>
+                    </div>
+                    <div class="action-buttons">
+                        <p>By uploading, you confirm that your sounds comply with our <a href="#">Terms of Use</a>.</p>
+                        <button type="submit" class="btn">Upload</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    
+    <script>
+        document.getElementById('imageFile').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const previewImage = document.getElementById('preview-image');
+                    const addImageText = document.getElementById('add-image-text');
+                    
+                    previewImage.src = e.target.result; // Set ảnh được chọn làm nguồn
+                    previewImage.style.display = 'block'; // Hiển thị ảnh
+                    addImageText.style.display = 'none'; // Ẩn văn bản "Add Image"
+                };
+                reader.readAsDataURL(file); // Đọc file và chuyển thành base64
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('audioFile').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const audioPreviewImage = document.getElementById('audio-preview-image');
+                const addAudioText = document.getElementById('add-audio-text');
+                
+                audioPreviewImage.style.display = 'block'; // Hiển thị hình cố định
+                addAudioText.style.display = 'none'; // Ẩn văn bản "Add Audio"
+            }
+        });
+    </script>
+
 </body>
 </html>
 
