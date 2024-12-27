@@ -146,7 +146,7 @@
                 <div class="container mt-4 p-3 bg-light rounded shadow-sm">
                     <div class="row align-items-center">
                         <div class="col-md-12">
-                                            <!-- Filter by Duration -->
+                            <!-- Filter by Duration -->
                             <label for="durationFilter" class="form-label fw-bold text-dark">Filter by Duration</label>
                             <select id="durationFilter" class="form-select form-select-lg card"
                                 onchange="filterSongsByDuration()">
@@ -156,11 +156,12 @@
                                 <option value="long">More than 5 mins</option>
                             </select>
                         </div>
-                        
+
                         <div class="col-md-12">
-                                              <!-- Filter by Genre -->
+                            <!-- Filter by Genre -->
                             <label for="genreFilter" class="form-label fw-bold text-dark">Filter by Genre</label>
-                            <select id="genreFilter" class="form-select form-select-lg card" onchange="filterSongsByGenre()">
+                            <select id="genreFilter" class="form-select form-select-lg card"
+                                onchange="filterSongsByGenre()">
                                 <option value="all">All</option>
                                 <option value="pop">Pop</option>
                                 <option value="rock">Rock</option>
@@ -384,13 +385,13 @@
             renderSongs(filteredSongs); // Render the filtered songs
         }
         function filterSongsByGenre() {
-    const genreFilter = document.getElementById('genreFilter').value;
-    const filteredSongs = songQueue.filter(song => {
-        if (genreFilter === 'all') return true; // Show all genres
-        return song.genre && song.genre.toLowerCase() === genreFilter; // Match genre
-    });
-    renderSongs(filteredSongs);
-}
+            const genreFilter = document.getElementById('genreFilter').value;
+            const filteredSongs = songQueue.filter(song => {
+                if (genreFilter === 'all') return true; // Show all genres
+                return song.genre && song.genre.toLowerCase() === genreFilter; // Match genre
+            });
+            renderSongs(filteredSongs);
+        }
         async function fetchSongs() {
             try {
                 const response = await fetch("http://localhost:3000/api/admin/songs");
