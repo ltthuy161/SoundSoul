@@ -197,7 +197,7 @@ export const removeSongFromPlaylist = async (req, res, next) => {
 export const editSong = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { title, artist } = req.body;
+        const { title, artist, genre } = req.body;
 
         // Find the song by ID
         const song = await Song.findById(id);
@@ -211,6 +211,9 @@ export const editSong = async (req, res, next) => {
         }
         if (artist) {
             song.artist = artist;
+        }
+		if (genre) {
+            song.genre = genre;
         }
 
         // Check if audio or image files are provided and update them
