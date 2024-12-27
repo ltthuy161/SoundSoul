@@ -13,8 +13,55 @@
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
         integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 </head>
+<style>
+    #countdownModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    #modal-content {
+        padding: 20px;
+        width: 80%;
+        max-width: 400px;
+        border: 1px solid var(--bs-primary);
+        border-radius: 10px;
+    }
+
+    .progress {
+        background: var(--bs-text-light);
+        height: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 10px;
+    }
+
+    #countdownProgressBar {
+        height: 100%;
+        background: var(--bs-primary);
+        transition: width 0.1s linear;
+    }
+</style>
 
 <body>
+    <!-- Add a modal for the countdown -->
+    <div id="countdownModal" style="display: none;">
+        <div id="modal-content" class="card text-center">
+            <h3>Playback Paused</h3>
+            <p class="text-muted">To enjoy uninterrupted playback, please upgrade to premium.</p>
+            <p>Resuming in <span id="countdownTimer">5</span> seconds...</p>
+            <div class="progress">
+                <div id="countdownProgressBar" style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
     <!-- Topbar -->
     <div class="topbar">
         <a href="dashboard.html" style="text-decoration: none; display: inline-flex; align-items: center;">
@@ -222,23 +269,55 @@
         // Start forced pause timer
         function startForcedPause(audioElement) {
             clearInterval(pauseInterval); // Clear existing interval
+
             pauseInterval = setInterval(() => {
                 // Pause playback
                 audioElement.pause();
                 togglePlayPauseIcon(false);
 
-                // Show an alert and block playback for 5 seconds
-                isPlayBlocked = true;
-                alert("Playback is paused for free users. Resuming in 5 seconds...");
+                // Show the modal with a countdown
+                showCountdownModal(10);
 
-                // Block play buttons for 5 seconds
+                // Block playback
+                isPlayBlocked = true;
                 disablePlayButtons();
+
                 setTimeout(() => {
                     isPlayBlocked = false;
                     enablePlayButtons();
-                }, 5000);
+                    hideCountdownModal();
+                }, 10000); // Duration of the countdown
+
             }, 15000); // Trigger every 15 seconds
         }
+
+        // Show countdown modal
+        function showCountdownModal(seconds) {
+            const modal = document.getElementById("countdownModal");
+            const countdownTimer = document.getElementById("countdownTimer");
+            const progressBar = document.getElementById("countdownProgressBar");
+
+            modal.style.display = "flex";
+            countdownTimer.textContent = seconds;
+
+            let remainingSeconds = seconds;
+            const interval = setInterval(() => {
+                remainingSeconds -= 1;
+                countdownTimer.textContent = remainingSeconds;
+                progressBar.style.width = `${(remainingSeconds / seconds) * 100}%`;
+
+                if (remainingSeconds <= 0) {
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+
+        // Hide countdown modal
+        function hideCountdownModal() {
+            const modal = document.getElementById("countdownModal");
+            modal.style.display = "none";
+        }
+
 
         function searchSongs() {
             const query = document.getElementById('songSearch').value.toLowerCase();
@@ -296,12 +375,16 @@
             document.getElementById('currentSongArtist').textContent = song.artist;
             document.getElementById('currentSongImage').src = song.imageUrl;
 
+            // Clear any existing pause timer
+            clearInterval(pauseInterval);
+
             audioElement.play();
             togglePlayPauseIcon(true);
 
             // Start forced pause timer
             startForcedPause(audioElement);
         }
+
         // Toggle play/pause
         function togglePlayPause() {
             const audioElement = document.getElementById('audioPlayer');
@@ -309,9 +392,16 @@
                 if (isPlayBlocked) return; // Prevent playing while play is blocked
                 audioElement.play();
                 togglePlayPauseIcon(true);
+
+                // Restart forced pause timer when resuming
+                startForcedPause(audioElement);
             } else {
                 audioElement.pause();
                 togglePlayPauseIcon(false);
+
+                // Clear the forced pause timer and hide the countdown modal
+                clearInterval(pauseInterval);
+                hideCountdownModal();
             }
         }
 
