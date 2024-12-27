@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
     <link rel="stylesheet" href="/client/css/premium/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -34,32 +37,24 @@
             </div>
         </div>
     </div>
+    <!-- Add to Playlist Modal -->
     <div class="modal fade" id="addToPlaylistModal" tabindex="-1" aria-labelledby="addToPlaylistModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header border-bottom-0">
-                    <h2 class="modal-title" id="addToPlaylistModalLabel">Add this song to your playlists</h2>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addToPlaylistModalLabel">Select Playlist</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body p-3">
-                    <div class="row row-cols-1 row-cols-md-5 g-3">
-                        <div class="col">
-                            <div class="card h-100">
-                                <img src="https://th.bing.com/th/id/OIG2.9O4YqGf98tiYzjKDvg7L"
-                                    class="card-img-top img-fluid">
-                                <div class="card-body">
-                                    <p class="card-title fw-bold">Workout Mix</p>
-                                    <p class="card-text">100 Songs</p>
-                                    <button class="btn btn-primary">Add</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="modal-body">
+                    <ul class="list-group" id="modalPlaylistContainer">
+                        <!-- Playlists will be dynamically added here -->
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -99,8 +94,8 @@
                 <button class="btn btn-lg rounded-circle text-dark" id="play-btn" onclick="playSong()">
                     <i class="fs-2 fa-solid fa-circle-play"></i>
                 </button>
-                <button class="btn btn-lg rounded-circle text-dark" id="add-btn" data-bs-toggle="modal"
-                    data-bs-target="#addToPlaylistModal">
+                <button class="btn btn-lg rounded-circle text-dark" id="add-btn"
+                    onclick="openAddToPlaylistModal(songId)">
                     <i class="bi bi-plus-circle"></i>
                 </button>
                 <button class="btn btn-lg rounded-circle text-dark" id="download-btn" onclick="downloadSong()">
@@ -201,51 +196,100 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        let playlists = [];
 
-            // Extract songId from URL parameters
-            const urlParams = new URLSearchParams(window.location.search);
-            const songId = urlParams.get('songId');
+        async function addSongToPlaylist(playlistId, songId) {
+            console.log(songId);
+            try {
+                const response = await fetch(`http://localhost:3000/api/admin/playlists/${playlistId}/songs/${songId}`, {
+                    method: "POST",
+                });
 
-            if (!songId) {
-                alert("Song ID is missing in the URL!");
-            }
-            let song = null;;
-            // Fetch song details
-            async function fetchSongDetails(songId) {
-                try {
-                    const response = await fetch(`http://localhost:3000/api/admin/songs/${songId}`);
-                    if (!response.ok) throw new Error("Failed to fetch song details");
-
-                    song = await response.json();
-                    renderSongDetails(song);
-                } catch (error) {
-                    console.error("Error fetching song details:", error);
-                    alert("Error fetching song details. Please try again.");
+                if (response.ok) {
+                    alert("Song added to playlist successfully!");
+                    $('#addToPlaylistModal').modal('hide'); // Close the modal
+                } else {
+                    throw new Error("Failed to add song to playlist.");
                 }
+            } catch (error) {
+                console.error("Error adding song to playlist:", error);
+                alert("Error adding song to playlist. Please try again.");
             }
+        }
+        async function fetchPlaylistsForModal(songId) {
+            try {
+                const response = await fetch("http://localhost:3000/api/admin/playlists");
+                const playlists = await response.json();
+                const modalPlaylistContainer = document.getElementById("modalPlaylistContainer");
+                modalPlaylistContainer.innerHTML = "";
 
-            // Render song details on the page
-            function renderSongDetails(song) {
-                // Update Song Banner
-                document.getElementById('song-title').textContent = song.title || "Unknown Title";
-                console.log(song.duration)
-                document.getElementById('song-detail').textContent = `${formatDuration(song.duration)}`;
-                document.getElementById('song-artist').textContent = song.artist || "Unknown Artist";
+                playlists.forEach((playlist) => {
+                    const listItem = `
+                <li class="list-group-item d-flex justify-content-between align-items-center"
+                    onclick="addSongToPlaylist('${playlist._id}', '${songId}')">
+                    ${playlist.name}
+                    <span class="badge bg-primary rounded-pill">${playlist.songs.length || 0}</span>
+                </li>
+            `;
+                    modalPlaylistContainer.innerHTML += listItem;
+                });
+            } catch (error) {
+                console.error("Error fetching playlists:", error);
+            }
+        }
+        function navigateToPlaylist(playlistId) {
+            // Redirect to the playlist page with the playlist ID as a query parameter
+            const baseUrl = "http://127.0.0.1:5500/client/html/premium/playlist.html";
+            window.location.href = `${baseUrl}?id=${playlistId}`;
+        }
+        function openAddToPlaylistModal(songId) {
+            fetchPlaylistsForModal(songId); // Populate playlists in modal
+            $('#addToPlaylistModal').modal('show');
+        }
+        // Extract songId from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const songId = urlParams.get('songId');
 
-                const songBannerImage = document.querySelector('#song-banner img');
-                songBannerImage.src = song.imageUrl || "https://via.placeholder.com/200";
-                songBannerImage.alt = song.title || "Song Cover";
+        if (!songId) {
+            alert("Song ID is missing in the URL!");
+        }
+        let song = null;;
+        // Fetch song details
+        async function fetchSongDetails(songId) {
+            try {
+                const response = await fetch(`http://localhost:3000/api/admin/songs/${songId}`);
+                if (!response.ok) throw new Error("Failed to fetch song details");
 
-                // Update Creator Profile
-                document.getElementById('creator-name').textContent = song.artist || "Unknown Artist";
-                document.getElementById('creator-avatar').src = "/client/assets/img/avatar/1.jpg";
+                song = await response.json();
+                renderSongDetails(song);
+            } catch (error) {
+                console.error("Error fetching song details:", error);
+                alert("Error fetching song details. Please try again.");
+            }
+        }
 
-                // Update comments if available
-                if (song.comments && song.comments.length > 0) {
-                    const commentsSection = document.getElementById('comments-section');
-                    commentsSection.innerHTML = ''; // Clear existing comments
-                    song.comments.forEach(comment => {
-                        const commentElement = `
+        // Render song details on the page
+        function renderSongDetails(song) {
+            // Update Song Banner
+            document.getElementById('song-title').textContent = song.title || "Unknown Title";
+            console.log(song.duration)
+            document.getElementById('song-detail').textContent = `${formatDuration(song.duration)}`;
+            document.getElementById('song-artist').textContent = song.artist || "Unknown Artist";
+
+            const songBannerImage = document.querySelector('#song-banner img');
+            songBannerImage.src = song.imageUrl || "https://via.placeholder.com/200";
+            songBannerImage.alt = song.title || "Song Cover";
+
+            // Update Creator Profile
+            document.getElementById('creator-name').textContent = song.artist || "Unknown Artist";
+            document.getElementById('creator-avatar').src = "/client/assets/img/avatar/1.jpg";
+
+            // Update comments if available
+            if (song.comments && song.comments.length > 0) {
+                const commentsSection = document.getElementById('comments-section');
+                commentsSection.innerHTML = ''; // Clear existing comments
+                song.comments.forEach(comment => {
+                    const commentElement = `
                     <div class="mb-3 p-3 bg-light rounded border">
                         <div class="d-flex justify-content-between">
                             <b>${comment.author || "Anonymous"}</b>
@@ -254,56 +298,56 @@
                         <p>${comment.text || "No comment text provided."}</p>
                     </div>
                 `;
-                        commentsSection.insertAdjacentHTML('beforeend', commentElement);
-                    });
-                }
+                    commentsSection.insertAdjacentHTML('beforeend', commentElement);
+                });
             }
+        }
 
-            // Format song duration into mm:ss
-            function formatDuration(seconds) {
-                const minutes = Math.floor(seconds / 60);
-                const remainingSeconds = seconds % 60;
-                return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
-            }
-            function playSong() {
-                const audioElement = document.getElementById('audioPlayer');
-                document.getElementById('currentSongTitle').textContent = song.title;
-                document.getElementById('currentSongArtist').textContent = song.artist;
-                document.getElementById('currentSongImage').src = song.imageUrl;
+        // Format song duration into mm:ss
+        function formatDuration(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = seconds % 60;
+            return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+        }
+        function playSong() {
+            const audioElement = document.getElementById('audioPlayer');
+            document.getElementById('currentSongTitle').textContent = song.title;
+            document.getElementById('currentSongArtist').textContent = song.artist;
+            document.getElementById('currentSongImage').src = song.imageUrl;
 
-                audioElement.src = song.audioUrl;
+            audioElement.src = song.audioUrl;
 
+            audioElement.play();
+            togglePlayPauseIcon(true);
+        }
+
+        function togglePlayPause() {
+            const audioElement = document.getElementById('audioPlayer');
+            if (audioElement.paused) {
                 audioElement.play();
                 togglePlayPauseIcon(true);
+            } else {
+                audioElement.pause();
+                togglePlayPauseIcon(false);
             }
+        }
 
-            function togglePlayPause() {
-                const audioElement = document.getElementById('audioPlayer');
-                if (audioElement.paused) {
-                    audioElement.play();
-                    togglePlayPauseIcon(true);
-                } else {
-                    audioElement.pause();
-                    togglePlayPauseIcon(false);
-                }
-            }
+        function togglePlayPauseIcon(isPlaying) {
+            document.querySelector('.bi-play-fill').style.display = isPlaying ? 'none' : 'inline';
+            document.querySelector('.bi-pause-fill').style.display = isPlaying ? 'inline' : 'none';
+        }
 
-            function togglePlayPauseIcon(isPlaying) {
-                document.querySelector('.bi-play-fill').style.display = isPlaying ? 'none' : 'inline';
-                document.querySelector('.bi-pause-fill').style.display = isPlaying ? 'inline' : 'none';
-            }
+        function setVolume(value) {
+            const audioElement = document.getElementById('audioPlayer');
+            audioElement.volume = value / 100;
+        }
+        // Download a song
+        function downloadSong() {
+            window.open(song.audioUrl, "_blank");
+        }
 
-            function setVolume(value) {
-                const audioElement = document.getElementById('audioPlayer');
-                audioElement.volume = value / 100;
-            }
-                        // Download a song
-            function downloadSong() {
-                window.open(song.audioUrl, "_blank");
-            }
-
-            // Call the function to fetch and render song details
-            fetchSongDetails(songId);
+        // Call the function to fetch and render song details
+        fetchSongDetails(songId);
 
     </script>
 </body>
