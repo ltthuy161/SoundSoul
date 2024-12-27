@@ -354,11 +354,11 @@
                     alert("Song added to playlist successfully!");
                     $('#addToPlaylistModal').modal('hide'); // Close the modal
                 } else {
-                    throw new Error("Failed to add song to playlist.");
+                    const message = await response.json();
+                    alert(message.message);
                 }
             } catch (error) {
                 console.error("Error adding song to playlist:", error);
-                alert("Error adding song to playlist. Please try again.");
             }
         }
 
